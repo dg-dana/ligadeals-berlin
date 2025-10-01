@@ -103,40 +103,8 @@ export default defineConfig({
     types: schemaTypes,
   },
 
-  // Custom theme with LigaDeals branding
-  theme: {
-    colors: {
-      primary: '#2563eb', // Blue
-      accent: '#3b82f6',
-      warning: '#f59e0b',
-      success: '#10b981',
-    },
-  },
-
-  // Studio configuration
-  studio: {
-    components: {
-      logo: () => {
-        return (
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            padding: '8px'
-          }}>
-            <span style={{ fontSize: '24px' }}>🎯</span>
-            <span style={{
-              fontWeight: 'bold',
-              fontSize: '16px',
-              color: '#2563eb'
-            }}>
-              Liga Deals
-            </span>
-          </div>
-        )
-      },
-    },
-  },
+  // Custom title for browser tab
+  basePath: '/studio',
 
   // Document actions customization
   document: {
