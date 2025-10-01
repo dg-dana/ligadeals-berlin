@@ -7,8 +7,8 @@ export default defineConfig({
   name: 'ligadeals-berlin',
   title: 'Liga Deals Berlin',
 
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+  projectId: '7s19ept6',
+  dataset: 'production',
 
   plugins: [
     structureTool(),
