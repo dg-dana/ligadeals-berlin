@@ -3,6 +3,7 @@ import { Heebo, Assistant } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import Analytics from "@/components/Analytics";
 import { getDefaultMetadata } from "@/lib/seo/metadata";
 import { generateWebsiteStructuredData, generateOrganizationStructuredData } from "@/lib/seo/metadata";
 
@@ -62,6 +63,9 @@ export default function RootLayout({
       <body
         className={`${heebo.variable} ${assistant.variable} antialiased font-[var(--font-heebo)] min-h-screen flex flex-col`}
       >
+        {/* Google Analytics - Only loads in production */}
+        <Analytics />
+
         <Navigation />
         <main className="flex-grow">
           {children}
