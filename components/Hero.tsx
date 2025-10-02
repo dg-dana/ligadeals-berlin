@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import Image from 'next/image'
 
 export default function Hero() {
   return (
@@ -30,24 +29,6 @@ export default function Hero() {
           <rect x="200" y="165" width="45" height="35" fill="white" opacity="0.4"/>
         </svg>
       </div>
-
-      {/* Logo - Top Left Corner */}
-      <motion.div
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="absolute top-6 left-6 z-20"
-      >
-        <Image
-          src="/ligadeals-logo-small.png"
-          alt="LigaDeals Berlin Logo"
-          width={60}
-          height={72}
-          className="w-auto h-auto max-w-[50px] md:max-w-[60px]"
-          priority
-          unoptimized
-        />
-      </motion.div>
 
       {/* Airplane Animation */}
       <motion.div
