@@ -1,34 +1,10 @@
+import Hero from '@/components/Hero'
+
 export default function Home() {
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 py-20 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-            ברוכים הבאים ל-Liga Deals Berlin
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8">
-            מועדון ההטבות המוביל בברלין
-          </p>
-          <p className="text-lg text-gray-500 dark:text-gray-400 max-w-3xl mx-auto">
-            גלו את ההטבות הטובות ביותר, מאמרים מעניינים, המלצות אישיות וכל מה שצריך לדעת על החיים בברלין
-          </p>
-          <div className="mt-10 flex gap-4 justify-center">
-            <a
-              href="#featured"
-              className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-            >
-              גלה עוד
-            </a>
-            <a
-              href="/contact"
-              className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold border-2 border-blue-600 hover:bg-blue-50 transition-colors"
-            >
-              צור קשר
-            </a>
-          </div>
-        </div>
-      </section>
+      <Hero />
 
       {/* Featured Articles Preview */}
       <section id="featured" className="py-16 px-4 bg-white dark:bg-gray-800">
