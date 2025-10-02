@@ -57,15 +57,14 @@ export default function Hero() {
           transition={{ duration: 0.6, ease: 'easeOut' }}
           className="mb-8"
         >
-          <div className="relative w-40 h-40 md:w-48 md:h-48">
-            <Image
-              src="/ligadeals-logo.png"
-              alt="LigaDeals Berlin Logo"
-              fill
-              className="object-contain"
-              priority
-            />
-          </div>
+          <Image
+            src="/ligadeals-logo-hero.png"
+            alt="LigaDeals Berlin Logo"
+            width={200}
+            height={240}
+            className="w-auto h-auto max-w-[160px] md:max-w-[200px]"
+            priority
+          />
         </motion.div>
 
         {/* Main Headline */}
