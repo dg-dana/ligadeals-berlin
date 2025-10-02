@@ -64,6 +64,7 @@ export default function Hero() {
             height={240}
             className="w-auto h-auto max-w-[160px] md:max-w-[200px]"
             priority
+            unoptimized
           />
         </motion.div>
 
