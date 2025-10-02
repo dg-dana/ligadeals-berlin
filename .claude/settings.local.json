@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh:*)",
+      "Bash(npm create:*)",
+      "Bash(mv:*)",
+      "Bash(rmdir:*)",
+      "Bash(rm:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git config:*)",
+      "Bash(git checkout:*)",
+      "WebFetch(domain:blog.yuv.ai)",
+      "Bash(npm install)",
+      "Bash(npm run dev:*)",
+      "Bash(git push:*)",
+      "Bash(npm i:*)",
+      "Bash(git log:*)",
+      "Bash(cat:*)",
+      "WebFetch(domain:yuv.ai)",
+      "Bash(npm update:*)",
+      "Bash(npm install:*)",
+      "Bash(curl:*)",
+      "Bash(npx create-next-app:*)",
+      "Bash(mkdir:*)",
+      "Bash(npx sanity@latest login:*)",
+      "Bash(npm run:*)",
+      "Bash(npx sanity dev:*)",
+      "Bash(npx sanity dataset import:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npx tailwindcss init:*)",
+      "Bash(dir:*)",
+      "Bash(node:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

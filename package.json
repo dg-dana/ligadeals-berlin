@@ -1,0 +1,20 @@
+{
+  "name": "ligadeals-berlin",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "seed": "tsx scripts/seedContent.ts"
+  },
+  "dependencies": {
+    "next": "^15.5.3",
+    "@sanity/client": "^6.11.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.7.0",
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3"
+  }
+}
