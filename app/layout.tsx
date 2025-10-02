@@ -3,6 +3,8 @@ import { Heebo, Assistant } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { getDefaultMetadata } from "@/lib/seo/metadata";
+import { generateWebsiteStructuredData, generateOrganizationStructuredData } from "@/lib/seo/metadata";
 
 const heebo = Heebo({
   variable: "--font-heebo",
@@ -18,30 +20,45 @@ const assistant = Assistant({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Liga Deals Berlin | מועדון הטבות בברלין",
-  description: "Liga Deals Berlin - מועדון הטבות מוביל בברלין. מאמרים, המלצות, וכל מה שצריך לדעת על החיים בברלין",
-  keywords: ["ברלין", "הטבות", "מועדון", "גרמניה", "Berlin", "deals", "discounts"],
-  authors: [{ name: "Liga Deals Berlin" }],
-  openGraph: {
-    title: "Liga Deals Berlin | מועדון הטבות בברלין",
-    description: "מועדון הטבות מוביל בברלין - מאמרים, המלצות וטיפים",
-    type: "website",
-    locale: "he_IL",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+// Use enhanced SEO metadata
+export const metadata: Metadata = getDefaultMetadata();
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Generate structured data for website and organization
+  const websiteStructuredData = generateWebsiteStructuredData();
+  const organizationStructuredData = generateOrganizationStructuredData();
+
   return (
     <html lang="he" dir="rtl">
+      <head>
+        {/* Favicon and icons */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.json" />
+
+        {/* Theme color for mobile browsers */}
+        <meta name="theme-color" content="#667eea" />
+        <meta name="color-scheme" content="light" />
+
+        {/* Site verification tags - Add your verification codes here */}
+        {/* <meta name="google-site-verification" content="your-verification-code" /> */}
+        {/* <meta name="facebook-domain-verification" content="your-verification-code" /> */}
+
+        {/* Structured data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteStructuredData) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationStructuredData) }}
+        />
+      </head>
       <body
         className={`${heebo.variable} ${assistant.variable} antialiased font-[var(--font-heebo)] min-h-screen flex flex-col`}
       >
