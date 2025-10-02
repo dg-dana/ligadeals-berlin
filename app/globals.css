@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 9%;
+  --primary: 221 83% 53%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222 47% 11%;
+  --font-hebrew: 'Noto Sans Hebrew', 'Assistant', system-ui, sans-serif;
+  --font-arabic: 'Noto Sans Arabic', system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 93%;
+    --primary: 217 91% 60%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-hebrew);
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="ltr"] {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Hebrew and Arabic text styling */
+.text-hebrew {
+  font-family: var(--font-hebrew);
+  direction: rtl;
+  text-align: right;
+}
+
+.text-arabic {
+  font-family: var(--font-arabic);
+  direction: rtl;
+  text-align: right;
+}

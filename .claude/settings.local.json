@@ -31,7 +31,9 @@
       "Bash(npm uninstall:*)",
       "Bash(npx tailwindcss init:*)",
       "Bash(dir:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(git remote add:*)",
+      "Bash(git pull:*)"
     ],
     "deny": [],
     "ask": []
