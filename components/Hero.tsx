@@ -22,11 +22,6 @@ export default function Hero() {
           {/* Brandenburg Gate */}
           <rect x="450" y="140" width="80" height="60" fill="white" opacity="0.6"/>
           <rect x="455" y="130" width="70" height="10" fill="white" opacity="0.6"/>
-          <rect x="460" y="145" width="8" height="55" fill="#1e3a8a"/>
-          <rect x="473" y="145" width="8" height="55" fill="#1e3a8a"/>
-          <rect x="486" y="145" width="8" height="55" fill="#1e3a8a"/>
-          <rect x="499" y="145" width="8" height="55" fill="#1e3a8a"/>
-          <rect x="512" y="145" width="8" height="55" fill="#1e3a8a"/>
 
           {/* Other Buildings */}
           <rect x="300" y="160" width="60" height="40" fill="white" opacity="0.5"/>
@@ -35,6 +30,24 @@ export default function Hero() {
           <rect x="200" y="165" width="45" height="35" fill="white" opacity="0.4"/>
         </svg>
       </div>
+
+      {/* Logo - Top Left Corner */}
+      <motion.div
+        initial={{ x: -100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        className="absolute top-6 left-6 z-20"
+      >
+        <Image
+          src="/ligadeals-logo-small.png"
+          alt="LigaDeals Berlin Logo"
+          width={60}
+          height={72}
+          className="w-auto h-auto max-w-[50px] md:max-w-[60px]"
+          priority
+          unoptimized
+        />
+      </motion.div>
 
       {/* Airplane Animation */}
       <motion.div
@@ -50,24 +63,6 @@ export default function Hero() {
 
       {/* Main Content */}
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">
-        {/* Logo */}
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="mb-8"
-        >
-          <Image
-            src="/ligadeals-logo-hero.png"
-            alt="LigaDeals Berlin Logo"
-            width={200}
-            height={240}
-            className="w-auto h-auto max-w-[160px] md:max-w-[200px]"
-            priority
-            unoptimized
-          />
-        </motion.div>
-
         {/* Main Headline */}
         <motion.h1
           initial={{ y: 30, opacity: 0 }}
