@@ -6,42 +6,6 @@ import Link from 'next/link'
 export default function Hero() {
   return (
     <section className="relative h-screen w-full overflow-hidden bg-gradient-to-b from-[#1e3a8a] to-[#3b82f6]">
-      {/* Background Berlin Skyline Illustration */}
-      <div className="absolute inset-0 opacity-10">
-        <svg
-          className="absolute bottom-0 w-full h-64"
-          viewBox="0 0 1200 300"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {/* Berlin TV Tower (Fernsehturm) */}
-          <path d="M580 50 L585 50 L585 150 L595 150 L595 160 L575 160 L575 150 L580 150 Z" fill="white" opacity="0.6"/>
-          <circle cx="582.5" cy="40" r="8" fill="white" opacity="0.6"/>
-
-          {/* Brandenburg Gate */}
-          <rect x="450" y="140" width="80" height="60" fill="white" opacity="0.6"/>
-          <rect x="455" y="130" width="70" height="10" fill="white" opacity="0.6"/>
-
-          {/* Other Buildings */}
-          <rect x="300" y="160" width="60" height="40" fill="white" opacity="0.5"/>
-          <rect x="650" y="150" width="70" height="50" fill="white" opacity="0.5"/>
-          <rect x="750" y="170" width="50" height="30" fill="white" opacity="0.4"/>
-          <rect x="200" y="165" width="45" height="35" fill="white" opacity="0.4"/>
-        </svg>
-      </div>
-
-      {/* Airplane Animation */}
-      <motion.div
-        className="absolute top-1/4 right-0"
-        initial={{ x: 100, opacity: 0 }}
-        animate={{ x: -1200, opacity: [0, 1, 1, 0] }}
-        transition={{ duration: 15, repeat: Infinity, repeatDelay: 5 }}
-      >
-        <svg width="60" height="60" viewBox="0 0 24 24" fill="white" opacity="0.3">
-          <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
-        </svg>
-      </motion.div>
-
       {/* Main Content */}
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">
         {/* Main Headline */}
