@@ -22,7 +22,7 @@ export default function FeaturedSection() {
                 <p className="text-gray-600 dark:text-gray-300 mb-4">
                   תיאור קצר של המאמר יופיע כאן. זה יכול להיות משפט או שניים שמסבירים על מה המאמר.
                 </p>
-                <a href="#" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">
+                <a href={`/blog#article-${item}`} className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">
                   קרא עוד ←
                 </a>
               </div>
