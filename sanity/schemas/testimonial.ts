@@ -61,11 +61,48 @@ export default defineType({
       },
     }),
     defineField({
-      name: 'approved',
-      title: 'אושר (Approved)',
+      name: 'featured',
+      title: 'מומלץ (Featured)',
       type: 'boolean',
       initialValue: false,
-      description: 'Only approved testimonials will be shown on the website',
+      description: 'Featured testimonials appear on the homepage',
+    }),
+    // Workflow fields
+    defineField({
+      name: 'status',
+      title: 'סטטוס (Status)',
+      type: 'string',
+      initialValue: 'pending',
+      options: {
+        list: [
+          { title: '⏳ ממתין לאישור (Pending)', value: 'pending' },
+          { title: '✅ אושר (Approved)', value: 'approved' },
+          { title: '❌ נדחה (Rejected)', value: 'rejected' },
+        ],
+      },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'reviewedBy',
+      title: 'נבדק על ידי (Reviewed By)',
+      type: 'string',
+      readOnly: true,
+      hidden: ({ document }) => document?.status === 'pending',
+    }),
+    defineField({
+      name: 'reviewedAt',
+      title: 'תאריך בדיקה (Reviewed At)',
+      type: 'datetime',
+      readOnly: true,
+      hidden: ({ document }) => document?.status === 'pending',
+    }),
+    defineField({
+      name: 'reviewNotes',
+      title: 'הערות בדיקה (Review Notes)',
+      type: 'text',
+      rows: 3,
+      description: 'Internal notes about the review decision',
+      hidden: ({ document }) => document?.status === 'pending',
     }),
   ],
   preview: {
@@ -74,12 +111,14 @@ export default defineType({
       subtitle: 'review',
       media: 'photo',
       rating: 'rating',
+      status: 'status',
     },
     prepare(selection) {
-      const { title, subtitle, media, rating } = selection
+      const { title, subtitle, media, rating, status } = selection
       const stars = '⭐'.repeat(rating || 0)
+      const statusEmoji = status === 'approved' ? '✅' : status === 'rejected' ? '❌' : '⏳'
       return {
-        title: `${title} - ${stars}`,
+        title: `${statusEmoji} ${title} - ${stars}`,
         subtitle: subtitle,
         media: media,
       }

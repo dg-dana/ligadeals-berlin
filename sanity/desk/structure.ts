@@ -100,7 +100,7 @@ export const structure: StructureResolver = (S) =>
 
       S.divider(),
 
-      // Testimonials
+      // Testimonials with workflow
       S.listItem()
         .title('המלצות')
         .icon(() => '💬')
@@ -115,19 +115,36 @@ export const structure: StructureResolver = (S) =>
                     .title('כל ההמלצות')
                 ),
               S.divider(),
+              // Workflow sections
               S.listItem()
-                .title('המלצות מפורסמות')
+                .title('⏳ ממתינות לאישור')
                 .child(
                   S.documentTypeList('testimonial')
-                    .title('המלצות מפורסמות')
-                    .filter('_type == "testimonial" && featured == true')
+                    .title('ממתינות לאישור')
+                    .filter('_type == "testimonial" && status == "pending"')
                 ),
               S.listItem()
-                .title('המלצות רגילות')
+                .title('✅ אושרו')
                 .child(
                   S.documentTypeList('testimonial')
-                    .title('המלצות רגילות')
-                    .filter('_type == "testimonial" && featured != true')
+                    .title('אושרו')
+                    .filter('_type == "testimonial" && status == "approved"')
+                ),
+              S.listItem()
+                .title('❌ נדחו')
+                .child(
+                  S.documentTypeList('testimonial')
+                    .title('נדחו')
+                    .filter('_type == "testimonial" && status == "rejected"')
+                ),
+              S.divider(),
+              // Featured section
+              S.listItem()
+                .title('⭐ המלצות מומלצות (דף הבית)')
+                .child(
+                  S.documentTypeList('testimonial')
+                    .title('המלצות מומלצות')
+                    .filter('_type == "testimonial" && featured == true && status == "approved"')
                 ),
             ])
         ),

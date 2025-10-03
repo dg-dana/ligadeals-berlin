@@ -168,18 +168,37 @@ export const getAllVideosCountQuery = `
   count(*[_type == "video" && !(_id in path("drafts.**"))])
 `;
 
-// Get approved testimonials
+// Get approved testimonials (for public display)
 export const getApprovedTestimonialsQuery = `
-  *[_type == "testimonial" && approved == true && !(_id in path("drafts.**"))]
-  | order(createdAt desc)
+  *[_type == "testimonial" && status == "approved" && !(_id in path("drafts.**"))]
+  | order(date desc)
   [0...$limit] {
     _id,
-    name,
-    email,
-    message,
+    customerName,
     rating,
-    createdAt,
-    approved
+    review,
+    tripType,
+    date,
+    photo,
+    featured,
+    status
+  }
+`;
+
+// Get featured testimonials (for homepage)
+export const getFeaturedTestimonialsQuery = `
+  *[_type == "testimonial" && status == "approved" && featured == true && !(_id in path("drafts.**"))]
+  | order(date desc)
+  [0...$limit] {
+    _id,
+    customerName,
+    rating,
+    review,
+    tripType,
+    date,
+    photo,
+    featured,
+    status
   }
 `;
 
