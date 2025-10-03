@@ -15,7 +15,7 @@ export default function AboutPreview() {
               הצטרפו אלינו וקבלו גישה למגוון רחב של הטבות בעסקים מובילים בברלין, תכנים ייחודיים וקהילה תומכת.
             </p>
             <a
-              href="/contact"
+              href="/about"
               className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
             >
               למד עוד עלינו
