@@ -4,6 +4,7 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Analytics from "@/components/Analytics";
+import SkipToContent from "@/components/SkipToContent";
 import { getDefaultMetadata } from "@/lib/seo/metadata";
 import { generateWebsiteStructuredData, generateOrganizationStructuredData } from "@/lib/seo/metadata";
 
@@ -70,8 +71,11 @@ export default function RootLayout({
         {/* Google Analytics - Only loads in production */}
         <Analytics />
 
+        {/* Skip to content link for keyboard accessibility */}
+        <SkipToContent />
+
         <Navigation />
-        <main className="flex-grow">
+        <main id="main-content" className="flex-grow" tabIndex={-1}>
           {children}
         </main>
         <Footer />

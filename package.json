@@ -19,7 +19,9 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "lighthouse": "node scripts/lighthouse.js",
-    "lighthouse:build": "npm run build && npm run start & sleep 5 && npm run lighthouse"
+    "lighthouse:build": "npm run build && npm run start & sleep 5 && npm run lighthouse",
+    "a11y": "node scripts/a11y-test.js",
+    "a11y:ci": "CI=true node scripts/a11y-test.js"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",

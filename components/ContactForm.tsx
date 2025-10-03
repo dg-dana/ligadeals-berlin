@@ -49,11 +49,11 @@ export default function ContactForm() {
 
   return (
     <div className="w-full" dir="rtl">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" aria-label="טופס יצירת קשר">
         {/* Full Name */}
         <div>
           <label htmlFor="fullName" className="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
-            שם מלא *
+            שם מלא <span aria-label="שדה חובה">*</span>
           </label>
           <input
             id="fullName"
@@ -62,15 +62,20 @@ export default function ContactForm() {
               required: 'שדה חובה',
               minLength: { value: 2, message: 'השם חייב להכיל לפחות 2 תווים' }
             })}
-            className={`w-full rounded-lg border-2 bg-white px-4 py-3 text-gray-900 transition-colors focus:outline-none dark:bg-gray-800 dark:text-white ${
+            aria-required="true"
+            aria-invalid={!!errors.fullName}
+            aria-describedby={errors.fullName ? 'fullName-error' : undefined}
+            className={`w-full rounded-lg border-2 bg-white px-4 py-3 text-gray-900 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-gray-800 dark:text-white ${
               errors.fullName
-                ? 'border-red-500 focus:border-red-600'
-                : 'border-gray-200 focus:border-blue-500 dark:border-gray-700'
+                ? 'border-red-500 focus:border-red-600 focus:ring-red-500'
+                : 'border-gray-200 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700'
             }`}
             placeholder="הכנס את שמך המלא"
           />
           {errors.fullName && (
-            <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.fullName.message}</p>
+            <p id="fullName-error" className="mt-1 text-sm text-red-600 dark:text-red-400" role="alert">
+              {errors.fullName.message}
+            </p>
           )}
         </div>
 
