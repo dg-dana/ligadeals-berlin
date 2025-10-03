@@ -5,12 +5,16 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 });
 
 const nextConfig: NextConfig = {
-  // Image optimization for Cloudinary
+  // Image optimization for Cloudinary and Sanity
   images: {
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'res.cloudinary.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
       },
     ],
     formats: ['image/avif', 'image/webp'],
@@ -20,7 +24,6 @@ const nextConfig: NextConfig = {
 
   // Performance optimizations
   compress: true,
-  swcMinify: true,
 
   // Experimental features for better performance
   experimental: {
