@@ -1,6 +1,10 @@
 import { createClient } from '@sanity/client';
 import fs from 'fs';
 import path from 'path';
+import dotenv from 'dotenv';
+
+// Load environment variables from .env.local
+dotenv.config({ path: '.env.local' });
 
 // Initialize Sanity client with write token
 const client = createClient({
