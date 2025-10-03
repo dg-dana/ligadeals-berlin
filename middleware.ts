@@ -1,15 +1,5 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import createIntlMiddleware from 'next-intl/middleware';
-import { locales, defaultLocale } from './i18n';
-
-// Create the i18n middleware
-const intlMiddleware = createIntlMiddleware({
-  locales,
-  defaultLocale,
-  localeDetection: true,
-  localePrefix: 'always'
-});
 
 // Rate limiting configuration
 const RATE_LIMIT_WINDOW = parseInt(process.env.RATE_LIMIT_WINDOW_MS || '60000', 10); // 1 minute default
@@ -106,20 +96,7 @@ export function middleware(request: NextRequest) {
     }
   }
 
-  // Handle i18n routing for non-API routes
-  const isApiRoute = pathname.startsWith('/api/');
-  const isStaticFile = pathname.match(/\.(ico|png|jpg|jpeg|svg|css|js|woff|woff2|ttf|eot)$/);
-
-  if (!isApiRoute && !isStaticFile) {
-    const intlResponse = intlMiddleware(request);
-    if (intlResponse) {
-      // Add security headers to i18n response
-      intlResponse.headers.set('X-Content-Type-Options', 'nosniff');
-      intlResponse.headers.set('X-Frame-Options', 'SAMEORIGIN');
-      intlResponse.headers.set('X-XSS-Protection', '1; mode=block');
-      return intlResponse;
-    }
-  }
+  // Skip i18n for now - can be added later when needed
 
   // Continue with the request
   const response = NextResponse.next();
