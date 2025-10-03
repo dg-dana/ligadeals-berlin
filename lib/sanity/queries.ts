@@ -27,7 +27,7 @@ const articleBaseFields = `
 
 const articleFullFields = `
   ${articleBaseFields},
-  content,
+  body,
   seo
 `;
 
