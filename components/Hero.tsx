@@ -6,6 +6,67 @@ import Link from 'next/link'
 export default function Hero() {
   return (
     <section className="relative h-screen w-full overflow-hidden bg-gradient-to-b from-[#1e3a8a] to-[#3b82f6]">
+      {/* Berlin Skyline */}
+      <div className="absolute inset-0">
+        <svg
+          className="absolute bottom-0 w-full h-80"
+          viewBox="0 0 1200 400"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="xMidYMax slice"
+        >
+          {/* Berlin TV Tower (Fernsehturm) - Pink */}
+          <path d="M580 100 L585 100 L585 250 L595 250 L595 265 L575 265 L575 250 L580 250 Z" fill="#ec4899" opacity="0.7"/>
+          <circle cx="582.5" cy="85" r="12" fill="#ec4899" opacity="0.7"/>
+          <circle cx="582.5" cy="85" r="6" fill="#fbbf24" opacity="0.9"/>
+
+          {/* Brandenburg Gate - Yellow */}
+          <rect x="450" y="220" width="100" height="80" fill="#fbbf24" opacity="0.7"/>
+          <rect x="455" y="205" width="90" height="15" fill="#fbbf24" opacity="0.8"/>
+          <rect x="465" y="230" width="10" height="70" fill="#1e3a8a" opacity="0.3"/>
+          <rect x="485" y="230" width="10" height="70" fill="#1e3a8a" opacity="0.3"/>
+          <rect x="505" y="230" width="10" height="70" fill="#1e3a8a" opacity="0.3"/>
+          <rect x="525" y="230" width="10" height="70" fill="#1e3a8a" opacity="0.3"/>
+
+          {/* Building 1 - Purple */}
+          <rect x="280" y="230" width="80" height="70" fill="#a855f7" opacity="0.7"/>
+          <rect x="285" y="235" width="15" height="15" fill="#fbbf24" opacity="0.4"/>
+          <rect x="305" y="235" width="15" height="15" fill="#fbbf24" opacity="0.4"/>
+          <rect x="325" y="235" width="15" height="15" fill="#fbbf24" opacity="0.4"/>
+          <rect x="345" y="235" width="15" height="15" fill="#fbbf24" opacity="0.4"/>
+
+          {/* Building 2 - Pink */}
+          <rect x="650" y="240" width="90" height="60" fill="#ec4899" opacity="0.7"/>
+          <rect x="660" y="250" width="12" height="12" fill="#fbbf24" opacity="0.5"/>
+          <rect x="678" y="250" width="12" height="12" fill="#fbbf24" opacity="0.5"/>
+          <rect x="696" y="250" width="12" height="12" fill="#fbbf24" opacity="0.5"/>
+          <rect x="714" y="250" width="12" height="12" fill="#fbbf24" opacity="0.5"/>
+
+          {/* Building 3 - Yellow */}
+          <rect x="760" y="250" width="70" height="50" fill="#fbbf24" opacity="0.7"/>
+          <rect x="765" y="255" width="10" height="10" fill="#a855f7" opacity="0.4"/>
+          <rect x="780" y="255" width="10" height="10" fill="#a855f7" opacity="0.4"/>
+          <rect x="795" y="255" width="10" height="10" fill="#a855f7" opacity="0.4"/>
+          <rect x="810" y="255" width="10" height="10" fill="#a855f7" opacity="0.4"/>
+
+          {/* Building 4 - Purple */}
+          <rect x="180" y="245" width="65" height="55" fill="#a855f7" opacity="0.7"/>
+          <rect x="185" y="250" width="8" height="8" fill="#ec4899" opacity="0.5"/>
+          <rect x="198" y="250" width="8" height="8" fill="#ec4899" opacity="0.5"/>
+          <rect x="211" y="250" width="8" height="8" fill="#ec4899" opacity="0.5"/>
+          <rect x="224" y="250" width="8" height="8" fill="#ec4899" opacity="0.5"/>
+
+          {/* Building 5 - Pink */}
+          <rect x="860" y="255" width="60" height="45" fill="#ec4899" opacity="0.7"/>
+
+          {/* Building 6 - Yellow */}
+          <rect x="100" y="260" width="55" height="40" fill="#fbbf24" opacity="0.7"/>
+
+          {/* Building 7 - Purple */}
+          <rect x="950" y="265" width="70" height="35" fill="#a855f7" opacity="0.7"/>
+        </svg>
+      </div>
+
       {/* Main Content */}
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">
         {/* Main Headline */}
