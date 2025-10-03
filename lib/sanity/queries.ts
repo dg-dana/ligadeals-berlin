@@ -101,7 +101,7 @@ export const getArticlesByCategoryCountQuery = `
 // Get all photos with category filtering
 export const getAllPhotosQuery = `
   *[_type == "photo" && !(_id in path("drafts.**"))]
-  | order(createdAt desc)
+  | order(createdAt asc)
   [$start...$end] {
     _id,
     title,
