@@ -52,3 +52,173 @@ body {
   direction: rtl;
   text-align: right;
 }
+
+/* RTL-safe utility classes */
+@layer utilities {
+  /* Logical spacing utilities for RTL support */
+  .ms-auto {
+    margin-inline-start: auto;
+  }
+
+  .me-auto {
+    margin-inline-end: auto;
+  }
+
+  .ps-safe {
+    padding-inline-start: var(--spacing, 1rem);
+  }
+
+  .pe-safe {
+    padding-inline-end: var(--spacing, 1rem);
+  }
+
+  /* RTL-aware animations */
+  @keyframes slide-in-start {
+    from {
+      transform: translateX(var(--rtl-direction, -100%));
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-in-end {
+    from {
+      transform: translateX(var(--rtl-direction, 100%));
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  [dir="rtl"] {
+    --rtl-direction: 1;
+  }
+
+  [dir="ltr"] {
+    --rtl-direction: -1;
+  }
+
+  /* Animation classes */
+  .slide-in-start {
+    animation: slide-in-start 0.3s ease-out;
+  }
+
+  .slide-in-end {
+    animation: slide-in-end 0.3s ease-out;
+  }
+
+  /* RTL-aware shadows */
+  .shadow-start {
+    box-shadow: -4px 0 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  [dir="rtl"] .shadow-start {
+    box-shadow: 4px 0 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .shadow-end {
+    box-shadow: 4px 0 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  [dir="rtl"] .shadow-end {
+    box-shadow: -4px 0 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  /* RTL-aware positioning */
+  .float-start {
+    float: left;
+  }
+
+  [dir="rtl"] .float-start {
+    float: right;
+  }
+
+  .float-end {
+    float: right;
+  }
+
+  [dir="rtl"] .float-end {
+    float: left;
+  }
+
+  /* RTL-aware borders */
+  .border-s {
+    border-inline-start-width: 1px;
+  }
+
+  .border-e {
+    border-inline-end-width: 1px;
+  }
+
+  .border-s-2 {
+    border-inline-start-width: 2px;
+  }
+
+  .border-e-2 {
+    border-inline-end-width: 2px;
+  }
+
+  /* RTL-aware rounded corners */
+  .rounded-s-lg {
+    border-start-start-radius: 0.5rem;
+    border-end-start-radius: 0.5rem;
+  }
+
+  .rounded-e-lg {
+    border-start-end-radius: 0.5rem;
+    border-end-end-radius: 0.5rem;
+  }
+
+  /* Better line-height for Hebrew text */
+  .leading-hebrew {
+    line-height: 1.75;
+  }
+
+  /* Prevent text from being too tight in Hebrew */
+  .tracking-hebrew {
+    letter-spacing: 0.01em;
+  }
+}
+
+/* Ensure inputs and textareas align correctly in RTL */
+[dir="rtl"] input,
+[dir="rtl"] textarea,
+[dir="rtl"] select {
+  text-align: right;
+}
+
+[dir="rtl"] input[type="email"],
+[dir="rtl"] input[type="url"] {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Fix for number inputs in RTL */
+[dir="rtl"] input[type="number"] {
+  text-align: left;
+  direction: ltr;
+}
+
+/* Ensure proper scroll behavior in RTL */
+[dir="rtl"] {
+  scroll-behavior: smooth;
+}
+
+/* Fix for horizontal scroll containers */
+.scroll-container-rtl {
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+[dir="rtl"] .scroll-container-rtl {
+  direction: ltr;
+}
+
+[dir="rtl"] .scroll-container-rtl > * {
+  direction: rtl;
+}

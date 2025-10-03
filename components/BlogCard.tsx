@@ -68,7 +68,7 @@ export default function BlogCard({
           <div className="mt-4 flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold">
             <span>קרא עוד</span>
             <svg
-              className="w-5 h-5 transition-transform group-hover:-translate-x-1"
+              className="w-5 h-5 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
