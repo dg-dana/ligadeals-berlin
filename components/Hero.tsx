@@ -6,16 +6,6 @@ import Link from 'next/link'
 export default function Hero() {
   return (
     <section className="relative h-screen w-full overflow-hidden bg-gradient-to-b from-[#1e3a8a] to-[#3b82f6]">
-      {/* Berlin Skyline */}
-      <div className="absolute bottom-0 left-0 right-0 flex items-end justify-center opacity-20 pointer-events-none">
-        <img
-          src="/images/berlin-skyline.png"
-          alt="Berlin Skyline"
-          className="w-full h-auto object-contain"
-          style={{ maxHeight: '50vh' }}
-        />
-      </div>
-
       {/* Airplane Animation */}
       <motion.div
         className="absolute top-1/4 right-0"
