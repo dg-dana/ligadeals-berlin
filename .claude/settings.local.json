@@ -33,7 +33,16 @@
       "Bash(dir:*)",
       "Bash(node:*)",
       "Bash(git remote add:*)",
-      "Bash(git pull:*)"
+      "Bash(git pull:*)",
+      "Read(//c/Users/dgdan/Downloads/**)",
+      "Bash(powershell:*)",
+      "Bash(python:*)",
+      "Bash(git rebase:*)",
+      "Bash(git mv:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill:*)",
+      "Bash(npx sanity:*)"
     ],
     "deny": [],
     "ask": []
