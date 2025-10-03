@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 
 export interface Photo {
   id: string
@@ -15,11 +16,21 @@ export interface Photo {
 interface PhotoGalleryProps {
   photos: Photo[]
   categories?: string[]
+  itemsPerPage?: number
 }
 
-export default function PhotoGallery({ photos, categories = [] }: PhotoGalleryProps) {
+export default function PhotoGallery({
+  photos,
+  categories = [],
+  itemsPerPage = 12
+}: PhotoGalleryProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('הכל')
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+  const [displayedCount, setDisplayedCount] = useState(itemsPerPage)
+  const { ref, inView } = useInView({
+    threshold: 0,
+    triggerOnce: false,
+  })
 
   const allCategories = ['הכל', ...categories]
 
@@ -27,6 +38,20 @@ export default function PhotoGallery({ photos, categories = [] }: PhotoGalleryPr
   const filteredPhotos = photos.filter(
     (photo) => selectedCategory === 'הכל' || photo.category === selectedCategory
   )
+
+  // Reset displayed count when category changes
+  useEffect(() => {
+    setDisplayedCount(itemsPerPage)
+  }, [selectedCategory, itemsPerPage])
+
+  // Load more photos when scrolling to bottom
+  useEffect(() => {
+    if (inView && displayedCount < filteredPhotos.length) {
+      setDisplayedCount(prev => Math.min(prev + itemsPerPage, filteredPhotos.length))
+    }
+  }, [inView, displayedCount, filteredPhotos.length, itemsPerPage])
+
+  const displayedPhotos = filteredPhotos.slice(0, displayedCount)
 
   // Keyboard navigation
   const handleKeyDown = useCallback(
@@ -91,7 +116,7 @@ export default function PhotoGallery({ photos, categories = [] }: PhotoGalleryPr
         layout
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
       >
-        {filteredPhotos.map((photo, index) => (
+        {displayedPhotos.map((photo, index) => (
           <motion.div
             key={photo.id}
             layout
@@ -134,6 +159,25 @@ export default function PhotoGallery({ photos, categories = [] }: PhotoGalleryPr
           </motion.div>
         ))}
       </motion.div>
+
+      {/* Infinite Scroll Trigger */}
+      {displayedCount < filteredPhotos.length && (
+        <div ref={ref} className="mt-8 flex justify-center">
+          <div className="flex items-center gap-3">
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-600 border-t-transparent"></div>
+            <p className="text-gray-600 dark:text-gray-400">טוען עוד תמונות...</p>
+          </div>
+        </div>
+      )}
+
+      {/* Show total count */}
+      {displayedCount >= filteredPhotos.length && filteredPhotos.length > 0 && (
+        <div className="mt-8 text-center">
+          <p className="text-gray-600 dark:text-gray-400">
+            מוצגות {filteredPhotos.length} תמונות מתוך {photos.length}
+          </p>
+        </div>
+      )}
 
       {/* Lightbox Modal */}
       <AnimatePresence>

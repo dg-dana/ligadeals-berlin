@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "blog": "Blog",
+    "gallery": "Gallery",
+    "contact": "Contact",
+    "map": "Map"
+  },
+  "hero": {
+    "title": "Discover Berlin",
+    "subtitle": "Your ultimate guide to living in Berlin",
+    "cta": "Start Exploring"
+  },
+  "newsletter": {
+    "title": "Subscribe to Newsletter",
+    "subtitle": "Get the latest updates and best tips",
+    "emailPlaceholder": "Enter your email",
+    "subscribe": "Subscribe",
+    "success": "Successfully subscribed!",
+    "error": "An error occurred. Please try again."
+  },
+  "blog": {
+    "title": "Our Blog",
+    "readMore": "Read More",
+    "searchPlaceholder": "Search articles...",
+    "categories": "Categories",
+    "all": "All",
+    "noResults": "No articles found",
+    "tryDifferentSearch": "Try changing your search or select a different category"
+  },
+  "gallery": {
+    "title": "Photo Gallery",
+    "viewAll": "View All",
+    "loading": "Loading more photos...",
+    "showing": "Showing {count} photos out of {total}"
+  },
+  "map": {
+    "title": "Recommended Places in Berlin",
+    "categories": {
+      "all": "All",
+      "restaurant": "Restaurants",
+      "cafe": "Cafes",
+      "attraction": "Attractions",
+      "shopping": "Shopping",
+      "nightlife": "Nightlife"
+    },
+    "visitWebsite": "Visit Website"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send",
+    "success": "Message sent successfully!",
+    "error": "An error occurred. Please try again."
+  },
+  "footer": {
+    "allRightsReserved": "All Rights Reserved",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "close": "Close",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "share": "Share"
+  }
+}

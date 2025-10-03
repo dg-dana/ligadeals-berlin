@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "home": "בית",
+    "about": "אודות",
+    "blog": "בלוג",
+    "gallery": "גלריה",
+    "contact": "צור קשר",
+    "map": "מפה"
+  },
+  "hero": {
+    "title": "גלה את ברלין",
+    "subtitle": "המדריך המושלם שלך לחיים בברלין",
+    "cta": "התחל לחקור"
+  },
+  "newsletter": {
+    "title": "הירשם לניוזלטר",
+    "subtitle": "קבל את העדכונים האחרונים והטיפים הטובים ביותר",
+    "emailPlaceholder": "הכנס את האימייל שלך",
+    "subscribe": "הירשם",
+    "success": "נרשמת בהצלחה!",
+    "error": "אירעה שגיאה. נסה שוב."
+  },
+  "blog": {
+    "title": "הבלוג שלנו",
+    "readMore": "קרא עוד",
+    "searchPlaceholder": "חפש מאמרים...",
+    "categories": "קטגוריות",
+    "all": "הכל",
+    "noResults": "לא נמצאו מאמרים",
+    "tryDifferentSearch": "נסה לשנות את החיפוש או לבחור קטגוריה אחרת"
+  },
+  "gallery": {
+    "title": "גלריית תמונות",
+    "viewAll": "צפה בהכל",
+    "loading": "טוען עוד תמונות...",
+    "showing": "מוצגות {count} תמונות מתוך {total}"
+  },
+  "map": {
+    "title": "מקומות מומלצים בברלין",
+    "categories": {
+      "all": "הכל",
+      "restaurant": "מסעדות",
+      "cafe": "בתי קפה",
+      "attraction": "אטרקציות",
+      "shopping": "קניות",
+      "nightlife": "חיי לילה"
+    },
+    "visitWebsite": "בקר באתר"
+  },
+  "contact": {
+    "title": "צור קשר",
+    "name": "שם",
+    "email": "אימייל",
+    "message": "הודעה",
+    "send": "שלח",
+    "success": "ההודעה נשלחה בהצלחה!",
+    "error": "אירעה שגיאה. נסה שוב."
+  },
+  "footer": {
+    "allRightsReserved": "כל הזכויות שמורות",
+    "privacyPolicy": "מדיניות פרטיות",
+    "termsOfService": "תנאי שימוש"
+  },
+  "common": {
+    "loading": "טוען...",
+    "error": "שגיאה",
+    "close": "סגור",
+    "save": "שמור",
+    "cancel": "ביטול",
+    "delete": "מחק",
+    "edit": "ערוך",
+    "share": "שתף"
+  }
+}

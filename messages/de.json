@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "about": "Über uns",
+    "blog": "Blog",
+    "gallery": "Galerie",
+    "contact": "Kontakt",
+    "map": "Karte"
+  },
+  "hero": {
+    "title": "Entdecke Berlin",
+    "subtitle": "Dein ultimativer Guide zum Leben in Berlin",
+    "cta": "Erkunden starten"
+  },
+  "newsletter": {
+    "title": "Newsletter abonnieren",
+    "subtitle": "Erhalte die neuesten Updates und besten Tipps",
+    "emailPlaceholder": "E-Mail eingeben",
+    "subscribe": "Abonnieren",
+    "success": "Erfolgreich abonniert!",
+    "error": "Ein Fehler ist aufgetreten. Bitte versuche es erneut."
+  },
+  "blog": {
+    "title": "Unser Blog",
+    "readMore": "Weiterlesen",
+    "searchPlaceholder": "Artikel suchen...",
+    "categories": "Kategorien",
+    "all": "Alle",
+    "noResults": "Keine Artikel gefunden",
+    "tryDifferentSearch": "Versuche deine Suche zu ändern oder wähle eine andere Kategorie"
+  },
+  "gallery": {
+    "title": "Fotogalerie",
+    "viewAll": "Alle anzeigen",
+    "loading": "Weitere Fotos werden geladen...",
+    "showing": "{count} von {total} Fotos werden angezeigt"
+  },
+  "map": {
+    "title": "Empfohlene Orte in Berlin",
+    "categories": {
+      "all": "Alle",
+      "restaurant": "Restaurants",
+      "cafe": "Cafés",
+      "attraction": "Sehenswürdigkeiten",
+      "shopping": "Einkaufen",
+      "nightlife": "Nachtleben"
+    },
+    "visitWebsite": "Website besuchen"
+  },
+  "contact": {
+    "title": "Kontaktiere uns",
+    "name": "Name",
+    "email": "E-Mail",
+    "message": "Nachricht",
+    "send": "Senden",
+    "success": "Nachricht erfolgreich gesendet!",
+    "error": "Ein Fehler ist aufgetreten. Bitte versuche es erneut."
+  },
+  "footer": {
+    "allRightsReserved": "Alle Rechte vorbehalten",
+    "privacyPolicy": "Datenschutz",
+    "termsOfService": "Nutzungsbedingungen"
+  },
+  "common": {
+    "loading": "Lädt...",
+    "error": "Fehler",
+    "close": "Schließen",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "share": "Teilen"
+  }
+}
