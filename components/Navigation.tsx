@@ -17,23 +17,23 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50" role="navigation" aria-label="ניווט ראשי">
+    <nav className="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50" dir="rtl" role="navigation" aria-label="ניווט ראשי">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0">
+          {/* Logo - Right side for RTL */}
+          <div className="flex-shrink-0 order-2 md:order-1">
             <Link href="/" className="flex items-center" aria-label="Liga Deals Berlin - חזרה לדף הבית">
+              <span className="me-3 text-xl font-bold text-gray-900 dark:text-white">
+                Liga Deals Berlin
+              </span>
               <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center" aria-hidden="true">
                 <span className="text-white font-bold text-xl">LD</span>
               </div>
-              <span className="ms-3 text-xl font-bold text-gray-900 dark:text-white">
-                Liga Deals Berlin
-              </span>
             </Link>
           </div>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex md:space-x-reverse md:space-x-8" role="menubar">
+          {/* Desktop Menu - Left side for RTL */}
+          <div className="hidden md:flex md:gap-6 order-1 md:order-2" role="menubar">
             {menuItems.map((item) => (
               <Link
                 key={item.name}
@@ -46,8 +46,8 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          {/* Mobile Menu Button - Left side for RTL */}
+          <div className="md:hidden order-1">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
@@ -65,7 +65,7 @@ const Navigation = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - RTL aligned */}
       {isMenuOpen && (
         <div
           id="mobile-menu"
@@ -78,7 +78,7 @@ const Navigation = () => {
                 key={item.name}
                 href={item.href}
                 role="menuitem"
-                className="block text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-base font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset"
+                className="block text-right text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-base font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}

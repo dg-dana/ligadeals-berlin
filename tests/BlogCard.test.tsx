@@ -109,4 +109,95 @@ describe('BlogCard Component', () => {
     const excerpt = container.querySelector('.line-clamp-3')
     expect(excerpt).toBeInTheDocument()
   })
+
+  it('is accessible with proper semantic HTML', () => {
+    renderWithProviders(<BlogCard {...mockProps} />)
+
+    // Should have article element
+    const article = screen.getByRole('article')
+    expect(article).toBeInTheDocument()
+
+    // Should have heading
+    const heading = screen.getByRole('heading', { level: 3 })
+    expect(heading).toBeInTheDocument()
+
+    // Should have time element
+    const timeElement = screen.getByRole('time')
+    expect(timeElement).toBeInTheDocument()
+  })
+
+  it('image has alt text for accessibility', () => {
+    renderWithProviders(<BlogCard {...mockProps} />)
+
+    const image = screen.getByAltText('כותרת לדוגמה')
+    expect(image).toBeInTheDocument()
+  })
+
+  it('link is keyboard accessible', () => {
+    renderWithProviders(<BlogCard {...mockProps} />)
+
+    const link = screen.getByRole('link')
+    expect(link).toBeInTheDocument()
+    expect(link).not.toHaveAttribute('tabindex', '-1')
+  })
+
+  it('handles empty or missing category gracefully', () => {
+    const noCategoryProps = {
+      ...mockProps,
+      category: '',
+    }
+
+    renderWithProviders(<BlogCard {...noCategoryProps} />)
+
+    // Should still render the card
+    expect(screen.getByText('כותרת לדוגמה')).toBeInTheDocument()
+  })
+
+  it('formats various date formats correctly', () => {
+    const dateProps = {
+      ...mockProps,
+      date: '2024-12-25',
+    }
+
+    renderWithProviders(<BlogCard {...dateProps} />)
+
+    // Should format date
+    const timeElement = screen.getByRole('time')
+    expect(timeElement).toBeInTheDocument()
+  })
+
+  it('handles special characters in title and excerpt', () => {
+    const specialCharsProps = {
+      ...mockProps,
+      title: 'כותרת עם "ציטוט" ותווים מיוחדים: < > & @',
+      excerpt: 'תיאור עם תווים מיוחדים: < > & @ # $ % ^',
+    }
+
+    renderWithProviders(<BlogCard {...specialCharsProps} />)
+
+    expect(screen.getByText(/כותרת עם/)).toBeInTheDocument()
+    expect(screen.getByText(/תיאור עם תווים/)).toBeInTheDocument()
+  })
+
+  it('maintains correct slug format in URL', () => {
+    const slugProps = {
+      ...mockProps,
+      slug: 'my-blog-post-2025',
+    }
+
+    renderWithProviders(<BlogCard {...slugProps} />)
+
+    const link = screen.getByRole('link')
+    expect(link).toHaveAttribute('href', '/blog/my-blog-post-2025')
+  })
+
+  it('has hover effects classes', () => {
+    const { container } = renderWithProviders(<BlogCard {...mockProps} />)
+
+    const article = container.querySelector('article')
+    expect(article).toHaveClass('hover:shadow-2xl')
+
+    const title = screen.getByRole('heading', { level: 3 })
+    expect(title).toHaveClass('group-hover:text-blue-600')
+  })
 })

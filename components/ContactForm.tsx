@@ -5,9 +5,9 @@ import { useForm } from 'react-hook-form'
 import { motion, AnimatePresence } from 'framer-motion'
 
 interface ContactFormData {
-  fullName: string
+  name: string
   email: string
-  phone: string
+  phone?: string
   message: string
 }
 
@@ -27,16 +27,28 @@ export default function ContactForm() {
     setSubmitStatus(null)
 
     try {
-      // Simulate API call - replace with actual implementation
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
 
-      console.log('Form data:', data)
+      if (!response.ok) {
+        throw new Error('Failed to send message')
+      }
+
+      const result = await response.json()
+      console.log('Form submitted successfully:', result)
+
       setSubmitStatus('success')
       reset()
 
       // Auto-hide success message after 5 seconds
       setTimeout(() => setSubmitStatus(null), 5000)
     } catch (error) {
+      console.error('Error submitting form:', error)
       setSubmitStatus('error')
       setTimeout(() => setSubmitStatus(null), 5000)
     } finally {
@@ -52,29 +64,29 @@ export default function ContactForm() {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" aria-label="טופס יצירת קשר">
         {/* Full Name */}
         <div>
-          <label htmlFor="fullName" className="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+          <label htmlFor="name" className="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
             שם מלא <span aria-label="שדה חובה">*</span>
           </label>
           <input
-            id="fullName"
+            id="name"
             type="text"
-            {...register('fullName', {
+            {...register('name', {
               required: 'שדה חובה',
               minLength: { value: 2, message: 'השם חייב להכיל לפחות 2 תווים' }
             })}
             aria-required="true"
-            aria-invalid={!!errors.fullName}
-            aria-describedby={errors.fullName ? 'fullName-error' : undefined}
+            aria-invalid={!!errors.name}
+            aria-describedby={errors.name ? 'name-error' : undefined}
             className={`w-full rounded-lg border-2 bg-white px-4 py-3 text-gray-900 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-gray-800 dark:text-white ${
-              errors.fullName
+              errors.name
                 ? 'border-red-500 focus:border-red-600 focus:ring-red-500'
                 : 'border-gray-200 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700'
             }`}
             placeholder="הכנס את שמך המלא"
           />
-          {errors.fullName && (
-            <p id="fullName-error" className="mt-1 text-sm text-red-600 dark:text-red-400" role="alert">
-              {errors.fullName.message}
+          {errors.name && (
+            <p id="name-error" className="mt-1 text-sm text-red-600 dark:text-red-400" role="alert">
+              {errors.name.message}
             </p>
           )}
         </div>
@@ -106,16 +118,15 @@ export default function ContactForm() {
           )}
         </div>
 
-        {/* Phone */}
+        {/* Phone (Optional) */}
         <div>
           <label htmlFor="phone" className="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
-            טלפון *
+            טלפון (אופציונלי)
           </label>
           <input
             id="phone"
             type="tel"
             {...register('phone', {
-              required: 'שדה חובה',
               pattern: {
                 value: /^[0-9+\-\s()]{8,}$/,
                 message: 'מספר טלפון לא תקין'
