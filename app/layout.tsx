@@ -12,6 +12,8 @@ const heebo = Heebo({
   subsets: ["hebrew", "latin"],
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
+  preload: true,
+  fallback: ["system-ui", "arial"],
 });
 
 const assistant = Assistant({
@@ -19,6 +21,8 @@ const assistant = Assistant({
   subsets: ["hebrew", "latin"],
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
+  preload: true,
+  fallback: ["system-ui", "arial"],
 });
 
 // Use enhanced SEO metadata
