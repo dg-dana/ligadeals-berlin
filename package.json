@@ -21,7 +21,9 @@
     "lighthouse": "node scripts/lighthouse.js",
     "lighthouse:build": "npm run build && npm run start & sleep 5 && npm run lighthouse",
     "a11y": "node scripts/a11y-test.js",
-    "a11y:ci": "CI=true node scripts/a11y-test.js"
+    "a11y:ci": "CI=true node scripts/a11y-test.js",
+    "verify:deployment": "tsx scripts/verifyDeployment.ts",
+    "predeploy": "npm run verify:deployment && npm run build"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
