@@ -1,4 +1,4 @@
-import { client } from '@/sanity/sanity.client';
+import { client, urlFor } from '@/sanity/sanity.client';
 import { getAllArticlesQuery } from '@/lib/sanity/queries';
 import BlogCard from '@/components/BlogCard';
 
@@ -50,7 +50,15 @@ export default async function BlogPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {articles.map((article) => (
-              <BlogCard key={article._id} article={article} />
+              <BlogCard
+                key={article._id}
+                slug={article.slug.current}
+                title={article.title}
+                excerpt={article.excerpt || ''}
+                thumbnail={article.mainImage ? urlFor(article.mainImage).width(600).height(400).url() : '/placeholder-blog.jpg'}
+                date={article.publishedAt}
+                category={article.category?.title || 'כללי'}
+              />
             ))}
           </div>
         )}
