@@ -23,12 +23,12 @@ const Navigation = () => {
           {/* Logo - Right side for RTL */}
           <div className="flex-shrink-0 order-2 md:order-1">
             <Link href="/" className="flex items-center" aria-label="Liga Deals Berlin - חזרה לדף הבית">
-              <span className="me-3 text-xl font-bold text-gray-900 dark:text-white">
-                Liga Deals Berlin
-              </span>
               <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center" aria-hidden="true">
                 <span className="text-white font-bold text-xl">LD</span>
               </div>
+              <span className="ms-3 text-xl font-bold text-gray-900 dark:text-white">
+                Liga Deals Berlin
+              </span>
             </Link>
           </div>
 
