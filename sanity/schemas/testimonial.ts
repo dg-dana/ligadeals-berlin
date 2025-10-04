@@ -87,14 +87,12 @@ export default defineType({
       title: 'נבדק על ידי (Reviewed By)',
       type: 'string',
       readOnly: true,
-      hidden: ({ document }) => document?.status === 'pending',
     }),
     defineField({
       name: 'reviewedAt',
       title: 'תאריך בדיקה (Reviewed At)',
       type: 'datetime',
       readOnly: true,
-      hidden: ({ document }) => document?.status === 'pending',
     }),
     defineField({
       name: 'reviewNotes',
@@ -102,7 +100,6 @@ export default defineType({
       type: 'text',
       rows: 3,
       description: 'Internal notes about the review decision',
-      hidden: ({ document }) => document?.status === 'pending',
     }),
   ],
   preview: {
