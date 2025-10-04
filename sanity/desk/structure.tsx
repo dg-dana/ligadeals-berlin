@@ -5,39 +5,44 @@ export const structure: StructureResolver = (S) =>
     .title('תוכן')
     .id('root')
     .items([
-      // Blog Posts Section
-      S.documentTypeListItem('post').title('מאמרים').icon(() => '📝'),
+      // Articles
+      S.documentTypeListItem('article').title('מאמרים (Articles)').icon(() => '📝'),
 
       S.divider(),
 
-      // Categories
-      S.documentTypeListItem('category').title('קטגוריות').icon(() => '🏷️'),
-
-      S.divider(),
-
-      // Authors
-      S.documentTypeListItem('author').title('כותבים').icon(() => '👤'),
+      // Blog Posts
+      S.documentTypeListItem('post').title('פוסטים (Posts)').icon(() => '📄'),
 
       S.divider(),
 
       // Photos
-      S.documentTypeListItem('photo').title('תמונות').icon(() => '📷'),
+      S.documentTypeListItem('photo').title('תמונות (Photos)').icon(() => '📷'),
 
       S.divider(),
 
       // Videos
-      S.documentTypeListItem('video').title('סרטונים').icon(() => '🎥'),
+      S.documentTypeListItem('video').title('סרטונים (Videos)').icon(() => '🎥'),
 
       S.divider(),
 
       // Testimonials
-      S.documentTypeListItem('testimonial').title('המלצות').icon(() => '💬'),
+      S.documentTypeListItem('testimonial').title('המלצות (Testimonials)').icon(() => '💬'),
+
+      S.divider(),
+
+      // Categories
+      S.documentTypeListItem('category').title('קטגוריות (Categories)').icon(() => '🏷️'),
+
+      S.divider(),
+
+      // Authors
+      S.documentTypeListItem('author').title('כותבים (Authors)').icon(() => '👤'),
 
       S.divider(),
 
       // Settings
       S.listItem()
-        .title('הגדרות')
+        .title('הגדרות (Settings)')
         .id('settings')
         .icon(() => '⚙️')
         .child(
