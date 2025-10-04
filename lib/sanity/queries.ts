@@ -138,7 +138,14 @@ export const getAllVideosQuery = `
   [$start...$end] {
     _id,
     title,
+    videoType,
     videoUrl,
+    videoFile {
+      asset->{
+        _id,
+        url
+      }
+    },
     thumbnail,
     description,
     category->{${categoryFields}},
@@ -154,7 +161,14 @@ export const getVideosByCategoryQuery = `
   [$start...$end] {
     _id,
     title,
+    videoType,
     videoUrl,
+    videoFile {
+      asset->{
+        _id,
+        url
+      }
+    },
     thumbnail,
     description,
     category->{${categoryFields}},

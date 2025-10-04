@@ -5,7 +5,14 @@ import VideoGallery, { Video as VideoType } from '@/components/VideoGallery';
 interface SanityVideo {
   _id: string;
   title: string;
-  videoUrl: string;
+  videoType?: 'file' | 'url';
+  videoUrl?: string;
+  videoFile?: {
+    asset?: {
+      _id: string;
+      url: string;
+    };
+  };
   thumbnail?: any;
   description?: string;
   category?: {
@@ -40,7 +47,11 @@ export default async function VideosPage() {
 
   // Transform Sanity videos to VideoGallery format
   const videos: VideoType[] = sanityVideos.map((video) => {
-    const youtubeID = getYouTubeID(video.videoUrl);
+    const isFileUpload = video.videoType === 'file';
+    const videoUrl = isFileUpload
+      ? video.videoFile?.asset?.url || ''
+      : video.videoUrl || '';
+    const youtubeID = !isFileUpload && videoUrl ? getYouTubeID(videoUrl) : null;
 
     return {
       id: video._id,
@@ -51,7 +62,8 @@ export default async function VideosPage() {
         : youtubeID
           ? `https://img.youtube.com/vi/${youtubeID}/maxresdefault.jpg`
           : '/default-video-thumbnail.jpg',
-      videoUrl: video.videoUrl,
+      videoUrl: videoUrl,
+      videoType: video.videoType || 'url',
       category: video.category?.title || 'כללי',
     };
   });

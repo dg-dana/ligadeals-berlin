@@ -9,7 +9,8 @@ export interface Video {
   title: string
   description: string
   thumbnail: string
-  videoUrl: string // YouTube or Vimeo URL
+  videoUrl: string // YouTube, Vimeo URL, or direct video file URL
+  videoType?: 'file' | 'url' // Type of video source
   category: string
 }
 
@@ -188,15 +189,29 @@ export default function VideoGallery({ videos, categories = [] }: VideoGalleryPr
               className="relative w-full max-w-6xl"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Responsive Video Iframe */}
-              <div className="relative aspect-video w-full overflow-hidden rounded-lg shadow-2xl">
-                <iframe
-                  src={getEmbedUrl(selectedVideo.videoUrl)}
-                  title={selectedVideo.title}
-                  className="absolute inset-0 h-full w-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+              {/* Responsive Video Player */}
+              <div className="relative aspect-video w-full overflow-hidden rounded-lg shadow-2xl bg-black">
+                {selectedVideo.videoType === 'file' ? (
+                  // Direct video file player
+                  <video
+                    src={selectedVideo.videoUrl}
+                    className="absolute inset-0 h-full w-full"
+                    controls
+                    autoPlay
+                    playsInline
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                ) : (
+                  // Embedded YouTube/Vimeo player
+                  <iframe
+                    src={getEmbedUrl(selectedVideo.videoUrl)}
+                    title={selectedVideo.title}
+                    className="absolute inset-0 h-full w-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                )}
               </div>
 
               {/* Video Info Below Player */}
