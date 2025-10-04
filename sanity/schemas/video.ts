@@ -30,7 +30,7 @@ export default defineType({
       title: 'קובץ וידאו (Video File)',
       type: 'file',
       options: {
-        accept: 'video/mp4,video/webm,video/ogg',
+        accept: 'video/mp4,video/webm,video/ogg,video/quicktime',
       },
       hidden: ({ parent }) => parent?.videoType !== 'file',
       validation: (Rule) => Rule.custom((file, context) => {
