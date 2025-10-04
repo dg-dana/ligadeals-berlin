@@ -36,7 +36,7 @@ export default function VideoGallery({ videos, categories = [] }: VideoGalleryPr
       const videoId = url.includes('youtu.be')
         ? url.split('youtu.be/')[1]?.split('?')[0]
         : url.split('v=')[1]?.split('&')[0]
-      return `https://www.youtube.com/embed/${videoId}?autoplay=1`
+      return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`
     }
     // Vimeo
     if (url.includes('vimeo.com')) {
