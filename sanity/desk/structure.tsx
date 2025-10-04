@@ -85,14 +85,14 @@ export const structure: StructureResolver = (S) =>
                 .title('גלריית תמונות')
                 .icon(() => '📷')
                 .child(
-                  S.documentTypeList('photoGallery')
+                  S.documentTypeList('photo')
                     .title('גלריית תמונות')
                 ),
               S.listItem()
                 .title('גלריית וידאו')
                 .icon(() => '🎥')
                 .child(
-                  S.documentTypeList('videoGallery')
+                  S.documentTypeList('video')
                     .title('גלריית וידאו')
                 ),
             ])
