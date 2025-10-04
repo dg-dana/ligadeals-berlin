@@ -2,15 +2,15 @@ import { DocumentActionComponent, useDocumentOperation } from 'sanity'
 
 // Approve testimonial action
 export const ApproveAction: DocumentActionComponent = (props) => {
-  const { patch, publish } = useDocumentOperation(props.id, props.type)
   const { draft, published } = props
-
   const currentStatus = draft?.status || published?.status
 
   // Only show for pending or rejected testimonials
   if (currentStatus === 'approved') {
     return null
   }
+
+  const { patch, publish } = useDocumentOperation(props.id, props.type)
 
   return {
     label: 'אשר (Approve)',
@@ -36,15 +36,15 @@ export const ApproveAction: DocumentActionComponent = (props) => {
 
 // Reject testimonial action
 export const RejectAction: DocumentActionComponent = (props) => {
-  const { patch } = useDocumentOperation(props.id, props.type)
   const { draft, published } = props
-
   const currentStatus = draft?.status || published?.status
 
   // Only show for pending or approved testimonials
   if (currentStatus === 'rejected') {
     return null
   }
+
+  const { patch } = useDocumentOperation(props.id, props.type)
 
   return {
     label: 'דחה (Reject)',
@@ -73,15 +73,15 @@ export const RejectAction: DocumentActionComponent = (props) => {
 
 // Reset to pending action
 export const ResetToPendingAction: DocumentActionComponent = (props) => {
-  const { patch } = useDocumentOperation(props.id, props.type)
   const { draft, published } = props
-
   const currentStatus = draft?.status || published?.status
 
   // Only show for approved or rejected testimonials
   if (currentStatus === 'pending') {
     return null
   }
+
+  const { patch } = useDocumentOperation(props.id, props.type)
 
   return {
     label: 'אפס לממתין (Reset to Pending)',
@@ -103,15 +103,15 @@ export const ResetToPendingAction: DocumentActionComponent = (props) => {
 
 // Quick approve and feature action
 export const ApproveAndFeatureAction: DocumentActionComponent = (props) => {
-  const { patch, publish } = useDocumentOperation(props.id, props.type)
   const { draft, published } = props
-
   const currentStatus = draft?.status || published?.status
 
   // Only show for pending testimonials
   if (currentStatus !== 'pending') {
     return null
   }
+
+  const { patch, publish } = useDocumentOperation(props.id, props.type)
 
   return {
     label: 'אשר והצג בדף הבית (Approve & Feature)',
