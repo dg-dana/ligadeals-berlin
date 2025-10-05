@@ -138,8 +138,6 @@ export const getAllVideosQuery = `
   [$start...$end] {
     _id,
     title,
-    videoType,
-    videoUrl,
     videoFile {
       asset->{
         _id,
@@ -161,8 +159,6 @@ export const getVideosByCategoryQuery = `
   [$start...$end] {
     _id,
     title,
-    videoType,
-    videoUrl,
     videoFile {
       asset->{
         _id,

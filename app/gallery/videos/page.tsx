@@ -5,8 +5,6 @@ import VideoGallery, { Video as VideoType } from '@/components/VideoGallery';
 interface SanityVideo {
   _id: string;
   title: string;
-  videoType?: 'file' | 'url';
-  videoUrl?: string;
   videoFile?: {
     asset?: {
       _id: string;
@@ -35,38 +33,26 @@ async function getVideos() {
   }
 }
 
-// Extract YouTube video ID from URL for thumbnails
-function getYouTubeID(url: string): string | null {
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-  const match = url.match(regExp);
-  return (match && match[2].length === 11) ? match[2] : null;
-}
-
 export default async function VideosPage() {
   const sanityVideos = await getVideos();
 
   // Transform Sanity videos to VideoGallery format
-  const videos: VideoType[] = sanityVideos.map((video) => {
-    const isFileUpload = video.videoType === 'file';
-    const videoUrl = isFileUpload
-      ? video.videoFile?.asset?.url || ''
-      : video.videoUrl || '';
-    const youtubeID = !isFileUpload && videoUrl ? getYouTubeID(videoUrl) : null;
+  const videos: VideoType[] = sanityVideos
+    .filter((video) => video.videoFile?.asset?.url) // Only include videos with valid file
+    .map((video) => {
+      const videoUrl = video.videoFile?.asset?.url || '';
 
-    return {
-      id: video._id,
-      title: video.title,
-      description: video.description || '',
-      thumbnail: video.thumbnail
-        ? urlFor(video.thumbnail).width(800).height(450).url()
-        : youtubeID
-          ? `https://img.youtube.com/vi/${youtubeID}/maxresdefault.jpg`
+      return {
+        id: video._id,
+        title: video.title,
+        description: video.description || '',
+        thumbnail: video.thumbnail
+          ? urlFor(video.thumbnail).width(800).height(450).url()
           : '/default-video-thumbnail.jpg',
-      videoUrl: videoUrl,
-      videoType: video.videoType || 'url',
-      category: video.category?.title || 'כללי',
-    };
-  });
+        videoUrl: videoUrl,
+        category: video.category?.title || 'כללי',
+      };
+    });
 
   // Extract unique categories
   const categories = Array.from(new Set(videos.map(v => v.category)));

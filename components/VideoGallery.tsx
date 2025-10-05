@@ -9,8 +9,7 @@ export interface Video {
   title: string
   description: string
   thumbnail: string
-  videoUrl: string // YouTube, Vimeo URL, or direct video file URL
-  videoType?: 'file' | 'url' // Type of video source
+  videoUrl: string // Direct video file URL
   category: string
 }
 
@@ -22,7 +21,6 @@ interface VideoGalleryProps {
 export default function VideoGallery({ videos, categories = [] }: VideoGalleryProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('הכל')
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null)
-  const [embedError, setEmbedError] = useState(false)
 
   const allCategories = ['הכל', ...categories]
 
@@ -30,23 +28,6 @@ export default function VideoGallery({ videos, categories = [] }: VideoGalleryPr
   const filteredVideos = videos.filter(
     (video) => selectedCategory === 'הכל' || video.category === selectedCategory
   )
-
-  // Convert YouTube/Vimeo URL to embed URL
-  const getEmbedUrl = (url: string): string => {
-    // YouTube
-    if (url.includes('youtube.com') || url.includes('youtu.be')) {
-      const videoId = url.includes('youtu.be')
-        ? url.split('youtu.be/')[1]?.split('?')[0]?.split('&')[0]
-        : url.split('v=')[1]?.split('&')[0]?.split('#')[0]
-      return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1`
-    }
-    // Vimeo
-    if (url.includes('vimeo.com')) {
-      const videoId = url.split('vimeo.com/')[1]?.split('?')[0]
-      return `https://player.vimeo.com/video/${videoId}?autoplay=1`
-    }
-    return url
-  }
 
   // Close modal on ESC key
   useEffect(() => {
@@ -59,11 +40,10 @@ export default function VideoGallery({ videos, categories = [] }: VideoGalleryPr
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
 
-  // Prevent body scroll when modal is open and reset embed error
+  // Prevent body scroll when modal is open
   useEffect(() => {
     if (selectedVideo) {
       document.body.style.overflow = 'hidden'
-      setEmbedError(false)
     } else {
       document.body.style.overflow = 'unset'
     }
@@ -193,55 +173,21 @@ export default function VideoGallery({ videos, categories = [] }: VideoGalleryPr
             >
               {/* Responsive Video Player */}
               <div className="relative aspect-video w-full overflow-hidden rounded-lg shadow-2xl bg-black">
-                {selectedVideo.videoType === 'file' ? (
-                  // Direct video file player
-                  <video
-                    className="absolute inset-0 h-full w-full"
-                    controls
-                    autoPlay
-                    playsInline
-                    preload="metadata"
-                    crossOrigin="anonymous"
-                  >
-                    <source src={selectedVideo.videoUrl} type="video/mp4" />
-                    <source src={selectedVideo.videoUrl} type="video/webm" />
-                    <source src={selectedVideo.videoUrl} type="video/quicktime" />
-                    <source src={selectedVideo.videoUrl} type="video/ogg" />
-                    Your browser does not support the video tag.
-                  </video>
-                ) : embedError ? (
-                  // Fallback for YouTube embed errors
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                    <svg className="w-20 h-20 text-red-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                    </svg>
-                    <h3 className="text-xl font-bold text-white mb-2">
-                      לא ניתן להטמיע סרטון זה
-                    </h3>
-                    <p className="text-gray-300 mb-6">
-                      YouTube חסם את ההטמעה של סרטון זה. אנא צפה בו ישירות ב-YouTube או העלה את הסרטון כקובץ.
-                    </p>
-                    <a
-                      href={selectedVideo.videoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-colors"
-                    >
-                      צפה ב-YouTube
-                    </a>
-                  </div>
-                ) : (
-                  // Embedded YouTube/Vimeo player
-                  <iframe
-                    src={getEmbedUrl(selectedVideo.videoUrl)}
-                    title={selectedVideo.title}
-                    className="absolute inset-0 h-full w-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    onError={() => setEmbedError(true)}
-                  />
-                )}
+                <video
+                  key={selectedVideo.videoUrl}
+                  className="absolute inset-0 h-full w-full object-contain"
+                  controls
+                  autoPlay
+                  playsInline
+                  preload="auto"
+                  controlsList="nodownload"
+                >
+                  <source src={`${selectedVideo.videoUrl}?dl=0`} type="video/mp4" />
+                  <source src={`${selectedVideo.videoUrl}?dl=0`} type="video/quicktime" />
+                  <source src={`${selectedVideo.videoUrl}?dl=0`} type="video/webm" />
+                  <source src={`${selectedVideo.videoUrl}?dl=0`} type="video/ogg" />
+                  Your browser does not support the video tag.
+                </video>
               </div>
 
               {/* Video Info Below Player */}
