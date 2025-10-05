@@ -179,10 +179,10 @@ export default function VideoGallery({ videos, categories = [] }: VideoGalleryPr
                   controls
                   autoPlay
                   playsInline
-                  preload="auto"
+                  preload="metadata"
                   controlsList="nodownload"
+                  src={`/api/video?url=${encodeURIComponent(selectedVideo.videoUrl)}`}
                 >
-                  <source src={`/api/video?url=${encodeURIComponent(selectedVideo.videoUrl)}`} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               </div>
