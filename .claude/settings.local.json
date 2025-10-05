@@ -42,7 +42,10 @@
       "Bash(netstat:*)",
       "Bash(findstr:*)",
       "Bash(taskkill:*)",
-      "Bash(npx sanity:*)"
+      "Bash(npx sanity:*)",
+      "Bash(git reset:*)",
+      "Bash(npm ls:*)",
+      "Bash(git tag:*)"
     ],
     "deny": [],
     "ask": []
