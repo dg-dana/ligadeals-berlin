@@ -34,10 +34,10 @@ export default defineConfig({
 
   // Document actions customization - Hebrew labels
   document: {
-    // TEMPORARILY DISABLED ALL CUSTOM ACTIONS TO DEBUG
-    // actions: (prev, context) => {
-    //   return prev
-    // },
+    actions: (prev, context) => {
+      // Return all default actions including delete
+      return prev
+    },
 
     // Production URL for preview
     productionUrl: async (prev, context) => {
