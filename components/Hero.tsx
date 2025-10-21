@@ -6,6 +6,18 @@ import Link from 'next/link'
 export default function Hero() {
   return (
     <section className="relative h-screen w-full overflow-hidden bg-gradient-to-b from-[#1e3a8a] to-[#3b82f6]">
+      {/* Airplane Animation */}
+      <motion.div
+        className="absolute top-1/4 right-0"
+        initial={{ x: 100, opacity: 0 }}
+        animate={{ x: -1200, opacity: [0, 1, 1, 0] }}
+        transition={{ duration: 15, repeat: Infinity, repeatDelay: 5 }}
+      >
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="white" opacity="0.3">
+          <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+        </svg>
+      </motion.div>
+
       {/* Main Content */}
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">
         {/* Main Headline */}
