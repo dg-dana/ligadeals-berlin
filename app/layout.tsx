@@ -6,6 +6,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Analytics from "@/components/Analytics";
 import SkipToContent from "@/components/SkipToContent";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import { getDefaultMetadata } from "@/lib/seo/metadata";
 import { generateWebsiteStructuredData, generateOrganizationStructuredData } from "@/lib/seo/metadata";
 
@@ -82,6 +83,9 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+
+        {/* Floating WhatsApp contact button, visible on every page */}
+        <FloatingWhatsApp />
       </body>
     </html>
   );
