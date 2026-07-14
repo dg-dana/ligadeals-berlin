@@ -3,8 +3,15 @@ import { render } from '@react-email/render';
 import { ContactFormEmail } from './templates/contactFormEmail';
 import { ThankYouEmail } from './templates/thankYouEmail';
 
-// Initialize Resend client
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazily initialize the Resend client so a missing API key only fails
+// the specific email call, rather than crashing the build/module load.
+let resend: Resend | null = null;
+function getResendClient(): Resend {
+  if (!resend) {
+    resend = new Resend(process.env.RESEND_API_KEY);
+  }
+  return resend;
+}
 
 // Contact form data interface
 export interface ContactFormData {
@@ -47,10 +54,10 @@ export async function sendContactFormEmail(
     });
 
     // Render email template
-    const emailHtml = render(ContactFormEmail(data));
+    const emailHtml = await render(ContactFormEmail(data));
 
     // Send email using Resend
-    const { data: result, error } = await resend.emails.send({
+    const { data: result, error } = await getResendClient().emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'LigaDeals <noreply@ligadeals-berlin.com>',
       to: process.env.CONTACT_EMAIL,
       replyTo: data.email,
@@ -105,10 +112,10 @@ export async function sendThankYouEmail(
     console.log('Sending thank you email to:', data.email);
 
     // Render email template
-    const emailHtml = render(ThankYouEmail(data));
+    const emailHtml = await render(ThankYouEmail(data));
 
     // Send email using Resend
-    const { data: result, error } = await resend.emails.send({
+    const { data: result, error } = await getResendClient().emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'LigaDeals <noreply@ligadeals-berlin.com>',
       to: data.email,
       subject: 'תודה שפנית אלינו - LigaDeals Berlin 🙏',

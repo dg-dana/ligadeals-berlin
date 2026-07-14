@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { PortableText, PortableTextComponents } from '@portabletext/react'
+import { PortableText, PortableTextComponents, PortableTextBlock } from '@portabletext/react'
 
 export interface BlogPostProps {
   title: string
@@ -12,7 +12,7 @@ export interface BlogPostProps {
   date: string
   category: string
   readingTime: number
-  content: any // Sanity Portable Text content
+  content: PortableTextBlock[]
   relatedArticles?: {
     slug: string
     title: string

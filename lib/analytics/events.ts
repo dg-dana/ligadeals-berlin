@@ -5,9 +5,9 @@
 declare global {
   interface Window {
     gtag: (
-      command: 'config' | 'event' | 'js' | 'set',
-      eventNameOrConfig: string | Date,
-      params?: Record<string, any>
+      command: 'config' | 'event' | 'js' | 'set' | 'consent',
+      eventNameOrConfig: string | Date | Record<string, unknown>,
+      params?: Record<string, unknown>
     ) => void;
   }
 }
@@ -85,7 +85,6 @@ export function trackContactFormSubmission(params: ContactFormSubmissionParams =
     form_name: params.form_name || 'Contact Form',
     method: params.method || 'contact_form',
     success: params.success !== false,
-    ...params,
   });
 
   // Log for debugging
@@ -109,7 +108,6 @@ export function trackArticleView(params: ArticleViewParams) {
     article_author: params.article_author,
     article_id: params.article_id,
     content_type: 'article',
-    ...params,
   });
 
   // Also track as a standard content view
@@ -142,7 +140,6 @@ export function trackWhatsAppClick(params: WhatsAppClickParams) {
     source_page: params.source_page,
     button_location: params.button_location || 'unknown',
     contact_method: 'whatsapp',
-    ...params,
   });
 
   if (process.env.NODE_ENV === 'development') {
@@ -165,7 +162,6 @@ export function trackGalleryInteraction(params: GalleryInteractionParams) {
     item_id: params.item_id,
     item_title: params.item_title,
     content_type: params.gallery_type,
-    ...params,
   });
 
   if (process.env.NODE_ENV === 'development') {
@@ -183,7 +179,6 @@ export function trackSearch(params: SearchParams) {
   window.gtag('event', 'search', {
     search_term: params.search_term,
     search_results: params.search_results,
-    ...params,
   });
 
   if (process.env.NODE_ENV === 'development') {
@@ -203,7 +198,6 @@ export function trackNewsletterSignup(params: NewsletterSignupParams) {
     event_label: params.source_page,
     source_page: params.source_page,
     location: params.location || 'unknown',
-    ...params,
   });
 
   // Also track as a standard sign_up event
@@ -228,7 +222,6 @@ export function trackSocialShare(params: SocialShareParams) {
     content_type: params.content_type,
     item_id: params.content_id,
     item_name: params.content_title,
-    ...params,
   });
 
   if (process.env.NODE_ENV === 'development') {
@@ -249,7 +242,6 @@ export function trackOutboundLink(params: OutboundLinkParams) {
     link_url: params.link_url,
     link_text: params.link_text,
     link_domain: params.link_domain || new URL(params.link_url).hostname,
-    ...params,
   });
 
   if (process.env.NODE_ENV === 'development') {
@@ -270,7 +262,6 @@ export function trackVideoPlay(params: VideoPlayParams) {
     video_title: params.video_title,
     video_id: params.video_id,
     video_provider: params.video_provider || 'unknown',
-    ...params,
   });
 
   if (process.env.NODE_ENV === 'development') {
@@ -284,7 +275,7 @@ export function trackVideoPlay(params: VideoPlayParams) {
  */
 export function trackButtonClick(
   buttonName: string,
-  additionalParams?: Record<string, any>
+  additionalParams?: Record<string, unknown>
 ) {
   if (!isGtagAvailable()) return;
 
@@ -365,7 +356,7 @@ export function trackException(description: string, fatal: boolean = false) {
  */
 export function trackCustomEvent(
   eventName: string,
-  params?: Record<string, any>
+  params?: Record<string, unknown>
 ) {
   if (!isGtagAvailable()) return;
 
@@ -380,7 +371,7 @@ export function trackCustomEvent(
  * Set user properties
  * Use this to set user-level properties
  */
-export function setUserProperties(properties: Record<string, any>) {
+export function setUserProperties(properties: Record<string, unknown>) {
   if (!isGtagAvailable()) return;
 
   window.gtag('set', 'user_properties', properties);

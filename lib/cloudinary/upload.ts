@@ -56,7 +56,10 @@ export async function uploadImage(
   } = options;
 
   try {
-    const result = await cloudinary.uploader.upload(file, {
+    const uploadSource = Buffer.isBuffer(file)
+      ? `data:application/octet-stream;base64,${file.toString('base64')}`
+      : file;
+    const result = await cloudinary.uploader.upload(uploadSource, {
       folder,
       public_id,
       overwrite,
@@ -179,7 +182,7 @@ export function getSrcSet(
  * @param publicId - Cloudinary public ID
  * @returns Deletion result
  */
-export async function deleteImage(publicId: string): Promise<any> {
+export async function deleteImage(publicId: string): Promise<unknown> {
   try {
     const result = await cloudinary.uploader.destroy(publicId);
     return result;
@@ -194,7 +197,7 @@ export async function deleteImage(publicId: string): Promise<any> {
  * @param publicIds - Array of Cloudinary public IDs
  * @returns Deletion results
  */
-export async function deleteImages(publicIds: string[]): Promise<any[]> {
+export async function deleteImages(publicIds: string[]): Promise<unknown[]> {
   const deletePromises = publicIds.map((publicId) => deleteImage(publicId));
   return Promise.all(deletePromises);
 }

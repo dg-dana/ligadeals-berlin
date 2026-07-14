@@ -1,8 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-// Initialize Resend
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazily initialize Resend so a missing API key only fails a request,
+// rather than crashing the build/module load.
+let resend: Resend | null = null;
+function getResendClient(): Resend {
+  if (!resend) {
+    resend = new Resend(process.env.RESEND_API_KEY);
+  }
+  return resend;
+}
 
 // Rate limiting store (in production, use Redis or similar)
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
@@ -242,7 +249,7 @@ export async function POST(request: NextRequest) {
     const welcomeEmailHtml = createWelcomeEmailTemplate(body.name);
 
     // Send welcome email to subscriber
-    const { data: welcomeData, error: welcomeError } = await resend.emails.send({
+    const { data: welcomeData, error: welcomeError } = await getResendClient().emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'LigaDeals <noreply@ligadeals-berlin.com>',
       to: body.email,
       subject: 'ברוכים הבאים ל-LigaDeals Berlin! 🎉',
@@ -263,7 +270,7 @@ export async function POST(request: NextRequest) {
     // Send notification to admin
     try {
       const adminNotificationHtml = createAdminNotificationTemplate(body);
-      await resend.emails.send({
+      await getResendClient().emails.send({
         from: process.env.RESEND_FROM_EMAIL || 'LigaDeals <noreply@ligadeals-berlin.com>',
         to: process.env.CONTACT_EMAIL || 'contact@ligadeals-berlin.com',
         subject: `מנוי חדש לניוזלטר: ${body.email}`,

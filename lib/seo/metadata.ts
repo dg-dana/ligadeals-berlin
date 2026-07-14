@@ -1,18 +1,19 @@
 import { Metadata } from 'next';
 import { urlForImage } from '../sanity/imageBuilder';
+import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 // Site configuration
 const SITE_NAME = 'LigaDeals Berlin';
 const SITE_DESCRIPTION = 'המדריך המקיף לחיים בברלין - טיפים, מדריכים, ותוכן איכותי בעברית';
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://ligadeals-berlin.com';
-const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
+const DEFAULT_OG_IMAGE = `${SITE_URL}/ligadeals-logo.png`;
 
 // Metadata configuration interface
 export interface MetadataConfig {
   title?: string;
   description?: string;
   keywords?: string[];
-  image?: any; // Sanity image object
+  image?: SanityImageSource; // Sanity image object
   imageUrl?: string; // Direct URL
   url?: string;
   type?: 'website' | 'article';

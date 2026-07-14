@@ -54,7 +54,7 @@ export default function TestimonialCard({
 
       {/* Review Text */}
       <blockquote className="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">
-        <p className="text-lg italic">"{review}"</p>
+        <p className="text-lg italic">&ldquo;{review}&rdquo;</p>
       </blockquote>
 
       {/* Customer Info */}

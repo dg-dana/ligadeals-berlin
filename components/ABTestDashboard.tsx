@@ -72,7 +72,7 @@ export default function ABTestDashboard() {
                   <div>
                     <h3 className="text-2xl font-bold mb-1">{testId}</h3>
                     <p className="text-blue-100">
-                      סה"כ וריאציות: {Object.keys(variants).length}
+                      סה&quot;כ וריאציות: {Object.keys(variants).length}
                     </p>
                   </div>
                   <button

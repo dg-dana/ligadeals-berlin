@@ -116,8 +116,8 @@ export function trackConversion(testId: string, variantId?: string): void {
   localStorage.setItem(AB_TEST_CONVERSIONS_KEY, JSON.stringify(data))
 
   // Send to analytics (optional)
-  if (typeof window !== 'undefined' && (window as any).gtag) {
-    (window as any).gtag('event', 'ab_test_conversion', {
+  if (typeof window !== 'undefined' && (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag) {
+    (window as unknown as { gtag: (...args: unknown[]) => void }).gtag('event', 'ab_test_conversion', {
       test_id: testId,
       variant_id: variantId,
     })

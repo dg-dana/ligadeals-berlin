@@ -1,4 +1,5 @@
 import { defineConfig } from 'sanity'
+import type { DocumentActionComponent, DocumentActionProps } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './sanity/schemas'
@@ -9,6 +10,32 @@ import {
   ResetToPendingAction,
   ApproveAndFeatureAction,
 } from './sanity/workflows/testimonialReview'
+
+// Hebrew labels for the built-in document actions, keyed by their `.action` id
+const HEBREW_ACTION_LABELS: Record<string, { label: string; title: string }> = {
+  publish: { label: 'פרסם', title: 'פרסם מסמך זה' },
+  unpublish: { label: 'בטל פרסום', title: 'בטל פרסום מסמך זה' },
+  delete: { label: 'מחק', title: 'מחק מסמך זה' },
+  duplicate: { label: 'שכפל', title: 'צור עותק של מסמך זה' },
+  restore: { label: 'שחזר', title: 'שחזר גרסה קודמת' },
+}
+
+// Wraps a built-in action component so its rendered description uses Hebrew labels,
+// while preserving the component's callable shape that Sanity expects.
+function withHebrewLabel(action: DocumentActionComponent): DocumentActionComponent {
+  const translation = action.action ? HEBREW_ACTION_LABELS[action.action] : undefined
+  if (!translation) return action
+
+  const wrapped: DocumentActionComponent = (props: DocumentActionProps) => {
+    const result = action(props)
+    if (!result) return result
+    return { ...result, label: translation.label, title: translation.title }
+  }
+  wrapped.action = action.action
+  wrapped.displayName = action.displayName
+
+  return wrapped
+}
 
 export default defineConfig({
   name: 'ligadeals-berlin',
@@ -37,45 +64,7 @@ export default defineConfig({
       // Add workflow actions for testimonials
       if (context.schemaType === 'testimonial') {
         return [
-          ...prev.map((originalAction) => {
-            // Customize action labels to Hebrew
-            if (originalAction.action === 'publish') {
-              return {
-                ...originalAction,
-                label: 'פרסם',
-                title: 'פרסם מסמך זה',
-              }
-            }
-            if (originalAction.action === 'unpublish') {
-              return {
-                ...originalAction,
-                label: 'בטל פרסום',
-                title: 'בטל פרסום מסמך זה',
-              }
-            }
-            if (originalAction.action === 'delete') {
-              return {
-                ...originalAction,
-                label: 'מחק',
-                title: 'מחק מסמך זה',
-              }
-            }
-            if (originalAction.action === 'duplicate') {
-              return {
-                ...originalAction,
-                label: 'שכפל',
-                title: 'צור עותק של מסמך זה',
-              }
-            }
-            if (originalAction.action === 'restore') {
-              return {
-                ...originalAction,
-                label: 'שחזר',
-                title: 'שחזר גרסה קודמת',
-              }
-            }
-            return originalAction
-          }),
+          ...prev.map(withHebrewLabel),
           // Add workflow actions
           ApproveAndFeatureAction,
           ApproveAction,
@@ -85,45 +74,7 @@ export default defineConfig({
       }
 
       // For other document types, just translate labels
-      return prev.map((originalAction) => {
-        // Customize action labels to Hebrew
-        if (originalAction.action === 'publish') {
-          return {
-            ...originalAction,
-            label: 'פרסם',
-            title: 'פרסם מסמך זה',
-          }
-        }
-        if (originalAction.action === 'unpublish') {
-          return {
-            ...originalAction,
-            label: 'בטל פרסום',
-            title: 'בטל פרסום מסמך זה',
-          }
-        }
-        if (originalAction.action === 'delete') {
-          return {
-            ...originalAction,
-            label: 'מחק',
-            title: 'מחק מסמך זה',
-          }
-        }
-        if (originalAction.action === 'duplicate') {
-          return {
-            ...originalAction,
-            label: 'שכפל',
-            title: 'צור עותק של מסמך זה',
-          }
-        }
-        if (originalAction.action === 'restore') {
-          return {
-            ...originalAction,
-            label: 'שחזר',
-            title: 'שחזר גרסה קודמת',
-          }
-        }
-        return originalAction
-      })
+      return prev.map(withHebrewLabel)
     },
 
     // Production URL for preview
@@ -132,7 +83,7 @@ export default defineConfig({
       const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 
       if (document._type === 'article' || document._type === 'post') {
-        const slug = document.slug?.current
+        const slug = (document as { slug?: { current?: string } }).slug?.current
         if (slug) {
           return `${baseUrl}/blog/${slug}`
         }
