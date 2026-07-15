@@ -1,13 +1,16 @@
 import type { Metadata } from 'next';
 import ContactForm from '@/components/ContactForm';
 import ContactInfo from '@/components/ContactInfo';
+import { getSiteSettings } from '@/lib/sanity/siteSettings';
 
 export const metadata: Metadata = {
   title: 'צור קשר',
   description: 'יש לכם שאלות? רוצים להצטרף למועדון? צרו איתנו קשר בכל שאלה או הצעה.',
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const settings = await getSiteSettings();
+
   return (
     <div className="min-h-screen py-12 px-4" dir="rtl">
       <div className="max-w-6xl mx-auto">
@@ -18,8 +21,17 @@ export default function ContactPage() {
           נשמח לשמוע ממך! צור איתנו קשר בכל שאלה או הצעה.
         </p>
         <div className="grid gap-12 lg:grid-cols-2">
-          <ContactForm />
-          <ContactInfo />
+          <ContactForm whatsappNumber={settings.whatsapp} />
+          <ContactInfo
+            phone={settings.phone}
+            email={settings.email}
+            whatsapp={settings.whatsapp}
+            socialMedia={{
+              facebook: settings.facebook,
+              instagram: settings.instagram,
+              linkedin: settings.linkedin,
+            }}
+          />
         </div>
       </div>
     </div>

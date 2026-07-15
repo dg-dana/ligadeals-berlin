@@ -9,6 +9,7 @@ import SkipToContent from "@/components/SkipToContent";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import { getDefaultMetadata } from "@/lib/seo/metadata";
 import { generateWebsiteStructuredData, generateOrganizationStructuredData } from "@/lib/seo/metadata";
+import { getSiteSettings } from "@/lib/sanity/siteSettings";
 
 const heebo = Heebo({
   variable: "--font-heebo",
@@ -31,7 +32,7 @@ const assistant = Assistant({
 // Use enhanced SEO metadata
 export const metadata: Metadata = getDefaultMetadata();
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -39,6 +40,7 @@ export default function RootLayout({
   // Generate structured data for website and organization
   const websiteStructuredData = generateWebsiteStructuredData();
   const organizationStructuredData = generateOrganizationStructuredData();
+  const siteSettings = await getSiteSettings();
 
   return (
     <html lang="he" dir="rtl">
@@ -82,10 +84,10 @@ export default function RootLayout({
         <main id="main-content" className="flex-grow" tabIndex={-1}>
           {children}
         </main>
-        <Footer />
+        <Footer settings={siteSettings} />
 
         {/* Floating WhatsApp contact button, visible on every page */}
-        <FloatingWhatsApp />
+        <FloatingWhatsApp phoneNumber={siteSettings.whatsapp} />
       </body>
     </html>
   );
