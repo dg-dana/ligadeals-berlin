@@ -1,7 +1,7 @@
-import Link from 'next/link';
 import { client, urlFor } from '@/sanity/sanity.client';
 import { getRecentArticlesQuery } from '@/lib/sanity/queries';
 import BlogCard from '@/components/BlogCard';
+import Button from '@/components/Button';
 import type { SanityImage } from '@/lib/sanity/types';
 
 const FALLBACK_THUMBNAIL = '/ligadeals-logo.png';
@@ -59,12 +59,9 @@ export default async function FeaturedSection() {
           ))}
         </div>
         <div className="text-center mt-12">
-          <Link
-            href="/blog"
-            className="inline-block bg-navy-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-navy-700 transition-colors"
-          >
+          <Button href="/blog" variant="navy">
             לכל המאמרים
-          </Link>
+          </Button>
         </div>
       </div>
     </section>

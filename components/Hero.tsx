@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Link from 'next/link'
+import Button from '@/components/Button'
 
 export default function Hero() {
   return (
@@ -65,19 +65,13 @@ export default function Hero() {
           className="flex flex-col gap-4 sm:flex-row sm:gap-6"
           dir="rtl"
         >
-          <Link
-            href="/contact"
-            className="group relative overflow-hidden rounded-full bg-gold-400 px-8 py-4 text-lg font-semibold text-navy-800 shadow-lg transition-all hover:scale-105 hover:bg-gold-300 hover:shadow-2xl"
-          >
-            <span className="relative z-10">צרו קשר עכשיו</span>
-          </Link>
+          <Button href="/contact" variant="gold" size="lg">
+            צרו קשר עכשיו
+          </Button>
 
-          <Link
-            href="/blog"
-            className="group rounded-full border-2 border-white/70 bg-transparent px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:scale-105 hover:bg-white hover:text-navy-700 hover:shadow-2xl"
-          >
+          <Button href="/blog" variant="outline" size="lg">
             קראו את הבלוג
-          </Link>
+          </Button>
         </motion.div>
 
         {/* Scroll Down Indicator */}

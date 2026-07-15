@@ -27,7 +27,7 @@ const nextConfig: NextConfig = {
 
   // Experimental features for better performance
   experimental: {
-    optimizePackageImports: ['react-icons', '@heroicons/react', 'framer-motion'],
+    optimizePackageImports: ['react-icons', 'framer-motion'],
   },
 
   // Security headers
