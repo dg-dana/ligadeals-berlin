@@ -41,7 +41,7 @@ export default function ContactInfo({
       label: 'טלפון',
       value: phone,
       href: `tel:${phone.replace(/\s/g, '')}`,
-      color: 'blue'
+      iconWrap: 'bg-navy-100 dark:bg-navy-600/50 text-navy-600 dark:text-navy-200'
     },
     {
       icon: (
@@ -52,7 +52,7 @@ export default function ContactInfo({
       label: 'אימייל',
       value: email,
       href: `mailto:${email}`,
-      color: 'purple'
+      iconWrap: 'bg-gold-100 dark:bg-navy-600/50 text-gold-700 dark:text-gold-400'
     },
     {
       icon: (
@@ -63,7 +63,7 @@ export default function ContactInfo({
       label: 'וואטסאפ',
       value: phone,
       href: `https://wa.me/${whatsapp}?text=${whatsappMessage}`,
-      color: 'green'
+      iconWrap: 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400'
     },
     {
       icon: (
@@ -75,7 +75,7 @@ export default function ContactInfo({
       label: 'כתובת',
       value: address,
       href: `https://maps.google.com/?q=${encodeURIComponent(address)}`,
-      color: 'red'
+      iconWrap: 'bg-navy-100 dark:bg-navy-600/50 text-navy-600 dark:text-navy-200'
     }
   ]
 
@@ -125,17 +125,17 @@ export default function ContactInfo({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: index * 0.1 }}
-            className={`group flex items-center gap-4 rounded-xl bg-white dark:bg-gray-800 p-6 shadow-lg transition-all hover:scale-105 hover:shadow-xl`}
+            className={`group flex items-center gap-4 rounded-2xl bg-white dark:bg-navy-700 p-6 shadow-sm ring-1 ring-navy-100 dark:ring-navy-600 transition-all hover:scale-105 hover:shadow-lg`}
           >
-            <div className={`rounded-full bg-${item.color}-100 dark:bg-${item.color}-900/30 p-3 text-${item.color}-600 dark:text-${item.color}-400 transition-transform group-hover:scale-110`}>
+            <div className={`rounded-full p-3 transition-transform group-hover:scale-110 ${item.iconWrap}`}>
               {item.icon}
             </div>
             <div className="flex-grow">
-              <p className="text-sm font-semibold text-gray-500 dark:text-gray-400">{item.label}</p>
-              <p className="text-lg font-bold text-gray-900 dark:text-white">{item.value}</p>
+              <p className="text-sm font-semibold text-navy-400 dark:text-cream-200">{item.label}</p>
+              <p className="text-lg font-bold text-navy-700 dark:text-white">{item.value}</p>
             </div>
             <svg
-              className="h-5 w-5 text-gray-400 transition-transform group-hover:-translate-x-1"
+              className="h-5 w-5 text-navy-300 transition-transform group-hover:-translate-x-1"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -151,17 +151,17 @@ export default function ContactInfo({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.4 }}
-        className="rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 p-6 text-white shadow-xl"
+        className="rounded-2xl bg-gradient-to-br from-navy-600 to-navy-700 p-6 text-white shadow-lg"
       >
         <div className="mb-4 flex items-center gap-3">
-          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="h-6 w-6 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <h3 className="text-xl font-bold">שעות פעילות</h3>
         </div>
         <div className="space-y-2">
-          <p className="text-blue-100">{businessHours.weekdays}</p>
-          <p className="text-blue-100">{businessHours.weekend}</p>
+          <p className="text-navy-100">{businessHours.weekdays}</p>
+          <p className="text-navy-100">{businessHours.weekend}</p>
         </div>
       </motion.div>
 
@@ -173,7 +173,7 @@ export default function ContactInfo({
           transition={{ duration: 0.3, delay: 0.5 }}
           className="text-center"
         >
-          <h3 className="mb-4 text-lg font-bold text-gray-900 dark:text-white">עקבו אחרינו</h3>
+          <h3 className="mb-4 text-lg font-bold text-navy-700 dark:text-white">עקבו אחרינו</h3>
           <div className="flex justify-center gap-4">
             {socialIcons.map((social) =>
               social.href ? (
@@ -182,7 +182,7 @@ export default function ContactInfo({
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`rounded-full bg-gray-100 dark:bg-gray-800 p-3 text-gray-600 dark:text-gray-400 transition-all hover:scale-110 ${social.color}`}
+                  className={`rounded-full bg-navy-50 dark:bg-navy-700 p-3 text-navy-500 dark:text-navy-200 transition-all hover:scale-110 ${social.color}`}
                   aria-label={social.name}
                 >
                   {social.icon}

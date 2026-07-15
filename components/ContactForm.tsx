@@ -64,7 +64,7 @@ export default function ContactForm() {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" aria-label="טופס יצירת קשר">
         {/* Full Name */}
         <div>
-          <label htmlFor="name" className="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+          <label htmlFor="name" className="mb-2 block text-sm font-semibold text-navy-700 dark:text-white">
             שם מלא <span aria-label="שדה חובה">*</span>
           </label>
           <input
@@ -77,10 +77,10 @@ export default function ContactForm() {
             aria-required="true"
             aria-invalid={!!errors.name}
             aria-describedby={errors.name ? 'name-error' : undefined}
-            className={`w-full rounded-lg border-2 bg-white px-4 py-3 text-gray-900 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-gray-800 dark:text-white ${
+            className={`w-full rounded-lg border-2 bg-white px-4 py-3 text-navy-800 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-navy-700 dark:text-white ${
               errors.name
                 ? 'border-red-500 focus:border-red-600 focus:ring-red-500'
-                : 'border-gray-200 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700'
+                : 'border-navy-100 focus:border-gold-500 focus:ring-gold-400 dark:border-navy-600'
             }`}
             placeholder="הכנס את שמך המלא"
           />
@@ -93,7 +93,7 @@ export default function ContactForm() {
 
         {/* Email */}
         <div>
-          <label htmlFor="email" className="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+          <label htmlFor="email" className="mb-2 block text-sm font-semibold text-navy-700 dark:text-white">
             אימייל *
           </label>
           <input
@@ -106,10 +106,10 @@ export default function ContactForm() {
                 message: 'כתובת אימייל לא תקינה'
               }
             })}
-            className={`w-full rounded-lg border-2 bg-white px-4 py-3 text-gray-900 transition-colors focus:outline-none dark:bg-gray-800 dark:text-white ${
+            className={`w-full rounded-lg border-2 bg-white px-4 py-3 text-navy-800 transition-colors focus:outline-none dark:bg-navy-700 dark:text-white ${
               errors.email
                 ? 'border-red-500 focus:border-red-600'
-                : 'border-gray-200 focus:border-blue-500 dark:border-gray-700'
+                : 'border-navy-100 focus:border-gold-500 dark:border-navy-600'
             }`}
             placeholder="your@email.com"
           />
@@ -120,7 +120,7 @@ export default function ContactForm() {
 
         {/* Phone (Optional) */}
         <div>
-          <label htmlFor="phone" className="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+          <label htmlFor="phone" className="mb-2 block text-sm font-semibold text-navy-700 dark:text-white">
             טלפון (אופציונלי)
           </label>
           <input
@@ -132,10 +132,10 @@ export default function ContactForm() {
                 message: 'מספר טלפון לא תקין'
               }
             })}
-            className={`w-full rounded-lg border-2 bg-white px-4 py-3 text-gray-900 transition-colors focus:outline-none dark:bg-gray-800 dark:text-white ${
+            className={`w-full rounded-lg border-2 bg-white px-4 py-3 text-navy-800 transition-colors focus:outline-none dark:bg-navy-700 dark:text-white ${
               errors.phone
                 ? 'border-red-500 focus:border-red-600'
-                : 'border-gray-200 focus:border-blue-500 dark:border-gray-700'
+                : 'border-navy-100 focus:border-gold-500 dark:border-navy-600'
             }`}
             placeholder="050-1234567"
           />
@@ -146,7 +146,7 @@ export default function ContactForm() {
 
         {/* Message */}
         <div>
-          <label htmlFor="message" className="mb-2 block text-sm font-semibold text-gray-900 dark:text-white">
+          <label htmlFor="message" className="mb-2 block text-sm font-semibold text-navy-700 dark:text-white">
             הודעה *
           </label>
           <textarea
@@ -156,10 +156,10 @@ export default function ContactForm() {
               required: 'שדה חובה',
               minLength: { value: 10, message: 'ההודעה חייבת להכיל לפחות 10 תווים' }
             })}
-            className={`w-full resize-none rounded-lg border-2 bg-white px-4 py-3 text-gray-900 transition-colors focus:outline-none dark:bg-gray-800 dark:text-white ${
+            className={`w-full resize-none rounded-lg border-2 bg-white px-4 py-3 text-navy-800 transition-colors focus:outline-none dark:bg-navy-700 dark:text-white ${
               errors.message
                 ? 'border-red-500 focus:border-red-600'
-                : 'border-gray-200 focus:border-blue-500 dark:border-gray-700'
+                : 'border-navy-100 focus:border-gold-500 dark:border-navy-600'
             }`}
             placeholder="כתוב את הודעתך כאן..."
           />
@@ -173,7 +173,7 @@ export default function ContactForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="flex-1 rounded-full bg-blue-600 px-8 py-4 font-bold text-white shadow-lg transition-all hover:bg-blue-700 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex-1 rounded-full bg-navy-600 px-8 py-4 font-bold text-white shadow-lg transition-all hover:bg-navy-700 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50"
           >
             {isSubmitting ? (
               <span className="flex items-center justify-center gap-2">
