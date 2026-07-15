@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -62,9 +62,9 @@ const Navigation = () => {
               aria-controls="mobile-menu"
             >
               {isMenuOpen ? (
-                <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                <FaTimes className="h-6 w-6" aria-hidden="true" />
               ) : (
-                <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                <FaBars className="h-6 w-6" aria-hidden="true" />
               )}
             </button>
           </div>

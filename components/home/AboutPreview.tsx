@@ -1,3 +1,5 @@
+import Button from '@/components/Button'
+
 const highlights = [
   { icon: '✈️', title: 'נסיעות מותאמות אישית', text: 'תכנון מסלול שמתאים בדיוק לכם' },
   { icon: '🎁', title: 'הטבות בלעדיות', text: 'הנחות ושיתופי פעולה עם עסקים נבחרים' },
@@ -21,12 +23,9 @@ export default function AboutPreview() {
             <p className="text-navy-500 dark:text-cream-200 mb-6 text-lg leading-relaxed">
               הצטרפו אלינו וקבלו גישה למגוון רחב של הטבות בעסקים מובילים בברלין, תכנים ייחודיים וקהילה תומכת.
             </p>
-            <a
-              href="/about"
-              className="inline-block bg-navy-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-navy-700 transition-colors"
-            >
+            <Button href="/about" variant="navy">
               למד עוד עלינו
-            </a>
+            </Button>
           </div>
           <div className="grid grid-cols-2 gap-4">
             {highlights.map((item) => (
