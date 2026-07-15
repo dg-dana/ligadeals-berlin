@@ -23,13 +23,13 @@ interface Category {
 // Photo interface for sitemap
 interface Photo {
   _id: string;
-  createdAt: string;
+  date?: string;
 }
 
 // Video interface for sitemap
 interface Video {
   _id: string;
-  createdAt: string;
+  publishedAt?: string;
 }
 
 /**
@@ -107,26 +107,30 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       },
     ];
 
-    // Article pages
-    const articlePages: MetadataRoute.Sitemap = articles.map((article) => ({
-      url: `${SITE_URL}/blog/${article.slug.current}`,
-      lastModified: new Date(article.publishedAt),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    }));
+    // Article pages (skip any article missing a slug rather than crash the whole sitemap)
+    const articlePages: MetadataRoute.Sitemap = articles
+      .filter((article) => article.slug?.current)
+      .map((article) => ({
+        url: `${SITE_URL}/blog/${article.slug.current}`,
+        lastModified: new Date(article.publishedAt),
+        changeFrequency: 'weekly' as const,
+        priority: 0.8,
+      }));
 
-    // Category pages
-    const categoryPages: MetadataRoute.Sitemap = categories.map((category) => ({
-      url: `${SITE_URL}/blog/category/${category.slug.current}`,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 0.7,
-    }));
+    // Category pages (skip any category missing a slug)
+    const categoryPages: MetadataRoute.Sitemap = categories
+      .filter((category) => category.slug?.current)
+      .map((category) => ({
+        url: `${SITE_URL}/blog/category/${category.slug.current}`,
+        lastModified: new Date(),
+        changeFrequency: 'daily' as const,
+        priority: 0.7,
+      }));
 
     // Photo pages (if individual photo pages exist)
     const photoPages: MetadataRoute.Sitemap = photos.map((photo) => ({
       url: `${SITE_URL}/gallery/photos/${photo._id}`,
-      lastModified: new Date(photo.createdAt),
+      lastModified: photo.date ? new Date(photo.date) : new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.5,
     }));
@@ -134,7 +138,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Video pages (if individual video pages exist)
     const videoPages: MetadataRoute.Sitemap = videos.map((video) => ({
       url: `${SITE_URL}/gallery/videos/${video._id}`,
-      lastModified: new Date(video.createdAt),
+      lastModified: video.publishedAt ? new Date(video.publishedAt) : new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.5,
     }));

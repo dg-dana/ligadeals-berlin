@@ -101,29 +101,27 @@ export const getArticlesByCategoryCountQuery = `
 // Get all photos with category filtering
 export const getAllPhotosQuery = `
   *[_type == "photo" && !(_id in path("drafts.**"))]
-  | order(createdAt desc)
+  | order(date desc)
   [$start...$end] {
     _id,
     title,
     image,
-    description,
+    caption,
     category->{${categoryFields}},
-    tags,
-    createdAt
+    date
   }
 `;
 
 export const getPhotosByCategoryQuery = `
   *[_type == "photo" && category->slug.current == $categorySlug && !(_id in path("drafts.**"))]
-  | order(createdAt desc)
+  | order(date desc)
   [$start...$end] {
     _id,
     title,
     image,
-    description,
+    caption,
     category->{${categoryFields}},
-    tags,
-    createdAt
+    date
   }
 `;
 
@@ -134,7 +132,7 @@ export const getAllPhotosCountQuery = `
 // Get all videos with category filtering
 export const getAllVideosQuery = `
   *[_type == "video" && !(_id in path("drafts.**"))]
-  | order(createdAt desc)
+  | order(publishedAt desc)
   [$start...$end] {
     _id,
     title,
@@ -142,15 +140,14 @@ export const getAllVideosQuery = `
     thumbnail,
     description,
     category->{${categoryFields}},
-    tags,
     duration,
-    createdAt
+    publishedAt
   }
 `;
 
 export const getVideosByCategoryQuery = `
   *[_type == "video" && category->slug.current == $categorySlug && !(_id in path("drafts.**"))]
-  | order(createdAt desc)
+  | order(publishedAt desc)
   [$start...$end] {
     _id,
     title,
@@ -158,9 +155,8 @@ export const getVideosByCategoryQuery = `
     thumbnail,
     description,
     category->{${categoryFields}},
-    tags,
     duration,
-    createdAt
+    publishedAt
   }
 `;
 
