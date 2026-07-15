@@ -20,14 +20,13 @@ const articleBaseFields = `
   excerpt,
   mainImage,
   publishedAt,
-  category->{${categoryFields}},
-  author->{${authorFields}},
-  tags
+  "category": categories[0]->{${categoryFields}},
+  author->{${authorFields}}
 `;
 
 const articleFullFields = `
   ${articleBaseFields},
-  content,
+  body,
   seo
 `;
 
@@ -51,7 +50,8 @@ export const getArticleBySlugQuery = `
     "relatedArticles": *[
       _type == "article" &&
       slug.current != $slug &&
-      category._ref == ^.category._ref &&
+      defined(^.categories[0]._ref) &&
+      references(^.categories[0]._ref) &&
       !(_id in path("drafts.**"))
     ] | order(publishedAt desc) [0...3] {
       ${articleBaseFields}
