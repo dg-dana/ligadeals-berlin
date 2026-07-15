@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { client, urlFor } from '@/sanity/sanity.client';
 import { getRecentArticlesQuery } from '@/lib/sanity/queries';
 import BlogCard from '@/components/BlogCard';
@@ -58,12 +59,12 @@ export default async function FeaturedSection() {
           ))}
         </div>
         <div className="text-center mt-12">
-          <a
+          <Link
             href="/blog"
             className="inline-block bg-navy-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-navy-700 transition-colors"
           >
             לכל המאמרים
-          </a>
+          </Link>
         </div>
       </div>
     </section>
