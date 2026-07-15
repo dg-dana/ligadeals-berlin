@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Heebo, Assistant } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Analytics from "@/components/Analytics";
 import SkipToContent from "@/components/SkipToContent";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import { getDefaultMetadata } from "@/lib/seo/metadata";
 import { generateWebsiteStructuredData, generateOrganizationStructuredData } from "@/lib/seo/metadata";
 
@@ -42,8 +44,8 @@ export default function RootLayout({
     <html lang="he" dir="rtl">
       <head>
         {/* Favicon and icons */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+        <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
 
@@ -69,7 +71,9 @@ export default function RootLayout({
         className={`${heebo.variable} ${assistant.variable} antialiased font-[var(--font-heebo)] min-h-screen flex flex-col`}
       >
         {/* Google Analytics - Only loads in production */}
-        <Analytics />
+        <Suspense fallback={null}>
+          <Analytics />
+        </Suspense>
 
         {/* Skip to content link for keyboard accessibility */}
         <SkipToContent />
@@ -79,6 +83,9 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+
+        {/* Floating WhatsApp contact button, visible on every page */}
+        <FloatingWhatsApp />
       </body>
     </html>
   );

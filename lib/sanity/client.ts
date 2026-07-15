@@ -2,7 +2,7 @@ import { createClient } from 'next-sanity';
 
 // Sanity client configuration
 export const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '7s19ept6',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   apiVersion: '2024-01-01',
   useCdn: process.env.NODE_ENV === 'production',
@@ -16,7 +16,7 @@ export async function sanityFetch<T>({
   revalidate = 60,
 }: {
   query: string;
-  params?: Record<string, any>;
+  params?: Record<string, unknown>;
   revalidate?: number | false;
 }): Promise<T> {
   try {
@@ -38,7 +38,7 @@ export async function sanityFetchWithDrafts<T>({
   params = {},
 }: {
   query: string;
-  params?: Record<string, any>;
+  params?: Record<string, unknown>;
 }): Promise<T> {
   try {
     const result = await client.fetch<T>(

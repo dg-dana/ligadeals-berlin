@@ -66,8 +66,10 @@ export function urlForImage(
   }
 
   // Apply format
+  // Note: @sanity/image-url's bundled ImageFormat type predates Sanity's CDN
+  // adding 'avif' support, so the value is passed through via an unknown cast.
   if (options.format) {
-    imageBuilder = imageBuilder.format(options.format);
+    imageBuilder = imageBuilder.format(options.format as unknown as 'jpg' | 'pjpg' | 'png' | 'webp');
   }
 
   // Apply quality
@@ -163,7 +165,7 @@ export function getOGImage(source: SanityImageSource): string {
  * @param source - Sanity image source
  * @returns Object with width and height, or null if not available
  */
-export function getImageDimensions(source: any): {
+export function getImageDimensions(source: { asset?: { metadata?: { dimensions?: { width: number; height: number; aspectRatio?: number } } } }): {
   width: number;
   height: number;
   aspectRatio: number;

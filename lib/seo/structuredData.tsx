@@ -1,5 +1,6 @@
 import { formatDateForStructuredData } from './metadata';
 import { urlForImage } from '../sanity/imageBuilder';
+import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://ligadeals-berlin.com';
 const SITE_NAME = 'LigaDeals Berlin';
@@ -8,12 +9,12 @@ const SITE_NAME = 'LigaDeals Berlin';
 export interface ArticleStructuredDataProps {
   title: string;
   description: string;
-  image: any; // Sanity image
+  image: SanityImageSource; // Sanity image
   publishedAt: string;
   updatedAt?: string;
   author: {
     name: string;
-    image?: any;
+    image?: SanityImageSource;
   };
   category?: string;
   tags?: string[];
@@ -200,7 +201,7 @@ export interface ReviewStructuredDataProps {
 export function generateReviewStructuredData(props: ReviewStructuredDataProps) {
   const { reviewBody, author, rating, datePublished } = props;
 
-  const review: any = {
+  const review: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'Review',
     reviewBody,
@@ -386,7 +387,7 @@ export function generateLocalBusinessStructuredData(props: LocalBusinessStructur
 /**
  * Helper to render structured data as JSON-LD script
  */
-export function renderStructuredData(data: any) {
+export function renderStructuredData(data: Record<string, unknown>) {
   return (
     <script
       type="application/ld+json"

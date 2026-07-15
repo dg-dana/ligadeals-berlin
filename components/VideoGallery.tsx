@@ -80,7 +80,7 @@ export default function VideoGallery({ videos, categories = [] }: VideoGalleryPr
               onClick={() => setSelectedCategory(category)}
               className={`rounded-full px-6 py-2 font-semibold transition-all ${
                 selectedCategory === category
-                  ? 'bg-blue-600 text-white shadow-lg scale-105'
+                  ? 'bg-navy-600 text-white shadow-lg scale-105'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
               }`}
             >
@@ -120,7 +120,7 @@ export default function VideoGallery({ videos, categories = [] }: VideoGalleryPr
               <div className="absolute inset-0 flex items-center justify-center bg-black/40 transition-all group-hover:bg-black/60">
                 <motion.div
                   whileHover={{ scale: 1.2 }}
-                  className="rounded-full bg-blue-600 p-4 shadow-xl"
+                  className="rounded-full bg-gold-400 p-4 shadow-xl"
                 >
                   <svg
                     className="w-10 h-10 text-white"
@@ -140,7 +140,7 @@ export default function VideoGallery({ videos, categories = [] }: VideoGalleryPr
 
             {/* Video Info */}
             <div className="bg-white dark:bg-gray-800 p-4">
-              <h3 className="font-bold text-gray-900 dark:text-white line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              <h3 className="font-bold text-navy-700 dark:text-white line-clamp-2 group-hover:text-gold-600 dark:group-hover:text-gold-400 transition-colors">
                 {video.title}
               </h3>
               {video.description && (
@@ -202,7 +202,7 @@ export default function VideoGallery({ videos, categories = [] }: VideoGalleryPr
               {/* Video Info Below Player */}
               <div className="mt-4 rounded-lg bg-white/10 p-6 backdrop-blur-sm">
                 <div className="mb-2">
-                  <span className="inline-block rounded-full bg-blue-600 px-3 py-1 text-sm font-semibold text-white">
+                  <span className="inline-block rounded-full bg-gold-400 px-3 py-1 text-sm font-semibold text-navy-800">
                     {selectedVideo.category}
                   </span>
                 </div>

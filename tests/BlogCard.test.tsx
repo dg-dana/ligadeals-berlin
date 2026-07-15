@@ -63,7 +63,7 @@ describe('BlogCard Component', () => {
 
     const category = screen.getByText('טכנולוגיה')
     expect(category).toBeInTheDocument()
-    expect(category).toHaveClass('bg-blue-600', 'text-white')
+    expect(category).toHaveClass('bg-gold-400', 'text-navy-800')
   })
 
   it('displays "Read More" button in Hebrew', () => {
@@ -198,6 +198,6 @@ describe('BlogCard Component', () => {
     expect(article).toHaveClass('hover:shadow-2xl')
 
     const title = screen.getByRole('heading', { level: 3 })
-    expect(title).toHaveClass('group-hover:text-blue-600')
+    expect(title).toHaveClass('group-hover:text-gold-600')
   })
 })
