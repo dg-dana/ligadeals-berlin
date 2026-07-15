@@ -32,20 +32,20 @@ export const articlePortableTextComponents: PortableTextComponents = {
       <h4 className="mb-2 mt-4 text-lg font-bold text-navy-700 dark:text-white">{children}</h4>
     ),
     normal: ({ children }) => (
-      <p className="mb-4 leading-relaxed text-navy-500 dark:text-gray-300">{children}</p>
+      <p className="mb-4 text-lg leading-relaxed text-navy-700 dark:text-gray-300">{children}</p>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="my-6 border-r-4 border-gold-400 pr-4 italic text-navy-600 dark:text-gray-300">
+      <blockquote className="my-6 border-r-4 border-gold-400 pr-4 text-lg italic text-navy-700 dark:text-gray-300">
         {children}
       </blockquote>
     ),
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="mb-4 list-disc space-y-2 pr-6 text-navy-500 dark:text-gray-300">{children}</ul>
+      <ul className="mb-4 list-disc space-y-2 pr-6 text-lg text-navy-700 dark:text-gray-300">{children}</ul>
     ),
     number: ({ children }) => (
-      <ol className="mb-4 list-decimal space-y-2 pr-6 text-navy-500 dark:text-gray-300">{children}</ol>
+      <ol className="mb-4 list-decimal space-y-2 pr-6 text-lg text-navy-700 dark:text-gray-300">{children}</ol>
     ),
   },
   marks: {
