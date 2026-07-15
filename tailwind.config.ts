@@ -23,6 +23,37 @@ const config: Config = {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))',
         },
+        // Brand palette, drawn from the Liga Deals Berlin logo (navy badge + gold type)
+        navy: {
+          50: '#eef0f7',
+          100: '#d6dae9',
+          200: '#adb6d3',
+          300: '#7d89b3',
+          400: '#525e8c',
+          500: '#39406b',
+          600: '#282f57', // Logo navy
+          700: '#1f2545',
+          800: '#161a33',
+          900: '#0d0f1f',
+        },
+        gold: {
+          50: '#fdf8ec',
+          100: '#faf0d3',
+          200: '#f3dfa0',
+          300: '#eccc6c',
+          400: '#e0b34c',
+          500: '#d9a441', // Logo gold
+          600: '#c08a2e',
+          700: '#9c6c24',
+          800: '#7a541f',
+          900: '#5c3f18',
+        },
+        cream: {
+          DEFAULT: '#fbf8f2',
+          50: '#fefdfb',
+          100: '#fbf8f2',
+          200: '#f5efe0',
+        },
         ligadeals: {
           blue: {
             50: '#e3f2fd',

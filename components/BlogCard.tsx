@@ -38,7 +38,7 @@ export default function BlogCard({
             className="object-cover transition-transform duration-500 group-hover:scale-110"
           />
           {/* Category Tag */}
-          <div className="absolute top-4 right-4 bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+          <div className="absolute top-4 right-4 bg-gold-400 text-navy-800 px-4 py-1 rounded-full text-sm font-semibold">
             {category}
           </div>
         </div>
@@ -55,17 +55,17 @@ export default function BlogCard({
           </time>
 
           {/* Title */}
-          <h3 className="mt-2 text-xl font-bold text-gray-900 dark:text-white line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+          <h3 className="mt-2 text-xl font-bold text-navy-700 dark:text-white line-clamp-2 group-hover:text-gold-600 dark:group-hover:text-gold-400 transition-colors">
             {title}
           </h3>
 
           {/* Excerpt */}
-          <p className="mt-3 text-gray-600 dark:text-gray-300 line-clamp-3">
+          <p className="mt-3 text-navy-400 dark:text-gray-300 line-clamp-3">
             {excerpt}
           </p>
 
           {/* Read More Button */}
-          <div className="mt-4 flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold">
+          <div className="mt-4 flex items-center gap-2 text-navy-600 dark:text-gold-400 font-semibold">
             <span>קרא עוד</span>
             <svg
               className="w-5 h-5 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1"
