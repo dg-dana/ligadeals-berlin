@@ -101,7 +101,7 @@ export default function PhotoGallery({
               onClick={() => setSelectedCategory(category)}
               className={`rounded-full px-6 py-2 font-semibold transition-all ${
                 selectedCategory === category
-                  ? 'bg-blue-600 text-white shadow-lg scale-105'
+                  ? 'bg-navy-600 text-white shadow-lg scale-105'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
               }`}
             >
@@ -164,7 +164,7 @@ export default function PhotoGallery({
       {displayedCount < filteredPhotos.length && (
         <div ref={ref} className="mt-8 flex justify-center">
           <div className="flex items-center gap-3">
-            <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-600 border-t-transparent"></div>
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-navy-600 border-t-transparent"></div>
             <p className="text-gray-600 dark:text-gray-400">טוען עוד תמונות...</p>
           </div>
         </div>

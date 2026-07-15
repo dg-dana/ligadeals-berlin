@@ -27,10 +27,10 @@ export default function SkipToContent() {
       className="
         sr-only focus:not-sr-only
         fixed top-4 right-4 z-[9999]
-        bg-blue-600 text-white
+        bg-navy-600 text-white
         px-6 py-3 rounded-lg
         font-bold text-lg
-        focus:outline-none focus:ring-4 focus:ring-blue-300
+        focus:outline-none focus:ring-4 focus:ring-gold-300
         transition-all
       "
     >
