@@ -96,8 +96,6 @@ export function middleware(request: NextRequest) {
     }
   }
 
-  // Skip i18n for now - can be added later when needed
-
   // Continue with the request
   const response = NextResponse.next();
 
