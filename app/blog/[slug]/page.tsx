@@ -137,7 +137,7 @@ export default async function ArticlePage({
           <PortableText value={article.body} components={articlePortableTextComponents} />
         ) : (
           article.excerpt && (
-            <p className="text-lg leading-relaxed text-navy-500 dark:text-gray-300">
+            <p className="text-lg leading-relaxed text-navy-700 dark:text-gray-300">
               {article.excerpt}
             </p>
           )
