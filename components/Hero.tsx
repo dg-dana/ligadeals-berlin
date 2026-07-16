@@ -5,10 +5,26 @@ import Button from '@/components/Button'
 
 export default function Hero() {
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-gradient-to-b from-navy-700 via-navy-600 to-navy-800">
-      {/* Soft glow accents for warmth */}
-      <div className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-gold-400/20 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 -left-24 h-72 w-72 rounded-full bg-gold-300/10 blur-3xl" />
+    <section
+      className="relative h-screen w-full overflow-hidden"
+      style={{
+        background: 'linear-gradient(to bottom, #2a5a9a 0%, #4a7ab8 32%, #6898d0 60%, #90b8e0 74%, #1a2744 80%, #1a2744 100%)',
+      }}
+    >
+      {/* Gradient overlay — keeps sky visible at top, darkens toward skyline for text readability */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(26,39,68,.06) 0%, rgba(26,39,68,.20) 38%, rgba(26,39,68,.55) 68%, rgba(7,13,24,.88) 100%)',
+        }}
+      />
+
+      {/* Cloud wisps */}
+      <div className="pointer-events-none absolute top-[7%] left-[6%] h-10 w-44 rounded-full bg-white/80 blur-2xl" />
+      <div className="pointer-events-none absolute top-[11%] left-[18%] h-8 w-32 rounded-full bg-white/75 blur-2xl" />
+      <div className="pointer-events-none absolute top-[6%] right-[9%] h-12 w-48 rounded-full bg-white/80 blur-2xl" />
+      <div className="pointer-events-none absolute top-[15%] right-[25%] h-7 w-24 rounded-full bg-white/65 blur-xl" />
+      <div className="pointer-events-none absolute top-[4%] left-[44%] h-7 w-20 rounded-full bg-white/70 blur-xl" />
 
       {/* Airplane Animation */}
       <motion.div
@@ -17,7 +33,7 @@ export default function Hero() {
         animate={{ x: -1200, opacity: [0, 1, 1, 0] }}
         transition={{ duration: 15, repeat: Infinity, repeatDelay: 5 }}
       >
-        <svg width="60" height="60" viewBox="0 0 24 24" fill="#eccc6c" opacity="0.5">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="white" opacity="0.9">
           <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
         </svg>
       </motion.div>
@@ -32,7 +48,7 @@ export default function Hero() {
           className="mb-6 inline-block rounded-full border border-gold-400/40 bg-gold-400/10 px-5 py-1.5 text-sm font-semibold tracking-wide text-gold-300"
           dir="rtl"
         >
-          מועדון ההטבות של ברלין
+          מדריך ברלין לישראלים
         </motion.span>
 
         {/* Main Headline */}
@@ -54,7 +70,7 @@ export default function Hero() {
           className="mb-10 max-w-2xl text-lg text-navy-100 md:text-xl lg:text-2xl"
           dir="rtl"
         >
-          שירותי נסיעות אישיים מותאמים במיוחד עבורכם - גלו מסעדות מעולות, אירועים מיוחדים והטבות בלעדיות בברלין
+          מסעדות, אירועים, שכונות ועצות מקומיות — הכל במקום אחד, בעברית
         </motion.p>
 
         {/* CTA Buttons */}
@@ -104,9 +120,9 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Berlin skyline silhouette, echoing the logo motif */}
+      {/* Berlin skyline silhouette */}
       <svg
-        className="absolute bottom-0 left-0 right-0 h-24 w-full text-navy-900/60 md:h-32"
+        className="absolute bottom-0 left-0 right-0 h-24 w-full text-navy-900 md:h-32"
         viewBox="0 0 1200 120"
         preserveAspectRatio="none"
         fill="currentColor"
