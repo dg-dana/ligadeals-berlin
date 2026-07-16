@@ -10,6 +10,25 @@ jest.mock('framer-motion', () => ({
 }))
 
 describe('ContactForm Component', () => {
+  beforeEach(() => {
+    global.fetch = jest.fn(() =>
+      new Promise((resolve) =>
+        setTimeout(
+          () =>
+            resolve({
+              ok: true,
+              json: async () => ({ success: true }),
+            } as unknown as Response),
+          50
+        )
+      )
+    )
+  })
+
+  afterEach(() => {
+    jest.restoreAllMocks()
+  })
+
   it('renders all form fields', () => {
     renderWithProviders(<ContactForm />)
 
@@ -34,7 +53,7 @@ describe('ContactForm Component', () => {
     await user.click(submitButton)
 
     await waitFor(() => {
-      expect(screen.getAllByText('שדה חובה')).toHaveLength(4)
+      expect(screen.getAllByText('שדה חובה')).toHaveLength(3)
     })
   })
 

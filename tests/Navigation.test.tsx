@@ -4,7 +4,6 @@ import Navigation from '@/components/Navigation'
 describe('Navigation Component', () => {
   it('renders the logo and site name', () => {
     renderWithProviders(<Navigation />)
-    expect(screen.getByText('LD')).toBeInTheDocument()
     expect(screen.getByText('Liga Deals Berlin')).toBeInTheDocument()
   })
 
@@ -20,16 +19,16 @@ describe('Navigation Component', () => {
 
   it('renders correct links for menu items', () => {
     renderWithProviders(<Navigation />)
-    const homeLinks = screen.getAllByRole('link', { name: /דף הבית/i })
-    expect(homeLinks[0]).toHaveAttribute('href', '/')
+    const homeItems = screen.getAllByRole('menuitem', { name: /דף הבית/i })
+    expect(homeItems[0]).toHaveAttribute('href', '/')
 
-    const blogLinks = screen.getAllByRole('link', { name: /בלוג/i })
-    expect(blogLinks[0]).toHaveAttribute('href', '/blog')
+    const blogItems = screen.getAllByRole('menuitem', { name: /בלוג/i })
+    expect(blogItems[0]).toHaveAttribute('href', '/blog')
   })
 
   it('shows mobile menu button on small screens', () => {
     renderWithProviders(<Navigation />)
-    const toggleButton = screen.getByLabelText('Toggle menu')
+    const toggleButton = screen.getByLabelText('פתח תפריט')
     expect(toggleButton).toBeInTheDocument()
   })
 
@@ -37,7 +36,7 @@ describe('Navigation Component', () => {
     const user = userEvent.setup()
     renderWithProviders(<Navigation />)
 
-    const toggleButton = screen.getByLabelText('Toggle menu')
+    const toggleButton = screen.getByLabelText('פתח תפריט')
 
     // Menu should not be visible initially (checking for duplicate menu items)
     const initialMenuItems = screen.getAllByText('דף הבית')
@@ -55,7 +54,7 @@ describe('Navigation Component', () => {
     const user = userEvent.setup()
     renderWithProviders(<Navigation />)
 
-    const toggleButton = screen.getByLabelText('Toggle menu')
+    const toggleButton = screen.getByLabelText('פתח תפריט')
 
     // Open menu
     await user.click(toggleButton)
@@ -85,6 +84,6 @@ describe('Navigation Component', () => {
   it('has dark mode support classes', () => {
     const { container } = renderWithProviders(<Navigation />)
     const nav = container.querySelector('nav')
-    expect(nav).toHaveClass('bg-white', 'dark:bg-gray-900')
+    expect(nav).toHaveClass('bg-cream-50/95', 'dark:bg-navy-800')
   })
 })

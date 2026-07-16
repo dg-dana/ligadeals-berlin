@@ -64,7 +64,7 @@ export default function ContactForm({ whatsappNumber = '491234567890' }: Contact
 
   return (
     <div className="w-full" dir="rtl">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" aria-label="טופס יצירת קשר">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" aria-label="טופס יצירת קשר" noValidate>
         {/* Full Name */}
         <div>
           <label htmlFor="name" className="mb-2 block text-sm font-semibold text-navy-700 dark:text-white">
