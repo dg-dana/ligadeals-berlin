@@ -203,14 +203,15 @@ export const getSiteSettingsQuery = `
   *[_type == "siteSettings"][0] {
     _id,
     siteName,
-    siteDescription,
+    description,
     logo,
-    favicon,
-    socialMedia,
-    contactEmail,
-    contactPhone,
-    address,
-    seo
+    email,
+    phone,
+    whatsapp,
+    instagram,
+    facebook,
+    twitter,
+    linkedin
   }
 `;
 

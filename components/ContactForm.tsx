@@ -11,7 +11,11 @@ interface ContactFormData {
   message: string
 }
 
-export default function ContactForm() {
+interface ContactFormProps {
+  whatsappNumber?: string
+}
+
+export default function ContactForm({ whatsappNumber = '491234567890' }: ContactFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null)
 
@@ -56,7 +60,6 @@ export default function ContactForm() {
     }
   }
 
-  const whatsappNumber = '491234567890' // Replace with actual number
   const whatsappMessage = encodeURIComponent('שלום, אני מעוניין/ת לקבל מידע נוסף')
 
   return (

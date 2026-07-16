@@ -1,8 +1,20 @@
 import Link from "next/link";
 import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import type { SiteSettings } from "@/lib/sanity/siteSettings";
 
-const Footer = () => {
+interface FooterProps {
+  settings: SiteSettings;
+}
+
+const Footer = ({ settings }: FooterProps) => {
   const currentYear = new Date().getFullYear();
+  const { email, phone, whatsapp, facebook, instagram, twitter, linkedin } = settings;
+  const socialLinks = [
+    { name: "Facebook", href: facebook, icon: FaFacebook },
+    { name: "Instagram", href: instagram, icon: FaInstagram },
+    { name: "Twitter", href: twitter, icon: FaTwitter },
+    { name: "LinkedIn", href: linkedin, icon: FaLinkedin },
+  ].filter((social): social is typeof social & { href: string } => Boolean(social.href));
 
   return (
     <footer className="bg-navy-800 text-cream-100">
@@ -15,44 +27,20 @@ const Footer = () => {
               מועדון ההטבות המוביל בברלין. הצטרפו אלינו ותיהנו מהטבות בלעדיות, תכנים מעניינים וקהילה תומכת.
             </p>
             <div className="flex gap-4">
+              {socialLinks.map(({ name, href, icon: Icon }) => (
+                <a
+                  key={name}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-navy-200 hover:text-gold-400 transition-colors"
+                  aria-label={name}
+                >
+                  <Icon size={24} />
+                </a>
+              ))}
               <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-navy-200 hover:text-gold-400 transition-colors"
-                aria-label="Facebook"
-              >
-                <FaFacebook size={24} />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-navy-200 hover:text-gold-400 transition-colors"
-                aria-label="Instagram"
-              >
-                <FaInstagram size={24} />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-navy-200 hover:text-gold-400 transition-colors"
-                aria-label="Twitter"
-              >
-                <FaTwitter size={24} />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-navy-200 hover:text-gold-400 transition-colors"
-                aria-label="LinkedIn"
-              >
-                <FaLinkedin size={24} />
-              </a>
-              <a
-                href="https://wa.me/493012345678"
+                href={`https://wa.me/${whatsapp}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-navy-200 hover:text-gold-400 transition-colors"
@@ -106,14 +94,14 @@ const Footer = () => {
             <ul className="space-y-3 text-navy-100">
               <li className="flex items-start">
                 <span className="ml-2">📧</span>
-                <a href="mailto:info@ligadeals-berlin.com" className="hover:text-white transition-colors">
-                  info@ligadeals-berlin.com
+                <a href={`mailto:${email}`} className="hover:text-white transition-colors">
+                  {email}
                 </a>
               </li>
               <li className="flex items-start">
                 <span className="ml-2">📱</span>
-                <a href="tel:+493012345678" className="hover:text-white transition-colors">
-                  +49 30 1234 5678
+                <a href={`tel:${phone.replace(/\s/g, '')}`} className="hover:text-white transition-colors">
+                  {phone}
                 </a>
               </li>
               <li className="flex items-start">

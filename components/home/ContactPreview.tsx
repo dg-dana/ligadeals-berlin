@@ -1,4 +1,9 @@
-export default function ContactPreview() {
+import Button from '@/components/Button'
+import { getSiteSettings } from '@/lib/sanity/siteSettings'
+
+export default async function ContactPreview() {
+  const { email, phone } = await getSiteSettings()
+
   return (
     <section className="py-16 px-4 bg-cream-100 dark:bg-navy-800">
       <div className="max-w-4xl mx-auto text-center">
@@ -12,12 +17,12 @@ export default function ContactPreview() {
           <div className="bg-white dark:bg-navy-700 p-6 rounded-2xl shadow-sm ring-1 ring-navy-100 dark:ring-navy-600">
             <div className="text-3xl mb-3">📧</div>
             <h3 className="font-semibold text-navy-700 dark:text-white mb-2">אימייל</h3>
-            <p className="text-navy-400 dark:text-cream-200">info@ligadeals-berlin.com</p>
+            <p className="text-navy-400 dark:text-cream-200">{email}</p>
           </div>
           <div className="bg-white dark:bg-navy-700 p-6 rounded-2xl shadow-sm ring-1 ring-navy-100 dark:ring-navy-600">
             <div className="text-3xl mb-3">📱</div>
             <h3 className="font-semibold text-navy-700 dark:text-white mb-2">טלפון</h3>
-            <p className="text-navy-400 dark:text-cream-200">+49 30 1234 5678</p>
+            <p className="text-navy-400 dark:text-cream-200">{phone}</p>
           </div>
           <div className="bg-white dark:bg-navy-700 p-6 rounded-2xl shadow-sm ring-1 ring-navy-100 dark:ring-navy-600">
             <div className="text-3xl mb-3">📍</div>
@@ -25,12 +30,9 @@ export default function ContactPreview() {
             <p className="text-navy-400 dark:text-cream-200">ברלין, גרמניה</p>
           </div>
         </div>
-        <a
-          href="/contact"
-          className="inline-block bg-gold-400 text-navy-800 px-8 py-3 rounded-full font-semibold hover:bg-gold-300 transition-colors"
-        >
+        <Button href="/contact" variant="gold">
           שלח הודעה
-        </a>
+        </Button>
       </div>
     </section>
   )
