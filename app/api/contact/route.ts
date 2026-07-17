@@ -99,7 +99,18 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify(payload),
     });
 
-    const result = await response.json();
+    const contentType = response.headers.get('content-type') || '';
+    const rawBody = await response.text();
+
+    if (!contentType.includes('application/json')) {
+      console.error('Web3Forms returned non-JSON:', response.status, rawBody.slice(0, 300));
+      return NextResponse.json(
+        { error: 'Failed to send message', hebrewError: 'שליחת ההודעה נכשלה. אנא נסה שוב.' },
+        { status: 500 }
+      );
+    }
+
+    const result = JSON.parse(rawBody);
 
     if (!result.success) {
       console.error('Web3Forms error:', result);
