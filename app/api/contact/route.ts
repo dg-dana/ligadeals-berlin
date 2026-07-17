@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
 
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
 const RATE_LIMIT_WINDOW = 60 * 60 * 1000;
@@ -84,41 +85,29 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const payload: Record<string, string> = {
-      access_key: process.env.WEB3FORMS_ACCESS_KEY || '',
-      subject: `הודעה חדשה מ-${body.name} — Liga Deals Berlin`,
-      name: body.name,
-      email: body.email,
-      message: body.message,
-    };
-    if (body.phone) payload.phone = body.phone;
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const toEmail = process.env.CONTACT_TO_EMAIL || 'dgxcoding@gmail.com';
 
-    const response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify(payload),
+    const phoneLine = body.phone ? `\nטלפון: ${body.phone}` : '';
+    const textBody = `הודעה חדשה מטופס יצירת קשר — Liga Deals Berlin\n\nשם: ${body.name}\nאימייל: ${body.email}${phoneLine}\n\nהודעה:\n${body.message}`;
+
+    const { data, error } = await resend.emails.send({
+      from: 'Liga Deals Berlin <onboarding@resend.dev>',
+      to: [toEmail],
+      replyTo: body.email,
+      subject: `הודעה חדשה מ-${body.name} — Liga Deals Berlin`,
+      text: textBody,
     });
 
-    const contentType = response.headers.get('content-type') || '';
-    const rawBody = await response.text();
-
-    if (!contentType.includes('application/json')) {
-      console.error('Web3Forms returned non-JSON:', response.status, rawBody.slice(0, 300));
+    if (error) {
+      console.error('Resend error:', error);
       return NextResponse.json(
         { error: 'Failed to send message', hebrewError: 'שליחת ההודעה נכשלה. אנא נסה שוב.' },
         { status: 500 }
       );
     }
 
-    const result = JSON.parse(rawBody);
-
-    if (!result.success) {
-      console.error('Web3Forms error:', result);
-      return NextResponse.json(
-        { error: 'Failed to send message', hebrewError: 'שליחת ההודעה נכשלה. אנא נסה שוב.' },
-        { status: 500 }
-      );
-    }
+    console.log('Email sent successfully:', data?.id);
 
     return NextResponse.json(
       { success: true, message: 'Message sent successfully', hebrewMessage: 'ההודעה נשלחה בהצלחה' },
