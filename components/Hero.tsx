@@ -6,24 +6,26 @@ import Button from '@/components/Button'
 
 export default function Hero() {
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-navy-800">
-      {/* Berlin skyline illustration */}
-      <Image
-        src="/images/berlin-skyline.png"
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover object-bottom"
-      />
-
-      {/* Gradient overlay — darkens toward skyline for text readability */}
+    <section
+      className="relative h-screen w-full overflow-hidden"
+      style={{
+        background: 'linear-gradient(to bottom, #2a5a9a 0%, #4a7ab8 32%, #6898d0 60%, #90b8e0 74%, #4a6c98 88%, #3a5878 100%)',
+      }}
+    >
+      {/* Gradient overlay — keeps sky visible at top, darkens toward skyline for text readability, but stays light enough at the bottom for the skyline silhouette to read against it */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
-          background: 'linear-gradient(to bottom, rgba(26,39,68,.06) 0%, rgba(26,39,68,.20) 38%, rgba(26,39,68,.55) 68%, rgba(7,13,24,.88) 100%)',
+          background: 'linear-gradient(to bottom, rgba(26,39,68,.06) 0%, rgba(26,39,68,.20) 38%, rgba(26,39,68,.45) 68%, rgba(15,23,42,.55) 100%)',
         }}
       />
+
+      {/* Cloud wisps */}
+      <div className="pointer-events-none absolute top-[7%] left-[6%] h-10 w-44 rounded-full bg-white/80 blur-2xl" />
+      <div className="pointer-events-none absolute top-[11%] left-[18%] h-8 w-32 rounded-full bg-white/75 blur-2xl" />
+      <div className="pointer-events-none absolute top-[6%] right-[9%] h-12 w-48 rounded-full bg-white/80 blur-2xl" />
+      <div className="pointer-events-none absolute top-[15%] right-[25%] h-7 w-24 rounded-full bg-white/65 blur-xl" />
+      <div className="pointer-events-none absolute top-[4%] left-[44%] h-7 w-20 rounded-full bg-white/70 blur-xl" />
 
       {/* Airplane Animation */}
       <motion.div
@@ -118,6 +120,16 @@ export default function Hero() {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Berlin skyline silhouette — sized to its true aspect ratio, never stretched */}
+      <Image
+        src="/images/berlin-skyline.png"
+        alt=""
+        width={1024}
+        height={284}
+        priority
+        className="pointer-events-none absolute bottom-0 left-0 h-auto w-full"
+      />
     </section>
   )
 }
