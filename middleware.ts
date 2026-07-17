@@ -52,9 +52,9 @@ function isOriginAllowed(origin: string | null): boolean {
 
   const allowedOrigins = getAllowedOrigins();
 
-  // If no specific origins configured, allow same origin only in production
+  // If no specific origins configured, allow all origins
   if (allowedOrigins.length === 0) {
-    return process.env.NODE_ENV !== 'production';
+    return true;
   }
 
   return allowedOrigins.includes(origin);
