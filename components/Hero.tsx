@@ -1,30 +1,29 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import Button from '@/components/Button'
 
 export default function Hero() {
   return (
-    <section
-      className="relative h-screen w-full overflow-hidden"
-      style={{
-        background: 'linear-gradient(to bottom, #2a5a9a 0%, #4a7ab8 32%, #6898d0 60%, #90b8e0 74%, #1a2744 80%, #1a2744 100%)',
-      }}
-    >
-      {/* Gradient overlay — keeps sky visible at top, darkens toward skyline for text readability */}
+    <section className="relative h-screen w-full overflow-hidden bg-navy-800">
+      {/* Berlin skyline illustration */}
+      <Image
+        src="/images/berlin-skyline.png"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-bottom"
+      />
+
+      {/* Gradient overlay — darkens toward skyline for text readability */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           background: 'linear-gradient(to bottom, rgba(26,39,68,.06) 0%, rgba(26,39,68,.20) 38%, rgba(26,39,68,.55) 68%, rgba(7,13,24,.88) 100%)',
         }}
       />
-
-      {/* Cloud wisps */}
-      <div className="pointer-events-none absolute top-[7%] left-[6%] h-10 w-44 rounded-full bg-white/80 blur-2xl" />
-      <div className="pointer-events-none absolute top-[11%] left-[18%] h-8 w-32 rounded-full bg-white/75 blur-2xl" />
-      <div className="pointer-events-none absolute top-[6%] right-[9%] h-12 w-48 rounded-full bg-white/80 blur-2xl" />
-      <div className="pointer-events-none absolute top-[15%] right-[25%] h-7 w-24 rounded-full bg-white/65 blur-xl" />
-      <div className="pointer-events-none absolute top-[4%] left-[44%] h-7 w-20 rounded-full bg-white/70 blur-xl" />
 
       {/* Airplane Animation */}
       <motion.div
@@ -119,17 +118,6 @@ export default function Hero() {
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Berlin skyline silhouette */}
-      <svg
-        className="absolute bottom-0 left-0 right-0 h-24 w-full text-navy-900 md:h-32"
-        viewBox="0 0 1200 120"
-        preserveAspectRatio="none"
-        fill="currentColor"
-        aria-hidden="true"
-      >
-        <path d="M0,120 L0,70 L20,70 L20,50 L35,50 L35,70 L55,70 L55,40 L70,40 L70,20 L75,10 L80,20 L80,40 L95,40 L95,60 L115,60 L115,45 L130,45 L130,60 L150,60 L150,30 L165,30 L165,15 L172,5 L179,15 L179,30 L195,30 L195,55 L215,55 L215,35 L230,35 L230,55 L250,55 L250,20 L265,20 L265,0 L275,0 L275,20 L290,20 L290,55 L310,55 L310,65 L330,65 L330,40 L345,40 L345,65 L365,65 L365,30 L380,30 L380,10 L390,2 L400,10 L400,30 L415,30 L415,65 L435,65 L435,45 L450,45 L450,65 L470,65 L470,25 L485,25 L485,5 L492,0 L499,5 L499,25 L515,25 L515,65 L535,65 L535,50 L550,50 L550,65 L570,65 L570,35 L585,35 L585,15 L595,7 L605,15 L605,35 L620,35 L620,65 L640,65 L640,45 L655,45 L655,65 L675,65 L675,20 L690,20 L690,0 L700,0 L700,20 L715,20 L715,65 L735,65 L735,50 L750,50 L750,65 L770,65 L770,30 L785,30 L785,10 L793,2 L801,10 L801,30 L815,30 L815,65 L835,65 L835,45 L850,45 L850,65 L870,65 L870,25 L885,25 L885,5 L892,0 L899,5 L899,25 L915,25 L915,65 L935,65 L935,50 L950,50 L950,65 L970,65 L970,35 L985,35 L985,15 L995,7 L1005,15 L1005,35 L1020,35 L1020,65 L1040,65 L1040,45 L1055,45 L1055,65 L1075,65 L1075,20 L1090,20 L1090,0 L1100,0 L1100,20 L1115,20 L1115,65 L1135,65 L1135,50 L1150,50 L1150,65 L1170,65 L1170,40 L1185,40 L1185,60 L1200,60 L1200,120 Z" />
-      </svg>
     </section>
   )
 }
