@@ -60,7 +60,7 @@ function isOriginAllowed(origin: string | null): boolean {
   return allowedOrigins.includes(origin);
 }
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const origin = request.headers.get('origin');
 

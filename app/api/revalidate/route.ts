@@ -178,7 +178,7 @@ export async function POST(request: NextRequest) {
     const revalidatedTags: string[] = [];
     for (const tag of tags) {
       try {
-        revalidateTag(tag);
+        revalidateTag(tag, 'max');
         revalidatedTags.push(tag);
         console.log(`Revalidated tag: ${tag}`);
       } catch (error) {
