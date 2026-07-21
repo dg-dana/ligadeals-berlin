@@ -164,18 +164,9 @@ export const structure: StructureResolver = (S) =>
                 .icon(() => '🌐')
                 .child(
                   S.document()
-                    .schemaType('settings')
-                    .documentId('settings')
+                    .schemaType('siteSettings')
+                    .documentId('siteSettings')
                     .title('הגדרות כלליות')
-                ),
-              S.listItem()
-                .title('הגדרות SEO')
-                .icon(() => '🔍')
-                .child(
-                  S.document()
-                    .schemaType('seoSettings')
-                    .documentId('seoSettings')
-                    .title('הגדרות SEO')
                 ),
             ])
         ),
