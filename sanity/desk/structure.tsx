@@ -15,23 +15,23 @@ export const structure: StructureResolver = (S) =>
               S.listItem()
                 .title('כל המאמרים')
                 .child(
-                  S.documentTypeList('post')
+                  S.documentTypeList('article')
                     .title('כל המאמרים')
                 ),
               S.divider(),
               S.listItem()
                 .title('מאמרים מפורסמים')
                 .child(
-                  S.documentTypeList('post')
+                  S.documentTypeList('article')
                     .title('מאמרים מפורסמים')
-                    .filter('_type == "post" && !(_id in path("drafts.**"))')
+                    .filter('_type == "article" && !(_id in path("drafts.**"))')
                 ),
               S.listItem()
                 .title('טיוטות')
                 .child(
-                  S.documentTypeList('post')
+                  S.documentTypeList('article')
                     .title('טיוטות')
-                    .filter('_type == "post" && _id in path("drafts.**")')
+                    .filter('_type == "article" && _id in path("drafts.**")')
                 ),
               S.divider(),
               S.listItem()
@@ -42,7 +42,7 @@ export const structure: StructureResolver = (S) =>
                     .child((categoryId) =>
                       S.documentList()
                         .title('מאמרים')
-                        .filter('_type == "post" && $categoryId in categories[]._ref')
+                        .filter('_type == "article" && $categoryId in categories[]._ref')
                         .params({categoryId})
                     )
                 ),
