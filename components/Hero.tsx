@@ -71,7 +71,7 @@ export default function Hero() {
           className="mb-10 max-w-2xl text-lg text-navy-100 md:text-xl lg:text-2xl"
           dir="rtl"
         >
-          מסעדות, אירועים, שכונות ועצות מקומיות — הכל במקום אחד, בעברית
+          מדריכים, המלצות מקומיות וליווי אישי צמוד — מתכנון החופשה ועד החזרה הביתה, הכל בעברית
         </motion.p>
 
         {/* CTA Buttons */}
