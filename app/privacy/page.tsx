@@ -9,12 +9,12 @@ export default function PrivacyPage() {
   return (
     <div className="min-h-screen py-12 px-4" dir="rtl">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold text-navy-700 mb-4">מדיניות פרטיות</h1>
-        <p className="text-navy-400 mb-12">עודכן לאחרונה: יולי 2026</p>
+        <h1 className="text-4xl font-bold text-navy-700 dark:text-white mb-4">מדיניות פרטיות</h1>
+        <p className="text-gray-500 dark:text-gray-400 mb-12">עודכן לאחרונה: יולי 2026</p>
 
-        <div className="space-y-10 text-navy-600 leading-relaxed">
+        <div className="space-y-10 text-lg leading-relaxed text-navy-700 dark:text-gray-300">
           <section>
-            <h2 className="text-2xl font-bold text-navy-700 mb-3">כללי</h2>
+            <h2 className="text-2xl font-bold text-navy-700 dark:text-white mb-3">כללי</h2>
             <p>
               Liga Deals Berlin (&quot;אנחנו&quot;) מכבדת את פרטיות המשתמשים באתר. מדיניות זו מסבירה איזה
               מידע אנחנו אוספים, למה אנחנו משתמשים בו ואילו זכויות יש לכם. השימוש באתר מהווה הסכמה
@@ -23,7 +23,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-navy-700 mb-3">איזה מידע אנחנו אוספים</h2>
+            <h2 className="text-2xl font-bold text-navy-700 dark:text-white mb-3">איזה מידע אנחנו אוספים</h2>
             <ul className="list-disc pr-6 space-y-2">
               <li>
                 <strong>מידע שאתם מוסרים לנו:</strong> כאשר אתם פונים אלינו דרך טופס יצירת הקשר או
@@ -38,7 +38,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-navy-700 mb-3">איך אנחנו משתמשים במידע</h2>
+            <h2 className="text-2xl font-bold text-navy-700 dark:text-white mb-3">איך אנחנו משתמשים במידע</h2>
             <ul className="list-disc pr-6 space-y-2">
               <li>מענה לפניות שלכם ומתן שירות.</li>
               <li>שליחת עדכונים על הטבות ותכנים חדשים - רק אם ביקשתם זאת.</li>
@@ -50,7 +50,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-navy-700 mb-3">שירותי צד שלישי</h2>
+            <h2 className="text-2xl font-bold text-navy-700 dark:text-white mb-3">שירותי צד שלישי</h2>
             <p>
               האתר מופעל באמצעות ספקי תשתית מקובלים (אחסון אתרים, ניהול תוכן ושליחת אימייל). ספקים
               אלה מעבדים מידע עבורנו בלבד ובכפוף להתחייבויות פרטיות משלהם. ייתכן שהאתר כולל קישורים
@@ -59,7 +59,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-navy-700 mb-3">שמירת מידע ואבטחה</h2>
+            <h2 className="text-2xl font-bold text-navy-700 dark:text-white mb-3">שמירת מידע ואבטחה</h2>
             <p>
               אנחנו שומרים מידע אישי רק כל עוד הוא נדרש למטרות שלשמן נאסף, ונוקטים אמצעים סבירים
               להגן עליו מפני גישה לא מורשית.
@@ -67,13 +67,13 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-navy-700 mb-3">הזכויות שלכם</h2>
+            <h2 className="text-2xl font-bold text-navy-700 dark:text-white mb-3">הזכויות שלכם</h2>
             <p>
               אתם רשאים לבקש לעיין במידע שנשמר עליכם, לתקן אותו או למחוק אותו, וכן להסיר את עצמכם
               מרשימת התפוצה בכל עת. לכל בקשה או שאלה בנושא פרטיות, כתבו לנו:{' '}
               <a
                 href="mailto:info@ligadeals-berlin.com"
-                className="text-gold-600 hover:text-gold-500 underline"
+                className="text-gold-600 underline hover:text-gold-700 dark:text-gold-400 dark:hover:text-gold-300"
               >
                 info@ligadeals-berlin.com
               </a>
@@ -82,7 +82,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-navy-700 mb-3">שינויים במדיניות</h2>
+            <h2 className="text-2xl font-bold text-navy-700 dark:text-white mb-3">שינויים במדיניות</h2>
             <p>
               ייתכן שנעדכן מדיניות זו מעת לעת. הגרסה העדכנית תפורסם תמיד בעמוד זה, עם תאריך העדכון
               האחרון.
