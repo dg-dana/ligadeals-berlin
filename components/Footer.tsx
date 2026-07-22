@@ -61,6 +61,11 @@ const Footer = ({ settings }: FooterProps) => {
                 </Link>
               </li>
               <li>
+                <Link href="/about" className="text-navy-100 hover:text-white transition-colors">
+                  אודות
+                </Link>
+              </li>
+              <li>
                 <Link href="/blog" className="text-navy-100 hover:text-white transition-colors">
                   בלוג
                 </Link>

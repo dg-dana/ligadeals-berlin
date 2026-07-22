@@ -10,6 +10,7 @@ const Navigation = () => {
 
   const menuItems = [
     { name: "דף הבית", href: "/" },
+    { name: "אודות", href: "/about" },
     { name: "בלוג", href: "/blog" },
     { name: "גלריית תמונות", href: "/gallery/photos" },
     { name: "גלריית וידאו", href: "/gallery/videos" },
