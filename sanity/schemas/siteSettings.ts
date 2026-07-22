@@ -66,6 +66,16 @@ export default defineType({
       name: 'aboutText',
       title: 'טקסט אודות (About Text)',
       type: 'blockContent',
+      description: 'הטקסט האישי שמוצג בעמוד האודות',
+    }),
+    defineField({
+      name: 'aboutImage',
+      title: 'תמונת אודות (About Photo)',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      description: 'התמונה האישית שמוצגת בעמוד האודות לצד הטקסט',
     }),
   ],
   preview: {

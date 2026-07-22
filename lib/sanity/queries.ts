@@ -211,7 +211,9 @@ export const getSiteSettingsQuery = `
     instagram,
     facebook,
     twitter,
-    linkedin
+    linkedin,
+    aboutText,
+    aboutImage
   }
 `;
 

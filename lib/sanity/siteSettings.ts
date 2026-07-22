@@ -1,5 +1,7 @@
 import { client } from '@/sanity/sanity.client';
 import { getSiteSettingsQuery } from '@/lib/sanity/queries';
+import type { PortableTextBlock } from '@portabletext/react';
+import type { SanityImage } from '@/lib/sanity/types';
 
 export interface SiteSettings {
   siteName?: string;
@@ -11,6 +13,8 @@ export interface SiteSettings {
   facebook?: string;
   twitter?: string;
   linkedin?: string;
+  aboutText?: PortableTextBlock[];
+  aboutImage?: SanityImage;
 }
 
 // Used until real contact details are entered in Sanity Studio (siteSettings document).
