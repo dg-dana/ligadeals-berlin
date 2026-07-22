@@ -1,4 +1,5 @@
 import Button from '@/components/Button'
+import { FaGift, FaBookOpen, FaHandshake, FaBullseye, FaPiggyBank, FaStar } from 'react-icons/fa'
 
 export default function About() {
   return (
@@ -43,7 +44,9 @@ export default function About() {
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="rounded-2xl bg-white dark:bg-navy-700 p-6 shadow-sm ring-1 ring-navy-100 dark:ring-navy-600">
-                <div className="text-4xl mb-4">🎁</div>
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-gold-100 text-gold-700 dark:bg-navy-600/50 dark:text-gold-400">
+                  <FaGift className="h-6 w-6" />
+                </div>
                 <h3 className="text-xl font-bold text-navy-700 dark:text-white mb-3">
                   הטבות בלעדיות
                 </h3>
@@ -53,7 +56,9 @@ export default function About() {
               </div>
 
               <div className="rounded-2xl bg-white dark:bg-navy-700 p-6 shadow-sm ring-1 ring-navy-100 dark:ring-navy-600">
-                <div className="text-4xl mb-4">📝</div>
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-gold-100 text-gold-700 dark:bg-navy-600/50 dark:text-gold-400">
+                  <FaBookOpen className="h-6 w-6" />
+                </div>
                 <h3 className="text-xl font-bold text-navy-700 dark:text-white mb-3">
                   תכנים ייחודיים
                 </h3>
@@ -63,7 +68,9 @@ export default function About() {
               </div>
 
               <div className="rounded-2xl bg-white dark:bg-navy-700 p-6 shadow-sm ring-1 ring-navy-100 dark:ring-navy-600">
-                <div className="text-4xl mb-4">🤝</div>
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-gold-100 text-gold-700 dark:bg-navy-600/50 dark:text-gold-400">
+                  <FaHandshake className="h-6 w-6" />
+                </div>
                 <h3 className="text-xl font-bold text-navy-700 dark:text-white mb-3">
                   קהילה תומכת
                 </h3>
@@ -73,7 +80,9 @@ export default function About() {
               </div>
 
               <div className="rounded-2xl bg-white dark:bg-navy-700 p-6 shadow-sm ring-1 ring-navy-100 dark:ring-navy-600">
-                <div className="text-4xl mb-4">🎯</div>
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-gold-100 text-gold-700 dark:bg-navy-600/50 dark:text-gold-400">
+                  <FaBullseye className="h-6 w-6" />
+                </div>
                 <h3 className="text-xl font-bold text-navy-700 dark:text-white mb-3">
                   המלצות אישיות
                 </h3>
@@ -83,7 +92,9 @@ export default function About() {
               </div>
 
               <div className="rounded-2xl bg-white dark:bg-navy-700 p-6 shadow-sm ring-1 ring-navy-100 dark:ring-navy-600">
-                <div className="text-4xl mb-4">💰</div>
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-gold-100 text-gold-700 dark:bg-navy-600/50 dark:text-gold-400">
+                  <FaPiggyBank className="h-6 w-6" />
+                </div>
                 <h3 className="text-xl font-bold text-navy-700 dark:text-white mb-3">
                   חיסכון משמעותי
                 </h3>
@@ -93,7 +104,9 @@ export default function About() {
               </div>
 
               <div className="rounded-2xl bg-white dark:bg-navy-700 p-6 shadow-sm ring-1 ring-navy-100 dark:ring-navy-600">
-                <div className="text-4xl mb-4">🌟</div>
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-gold-100 text-gold-700 dark:bg-navy-600/50 dark:text-gold-400">
+                  <FaStar className="h-6 w-6" />
+                </div>
                 <h3 className="text-xl font-bold text-navy-700 dark:text-white mb-3">
                   חוויות בלעדיות
                 </h3>
