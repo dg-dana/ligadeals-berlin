@@ -45,7 +45,7 @@ export default async function VideosPage() {
     id: video._id,
     title: video.title,
     description: video.description || '',
-    thumbnail: video.thumbnail ? urlFor(video.thumbnail).width(800).height(450).url() : '/ligadeals-logo.png',
+    thumbnail: video.thumbnail ? urlFor(video.thumbnail).width(800).height(450).url() : '/images/blog-fallback.png',
     videoUrl: video.videoUrl,
     category: video.category?.title || 'הכל',
   }));

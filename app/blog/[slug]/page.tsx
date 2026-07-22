@@ -9,7 +9,7 @@ import { articlePortableTextComponents } from '@/lib/sanity/portableTextComponen
 import BlogCard from '@/components/BlogCard';
 import type { SanityImage } from '@/lib/sanity/types';
 
-const FALLBACK_THUMBNAIL = '/ligadeals-logo.png';
+const FALLBACK_THUMBNAIL = '/images/blog-fallback.png';
 
 interface RelatedArticle {
   _id: string;

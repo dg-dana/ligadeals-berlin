@@ -52,7 +52,7 @@ export default async function RootLayout({
         <link rel="manifest" href="/manifest.json" />
 
         {/* Theme color for mobile browsers */}
-        <meta name="theme-color" content="#667eea" />
+        <meta name="theme-color" content="#282f57" />
         <meta name="color-scheme" content="light" />
 
         {/* Site verification tags - Add your verification codes here */}

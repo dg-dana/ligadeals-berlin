@@ -3,7 +3,7 @@ import { getAllArticlesQuery } from '@/lib/sanity/queries';
 import BlogCard from '@/components/BlogCard';
 import type { SanityImage } from '@/lib/sanity/types';
 
-const FALLBACK_THUMBNAIL = '/ligadeals-logo.png';
+const FALLBACK_THUMBNAIL = '/images/blog-fallback.png';
 
 interface Article {
   _id: string;

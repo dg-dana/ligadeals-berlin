@@ -25,11 +25,10 @@ const Navigation = () => {
           <div className="flex-shrink-0 order-2 md:order-1">
             <Link href="/" className="flex items-center" aria-label="Liga Deals Berlin - חזרה לדף הבית">
               <Image
-                src="/ligadeals-logo-small.png"
+                src="/ligadeals-mark.svg"
                 alt=""
                 width={44}
                 height={44}
-                className="rounded-full"
                 priority
               />
               <span className="ms-3 text-xl font-bold text-navy-700 dark:text-cream-100">
