@@ -6,7 +6,6 @@ interface ContactInfoProps {
   phone?: string
   email?: string
   whatsapp?: string
-  address?: string
   socialMedia?: {
     facebook?: string
     instagram?: string
@@ -22,7 +21,6 @@ export default function ContactInfo({
   phone = '+49 30 1234 5678',
   email = 'info@ligadeals-berlin.com',
   whatsapp = '491234567890',
-  address = 'ברלין, גרמניה',
   socialMedia = {},
   businessHours = {
     weekdays: 'ראשון - חמישי: 9:00 - 18:00',
@@ -40,6 +38,7 @@ export default function ContactInfo({
       ),
       label: 'טלפון',
       value: phone,
+      ltr: true,
       href: `tel:${phone.replace(/\s/g, '')}`,
       iconWrap: 'bg-navy-100 dark:bg-navy-600/50 text-navy-600 dark:text-navy-200'
     },
@@ -62,20 +61,9 @@ export default function ContactInfo({
       ),
       label: 'וואטסאפ',
       value: phone,
+      ltr: true,
       href: `https://wa.me/${whatsapp}?text=${whatsappMessage}`,
       iconWrap: 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400'
-    },
-    {
-      icon: (
-        <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>
-      ),
-      label: 'כתובת',
-      value: address,
-      href: `https://maps.google.com/?q=${encodeURIComponent(address)}`,
-      iconWrap: 'bg-navy-100 dark:bg-navy-600/50 text-navy-600 dark:text-navy-200'
     }
   ]
 
@@ -120,8 +108,6 @@ export default function ContactInfo({
           <motion.a
             key={item.label}
             href={item.href}
-            target={item.label === 'כתובת' ? '_blank' : undefined}
-            rel={item.label === 'כתובת' ? 'noopener noreferrer' : undefined}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -132,7 +118,9 @@ export default function ContactInfo({
             </div>
             <div className="flex-grow">
               <p className="text-sm font-semibold text-navy-400 dark:text-cream-200">{item.label}</p>
-              <p className="text-lg font-bold text-navy-700 dark:text-white">{item.value}</p>
+              <p className="text-lg font-bold text-navy-700 dark:text-white">
+                {item.ltr ? <span dir="ltr">{item.value}</span> : item.value}
+              </p>
             </div>
             <svg
               className="h-5 w-5 text-navy-300 transition-transform group-hover:-translate-x-1"

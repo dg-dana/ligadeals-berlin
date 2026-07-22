@@ -100,13 +100,9 @@ const Footer = ({ settings }: FooterProps) => {
               </li>
               <li className="flex items-start">
                 <span className="ml-2">📱</span>
-                <a href={`tel:${phone.replace(/\s/g, '')}`} className="hover:text-white transition-colors">
+                <a href={`tel:${phone.replace(/\s/g, '')}`} dir="ltr" className="hover:text-white transition-colors">
                   {phone}
                 </a>
-              </li>
-              <li className="flex items-start">
-                <span className="ml-2">📍</span>
-                <span>ברלין, גרמניה</span>
               </li>
               <li className="flex items-start">
                 <span className="ml-2">⏰</span>

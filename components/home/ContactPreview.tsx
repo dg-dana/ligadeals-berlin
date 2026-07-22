@@ -13,7 +13,7 @@ export default async function ContactPreview() {
         <p className="text-navy-400 dark:text-cream-200 mb-8 text-lg">
           יש לכם שאלות? רוצים להצטרף למועדון? נשמח לשמוע מכם!
         </p>
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
+        <div className="grid md:grid-cols-2 gap-6 mb-8 max-w-2xl mx-auto">
           <div className="bg-white dark:bg-navy-700 p-6 rounded-2xl shadow-sm ring-1 ring-navy-100 dark:ring-navy-600">
             <div className="text-3xl mb-3">📧</div>
             <h3 className="font-semibold text-navy-700 dark:text-white mb-2">אימייל</h3>
@@ -22,12 +22,7 @@ export default async function ContactPreview() {
           <div className="bg-white dark:bg-navy-700 p-6 rounded-2xl shadow-sm ring-1 ring-navy-100 dark:ring-navy-600">
             <div className="text-3xl mb-3">📱</div>
             <h3 className="font-semibold text-navy-700 dark:text-white mb-2">טלפון</h3>
-            <p className="text-navy-400 dark:text-cream-200">{phone}</p>
-          </div>
-          <div className="bg-white dark:bg-navy-700 p-6 rounded-2xl shadow-sm ring-1 ring-navy-100 dark:ring-navy-600">
-            <div className="text-3xl mb-3">📍</div>
-            <h3 className="font-semibold text-navy-700 dark:text-white mb-2">מיקום</h3>
-            <p className="text-navy-400 dark:text-cream-200">ברלין, גרמניה</p>
+            <p className="text-navy-400 dark:text-cream-200" dir="ltr">{phone}</p>
           </div>
         </div>
         <Button href="/contact" variant="gold">
