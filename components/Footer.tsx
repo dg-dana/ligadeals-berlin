@@ -24,7 +24,7 @@ const Footer = ({ settings }: FooterProps) => {
           <div>
             <h3 className="text-xl font-bold mb-4 text-gold-400">Liga Deals Berlin</h3>
             <p className="text-navy-100 mb-4">
-              מועדון ההטבות המוביל בברלין. הצטרפו אלינו ותיהנו מהטבות בלעדיות, תכנים מעניינים וקהילה תומכת.
+              כל מה שצריך לחופשה מושלמת בברלין: מדריכים בעברית, המלצות מקומיות וליווי אישי של מיטל - מומחית ברלין שגרה בעיר 17 שנה.
             </p>
             <div className="flex gap-4">
               {socialLinks.map(({ name, href, icon: Icon }) => (

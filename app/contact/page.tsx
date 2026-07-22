@@ -5,7 +5,7 @@ import { getSiteSettings } from '@/lib/sanity/siteSettings';
 
 export const metadata: Metadata = {
   title: 'צור קשר',
-  description: 'יש לכם שאלות? רוצים להצטרף למועדון? צרו איתנו קשר בכל שאלה או הצעה.',
+  description: 'יש לכם שאלות? מתכננים טיול לברלין? צרו איתנו קשר בכל שאלה או הצעה.',
 };
 
 export default async function ContactPage() {

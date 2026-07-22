@@ -6,7 +6,7 @@ import type { SanityImage } from '@/lib/sanity/types';
 
 export const metadata: Metadata = {
   title: 'המלצות | Liga Deals Berlin',
-  description: 'המלצות מלקוחות מועדון Liga Deals Berlin על החוויות וההטבות שקיבלו בברלין.',
+  description: 'המלצות מלקוחות Liga Deals Berlin על הטיולים והחוויות שלהם בברלין.',
 };
 
 interface SanityTestimonial {
@@ -50,7 +50,7 @@ export default async function RecommendationsPage() {
       <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-bold text-navy-700 dark:text-white mb-4">המלצות</h1>
         <p className="mb-8 text-lg text-navy-400 dark:text-gray-300">
-          מה חברי המועדון אומרים על החוויות וההטבות שקיבלו בברלין
+          מה הלקוחות שלנו מספרים על הטיולים והחוויות שלהם בברלין
         </p>
 
         {items.length === 0 ? (

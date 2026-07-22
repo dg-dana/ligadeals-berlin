@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { PortableText } from '@portabletext/react'
 import Button from '@/components/Button'
-import { FaGift, FaBookOpen, FaHandshake, FaBullseye, FaPiggyBank, FaStar } from 'react-icons/fa'
+import { FaWhatsapp, FaBookOpen, FaHandshake, FaBullseye, FaPiggyBank, FaStar } from 'react-icons/fa'
 import { getSiteSettings } from '@/lib/sanity/siteSettings'
 import { articlePortableTextComponents } from '@/lib/sanity/portableTextComponents'
 import { urlFor } from '@/sanity/sanity.client'
@@ -43,7 +43,7 @@ export default async function About() {
             אודות <span className="text-gold-400">Liga Deals Berlin</span>
           </h1>
           <p className="text-xl text-navy-100 max-w-3xl mx-auto">
-            מועדון ההטבות המוביל בברלין - החיבור שלך לחוויות בלעדיות ועסקים מובילים בעיר
+            מדריך ברלין בעברית - טיפים, המלצות וליווי אישי לחופשה מושלמת בעיר
           </p>
         </div>
       </section>
@@ -76,37 +76,21 @@ export default async function About() {
             </div>
           </div>
 
-          {/* Mission */}
-          <div className="mb-16">
-            <h2 className="text-4xl font-bold text-navy-700 dark:text-white mb-6">
-              מי אנחנו?
-            </h2>
-            <p className="text-lg text-navy-500 dark:text-gray-300 leading-relaxed mb-4">
-              Liga Deals Berlin הוא מועדון ההטבות המוביל בברלין, שנוסד במטרה לחבר בין תושבי העיר לעסקים המובילים
-              ולספק להם גישה להטבות בלעדיות שלא תמצאו בשום מקום אחר. אנחנו מאמינים שכל אחד ראוי ליהנות מהטוב ביותר
-              שברלין מציעה, במחירים הכי משתלמים.
-            </p>
-            <p className="text-lg text-navy-500 dark:text-gray-300 leading-relaxed">
-              החברים שלנו נהנים מהטבות בעסקים מובילים בתחומים מגוונים - מסעדות ובתי קפה, דרך חדרי כושר ומכוני יופי,
-              ועד לבידור ותרבות. כל זאת כדי להפוך את החיים בברלין לנוחים, מהנים וכלכליים יותר.
-            </p>
-          </div>
-
           {/* What We Offer */}
           <div className="mb-16">
             <h2 className="text-4xl font-bold text-navy-700 dark:text-white mb-8">
-              מה אנחנו מציעים?
+              מה תמצאו כאן?
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="rounded-2xl bg-white dark:bg-navy-700 p-6 shadow-sm ring-1 ring-navy-100 dark:ring-navy-600">
                 <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-gold-100 text-gold-700 dark:bg-navy-600/50 dark:text-gold-400">
-                  <FaGift className="h-6 w-6" />
+                  <FaHandshake className="h-6 w-6" />
                 </div>
                 <h3 className="text-xl font-bold text-navy-700 dark:text-white mb-3">
-                  הטבות בלעדיות
+                  ליווי אישי
                 </h3>
                 <p className="text-navy-400 dark:text-gray-300">
-                  גישה להנחות ומבצעים מיוחדים בעסקים מובילים בברלין שלא תמצאו בשום מקום אחר
+                  ליווי צמוד בתכנון החופשה - מבחירת המלון המושלם בשבילכם ועד החזרה הביתה
                 </p>
               </div>
 
@@ -115,22 +99,22 @@ export default async function About() {
                   <FaBookOpen className="h-6 w-6" />
                 </div>
                 <h3 className="text-xl font-bold text-navy-700 dark:text-white mb-3">
-                  תכנים ייחודיים
+                  מדריכים בעברית
                 </h3>
                 <p className="text-navy-400 dark:text-gray-300">
-                  מאמרים, מדריכים והמלצות אישיות שיעזרו לכם ליהנות מהטוב ביותר שברלין מציעה
+                  כתבות ומדריכים על השכונות, האטרקציות והפינות שרק מקומיים מכירים
                 </p>
               </div>
 
               <div className="rounded-2xl bg-white dark:bg-navy-700 p-6 shadow-sm ring-1 ring-navy-100 dark:ring-navy-600">
                 <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-gold-100 text-gold-700 dark:bg-navy-600/50 dark:text-gold-400">
-                  <FaHandshake className="h-6 w-6" />
+                  <FaWhatsapp className="h-6 w-6" />
                 </div>
                 <h3 className="text-xl font-bold text-navy-700 dark:text-white mb-3">
-                  קהילה תומכת
+                  וואטסאפ זמין
                 </h3>
                 <p className="text-navy-400 dark:text-gray-300">
-                  הצטרפו לקהילה של אנשים שאוהבים את ברלין ומחפשים את החוויות הטובות ביותר בעיר
+                  תמיכה צמודה לפני הטיול ולכל אורכו - תשובה אמיתית לכל שאלה, בעברית
                 </p>
               </div>
 
@@ -142,7 +126,7 @@ export default async function About() {
                   המלצות אישיות
                 </h3>
                 <p className="text-navy-400 dark:text-gray-300">
-                  קבלו המלצות מותאמות אישית על בסיס העדפות והתחומים שמעניינים אתכם
+                  מסעדות, הופעות, קניות או טיול עם ילדים - המלצות לפי מה שמעניין בדיוק אתכם
                 </p>
               </div>
 
@@ -151,10 +135,10 @@ export default async function About() {
                   <FaPiggyBank className="h-6 w-6" />
                 </div>
                 <h3 className="text-xl font-bold text-navy-700 dark:text-white mb-3">
-                  חיסכון משמעותי
+                  חיסכון בזמן ובכסף
                 </h3>
                 <p className="text-navy-400 dark:text-gray-300">
-                  חסכו כסף רב בכל חודש עם ההטבות השונות שאנחנו מציעים לחברי המועדון
+                  הטריקים המקומיים שחוסכים - תחבורה, כרטיסים וקניות, בלי ללמוד בדרך הקשה
                 </p>
               </div>
 
@@ -163,10 +147,10 @@ export default async function About() {
                   <FaStar className="h-6 w-6" />
                 </div>
                 <h3 className="text-xl font-bold text-navy-700 dark:text-white mb-3">
-                  חוויות בלעדיות
+                  סיורים מיוחדים
                 </h3>
                 <p className="text-navy-400 dark:text-gray-300">
-                  גישה לאירועים מיוחדים, חוויות VIP והזדמנויות שרק חברי המועדון זוכים להן
+                  סיורים בהתאמה אישית שיראו לכם את ברלין מזווית שלא הכרתם
                 </p>
               </div>
             </div>
@@ -177,10 +161,10 @@ export default async function About() {
             <div className="pointer-events-none absolute -top-16 -right-16 h-64 w-64 rounded-full bg-gold-400/10 blur-3xl" />
             <div className="relative">
               <h2 className="text-4xl font-bold text-white mb-6">
-                מוכנים להצטרף?
+                מתכננים חופשה בברלין?
               </h2>
               <p className="text-xl text-navy-100 mb-8 max-w-2xl mx-auto">
-                הצטרפו עכשיו למועדון Liga Deals Berlin וקבלו גישה מיידית לכל ההטבות והתכנים הבלעדיים שלנו
+                ספרו לי מה אתם מחפשים, ואדאג שהחופשה שלכם תהיה בדיוק כמו שדמיינתם - ואפילו יותר
               </p>
               <Button href="/contact" variant="gold" size="lg">
                 צור קשר עכשיו
