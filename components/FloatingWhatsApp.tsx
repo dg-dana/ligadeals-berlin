@@ -11,7 +11,7 @@ interface FloatingWhatsAppProps {
 }
 
 export default function FloatingWhatsApp({
-  phoneNumber = '491234567890',
+  phoneNumber = '491777258599',
   message = 'שלום! אני מעוניין/ת לקבל מידע נוסף על השירותים שלכם',
   position = 'bottom-left' // bottom-left for RTL
 }: FloatingWhatsAppProps) {

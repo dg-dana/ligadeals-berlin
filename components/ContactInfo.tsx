@@ -14,9 +14,9 @@ interface ContactInfoProps {
 }
 
 export default function ContactInfo({
-  phone = '+49 30 1234 5678',
+  phone = '+49 177 7258599',
   email = 'info@ligadeals-berlin.com',
-  whatsapp = '491234567890',
+  whatsapp = '491777258599',
   socialMedia = {},
 }: ContactInfoProps) {
   const whatsappMessage = encodeURIComponent('שלום, אני מעוניין/ת לקבל מידע נוסף')

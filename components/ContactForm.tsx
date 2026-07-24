@@ -15,7 +15,7 @@ interface ContactFormProps {
   whatsappNumber?: string
 }
 
-export default function ContactForm({ whatsappNumber = '491234567890' }: ContactFormProps) {
+export default function ContactForm({ whatsappNumber = '491777258599' }: ContactFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null)
 

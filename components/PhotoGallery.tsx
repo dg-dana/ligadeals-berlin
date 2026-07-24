@@ -167,7 +167,7 @@ export default function PhotoGallery({
             animate={{ opacity: 1, scale: 1 }}
             exit={reduceMotion ? undefined : { opacity: 0, scale: 0.8 }}
             transition={{ duration: reduceMotion ? 0 : 0.3 }}
-            className="group relative overflow-hidden rounded-lg shadow-lg transition-shadow hover:shadow-2xl focus-within:ring-4 focus-within:ring-gold-500"
+            className="group relative overflow-hidden rounded-lg shadow-lg transition-shadow hover:shadow-2xl focus-within:ring-4 focus-within:ring-navy-900 focus-within:ring-offset-2"
           >
             {/* Full-card button (accessible name) opens the lightbox */}
             <button
