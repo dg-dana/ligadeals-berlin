@@ -11,10 +11,6 @@ interface ContactInfoProps {
     instagram?: string
     linkedin?: string
   }
-  businessHours?: {
-    weekdays: string
-    weekend: string
-  }
 }
 
 export default function ContactInfo({
@@ -22,10 +18,6 @@ export default function ContactInfo({
   email = 'info@ligadeals-berlin.com',
   whatsapp = '491234567890',
   socialMedia = {},
-  businessHours = {
-    weekdays: 'ראשון - חמישי: 9:00 - 18:00',
-    weekend: 'שישי - שבת: סגור'
-  }
 }: ContactInfoProps) {
   const whatsappMessage = encodeURIComponent('שלום, אני מעוניין/ת לקבל מידע נוסף')
 
@@ -134,31 +126,12 @@ export default function ContactInfo({
         ))}
       </div>
 
-      {/* Business Hours */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, delay: 0.4 }}
-        className="rounded-2xl bg-gradient-to-br from-navy-600 to-navy-700 p-6 text-white shadow-lg"
-      >
-        <div className="mb-4 flex items-center gap-3">
-          <svg className="h-6 w-6 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          <h3 className="text-xl font-bold">שעות פעילות</h3>
-        </div>
-        <div className="space-y-2">
-          <p className="text-navy-100">{businessHours.weekdays}</p>
-          <p className="text-navy-100">{businessHours.weekend}</p>
-        </div>
-      </motion.div>
-
       {/* Social Media */}
       {(socialMedia.facebook || socialMedia.instagram || socialMedia.linkedin) && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.5 }}
+          transition={{ duration: 0.3, delay: 0.4 }}
           className="text-center"
         >
           <h3 className="mb-4 text-lg font-bold text-navy-700 dark:text-white">עקבו אחרינו</h3>
