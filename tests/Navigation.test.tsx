@@ -19,10 +19,10 @@ describe('Navigation Component', () => {
 
   it('renders correct links for menu items', () => {
     renderWithProviders(<Navigation />)
-    const homeItems = screen.getAllByRole('menuitem', { name: /דף הבית/i })
+    const homeItems = screen.getAllByRole('link', { name: /דף הבית/i })
     expect(homeItems[0]).toHaveAttribute('href', '/')
 
-    const blogItems = screen.getAllByRole('menuitem', { name: /בלוג/i })
+    const blogItems = screen.getAllByRole('link', { name: /בלוג/i })
     expect(blogItems[0]).toHaveAttribute('href', '/blog')
   })
 

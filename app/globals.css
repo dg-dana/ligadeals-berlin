@@ -222,3 +222,79 @@ body {
 [dir="rtl"] .scroll-container-rtl > * {
   direction: rtl;
 }
+
+/* ===========================================================================
+   Accessibility (Israeli Standard 5568 / WCAG 2.1 AA)
+   =========================================================================== */
+
+/* Placeholder text contrast — default browser placeholders are too light
+   (≈2.5:1). These tokens meet WCAG AA against the input backgrounds used. */
+::placeholder {
+  color: #6b7280; /* gray-500 ≈ 4.8:1 on white */
+  opacity: 1;
+}
+@media (prefers-color-scheme: dark) {
+  ::placeholder {
+    color: #9aa4b2;
+  }
+}
+
+/* Visible keyboard focus for every interactive element that doesn't already
+   define its own focus ring. Only applies to keyboard focus (:focus-visible),
+   so it never shows on mouse click. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #d9a441; /* brand gold */
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Text-size control (accessibility widget). Scales the root font size so all
+   rem-based typography grows/shrinks together, while browser zoom keeps working. */
+html[data-font-scale="large"] {
+  font-size: 112.5%;
+}
+html[data-font-scale="xlarge"] {
+  font-size: 125%;
+}
+
+/* High-contrast mode (accessibility widget). Strengthens borders and removes
+   low-contrast translucency without repainting the whole palette. */
+html[data-contrast="high"] body {
+  --background: 0 0% 100%;
+  --foreground: 230 34% 8%;
+}
+html[data-contrast="high"] a {
+  text-decoration: underline;
+}
+html[data-contrast="high"] :where(button, a, input, textarea, select):focus-visible {
+  outline-width: 4px;
+}
+
+/* Reduced motion — honoured for users who set the OS preference AND for users
+   who toggle it in the accessibility widget (html[data-reduce-motion="true"]).
+   Neutralises CSS transitions/animations; JS-driven looping animations are
+   additionally gated in the components themselves. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+html[data-reduce-motion="true"] *,
+html[data-reduce-motion="true"] *::before,
+html[data-reduce-motion="true"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}

@@ -159,9 +159,13 @@ const Footer = ({ settings }: FooterProps) => {
             <Link href="/privacy" className="text-navy-200 hover:text-white transition-colors">
               מדיניות פרטיות
             </Link>
-            <span className="text-navy-500">|</span>
+            <span className="text-navy-500" aria-hidden="true">|</span>
             <Link href="/terms" className="text-navy-200 hover:text-white transition-colors">
               תנאי שימוש
+            </Link>
+            <span className="text-navy-500" aria-hidden="true">|</span>
+            <Link href="/accessibility" className="text-navy-200 hover:text-white transition-colors">
+              הצהרת נגישות
             </Link>
           </div>
         </div>

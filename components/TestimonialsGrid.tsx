@@ -52,16 +52,24 @@ export default function TestimonialsGrid({ testimonials }: { testimonials: Testi
     <div dir="rtl">
       {/* Search + Rating Filter */}
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="חיפוש לפי שם..."
-          className="w-full max-w-sm rounded-lg border border-gray-300 bg-white px-4 py-2 text-navy-700 focus:border-navy-500 focus:outline-none focus:ring-1 focus:ring-navy-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-        />
-        <div className="flex flex-wrap gap-2">
+        <div className="w-full max-w-sm">
+          <label htmlFor="testimonial-search" className="sr-only">
+            חיפוש המלצות לפי שם
+          </label>
+          <input
+            id="testimonial-search"
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="חיפוש לפי שם..."
+            className="w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-navy-700 focus:border-navy-500 focus:outline-none focus:ring-1 focus:ring-navy-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+          />
+        </div>
+        <div className="flex flex-wrap gap-2" role="group" aria-label="סינון לפי דירוג">
           <button
+            type="button"
             onClick={() => setSelectedRating('all')}
+            aria-pressed={selectedRating === 'all'}
             className={`rounded-full px-4 py-2 text-sm font-semibold transition-all ${
               selectedRating === 'all'
                 ? 'bg-navy-600 text-white shadow-lg'
@@ -72,15 +80,18 @@ export default function TestimonialsGrid({ testimonials }: { testimonials: Testi
           </button>
           {[5, 4, 3, 2, 1].map((rating) => (
             <button
+              type="button"
               key={rating}
               onClick={() => setSelectedRating(rating)}
+              aria-pressed={selectedRating === rating}
+              aria-label={`דירוג ${rating} כוכבים`}
               className={`rounded-full px-4 py-2 text-sm font-semibold transition-all ${
                 selectedRating === rating
                   ? 'bg-navy-600 text-white shadow-lg'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
               }`}
             >
-              {rating} ⭐
+              {rating} <span aria-hidden="true">⭐</span>
             </button>
           ))}
         </div>

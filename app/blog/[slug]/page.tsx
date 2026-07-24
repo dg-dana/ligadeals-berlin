@@ -146,7 +146,7 @@ export default async function ArticlePage({
         <div className="mt-10">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 font-semibold text-navy-600 transition-colors hover:text-gold-600 dark:text-gold-400 dark:hover:text-gold-300"
+            className="inline-flex items-center gap-2 font-semibold text-navy-600 transition-colors hover:text-gold-700 dark:text-gold-400 dark:hover:text-gold-300"
           >
             <svg
               className="h-5 w-5"

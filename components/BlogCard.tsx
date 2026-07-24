@@ -55,7 +55,7 @@ export default function BlogCard({
           </time>
 
           {/* Title */}
-          <h3 className="mt-2 text-xl font-bold text-navy-700 dark:text-white line-clamp-2 group-hover:text-gold-600 dark:group-hover:text-gold-400 transition-colors">
+          <h3 className="mt-2 text-xl font-bold text-navy-700 dark:text-white line-clamp-2 group-hover:text-gold-700 dark:group-hover:text-gold-400 transition-colors">
             {title}
           </h3>
 

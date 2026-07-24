@@ -198,6 +198,6 @@ describe('BlogCard Component', () => {
     expect(article).toHaveClass('hover:shadow-2xl')
 
     const title = screen.getByRole('heading', { level: 3 })
-    expect(title).toHaveClass('group-hover:text-gold-600')
+    expect(title).toHaveClass('group-hover:text-gold-700')
   })
 })

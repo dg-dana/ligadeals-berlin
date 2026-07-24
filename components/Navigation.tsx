@@ -39,13 +39,12 @@ const Navigation = () => {
           </div>
 
           {/* Desktop Menu - Left side for RTL */}
-          <div className="hidden md:flex md:gap-6 order-1 md:order-2" role="menubar">
+          <div className="hidden md:flex md:gap-6 order-1 md:order-2">
             {menuItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                role="menuitem"
-                className="text-navy-600 dark:text-cream-200 hover:text-gold-600 dark:hover:text-gold-400 px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 rounded"
+                className="text-navy-600 dark:text-cream-200 hover:text-gold-700 dark:hover:text-gold-400 px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 rounded"
               >
                 {item.name}
               </Link>
@@ -56,7 +55,7 @@ const Navigation = () => {
           <div className="md:hidden order-1">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-navy-600 dark:text-cream-200 hover:text-gold-600 dark:hover:text-gold-400 p-2 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 rounded"
+              className="text-navy-600 dark:text-cream-200 hover:text-gold-700 dark:hover:text-gold-400 p-2 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 rounded"
               aria-label={isMenuOpen ? "סגור תפריט" : "פתח תפריט"}
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
@@ -76,15 +75,13 @@ const Navigation = () => {
         <div
           id="mobile-menu"
           className="md:hidden bg-cream-50 dark:bg-navy-800 border-t border-navy-100 dark:border-navy-700"
-          role="menu"
         >
           <div className="px-2 pt-2 pb-3 space-y-1">
             {menuItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                role="menuitem"
-                className="block text-right text-navy-600 dark:text-cream-200 hover:bg-gold-50 dark:hover:bg-navy-700 hover:text-gold-600 dark:hover:text-gold-400 px-3 py-2 rounded-md text-base font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-inset"
+                className="block text-right text-navy-600 dark:text-cream-200 hover:bg-gold-50 dark:hover:bg-navy-700 hover:text-gold-700 dark:hover:text-gold-400 px-3 py-2 rounded-md text-base font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-inset"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}

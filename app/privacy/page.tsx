@@ -73,7 +73,7 @@ export default function PrivacyPage() {
               מרשימת התפוצה בכל עת. לכל בקשה או שאלה בנושא פרטיות, כתבו לנו:{' '}
               <a
                 href="mailto:info@ligadeals-berlin.com"
-                className="text-gold-600 underline hover:text-gold-700 dark:text-gold-400 dark:hover:text-gold-300"
+                className="text-gold-800 underline hover:text-gold-900 dark:text-gold-400 dark:hover:text-gold-300"
               >
                 info@ligadeals-berlin.com
               </a>

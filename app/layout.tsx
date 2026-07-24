@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import Analytics from "@/components/Analytics";
 import SkipToContent from "@/components/SkipToContent";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import AccessibilityWidget from "@/components/AccessibilityWidget";
 import { getDefaultMetadata } from "@/lib/seo/metadata";
 import { generateWebsiteStructuredData, generateOrganizationStructuredData } from "@/lib/seo/metadata";
 import { getSiteSettings } from "@/lib/sanity/siteSettings";
@@ -55,6 +56,13 @@ export default async function RootLayout({
         <meta name="theme-color" content="#282f57" />
         <meta name="color-scheme" content="light" />
 
+        {/* Restore saved accessibility preferences before first paint (no flash) */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var d=document.documentElement;var f=localStorage.getItem('a11y-font-scale');if(f&&f!=='normal')d.setAttribute('data-font-scale',f);if(localStorage.getItem('a11y-contrast')==='high')d.setAttribute('data-contrast','high');if(localStorage.getItem('a11y-reduce-motion')==='true')d.setAttribute('data-reduce-motion','true');}catch(e){}})();`,
+          }}
+        />
+
         {/* Site verification tags - Add your verification codes here */}
         {/* <meta name="google-site-verification" content="your-verification-code" /> */}
         {/* <meta name="facebook-domain-verification" content="your-verification-code" /> */}
@@ -88,6 +96,9 @@ export default async function RootLayout({
 
         {/* Floating WhatsApp contact button, visible on every page */}
         <FloatingWhatsApp phoneNumber={siteSettings.whatsapp} />
+
+        {/* Accessibility controls (text size, contrast, reduced motion) */}
+        <AccessibilityWidget />
       </body>
     </html>
   );

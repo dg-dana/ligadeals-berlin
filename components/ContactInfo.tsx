@@ -68,7 +68,7 @@ export default function ContactInfo({
         </svg>
       ),
       href: socialMedia.facebook,
-      color: 'hover:text-gold-600 dark:hover:text-gold-400'
+      color: 'hover:text-gold-700 dark:hover:text-gold-400'
     },
     {
       name: 'Instagram',
@@ -78,7 +78,7 @@ export default function ContactInfo({
         </svg>
       ),
       href: socialMedia.instagram,
-      color: 'hover:text-gold-600 dark:hover:text-gold-400'
+      color: 'hover:text-gold-700 dark:hover:text-gold-400'
     },
     {
       name: 'LinkedIn',
@@ -88,7 +88,7 @@ export default function ContactInfo({
         </svg>
       ),
       href: socialMedia.linkedin,
-      color: 'hover:text-gold-600 dark:hover:text-gold-400'
+      color: 'hover:text-gold-700 dark:hover:text-gold-400'
     }
   ]
 
