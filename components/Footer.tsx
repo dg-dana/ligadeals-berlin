@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaWhatsapp, FaEnvelope, FaPhoneAlt, FaRegClock } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaWhatsapp, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import type { SiteSettings } from "@/lib/sanity/siteSettings";
 
 interface FooterProps {
@@ -110,9 +110,42 @@ const Footer = ({ settings }: FooterProps) => {
                 </a>
               </li>
               <li className="flex items-start">
-                <span className="ml-2 mt-1 text-gold-400"><FaRegClock className="h-4 w-4" /></span>
-                <span>ראשון - חמישי: 9:00 - 18:00</span>
+                <span className="ml-2 mt-1 text-gold-400"><FaWhatsapp className="h-4 w-4" /></span>
+                <a
+                  href={`https://wa.me/${whatsapp}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  WhatsApp
+                </a>
               </li>
+              {instagram && (
+                <li className="flex items-start">
+                  <span className="ml-2 mt-1 text-gold-400"><FaInstagram className="h-4 w-4" /></span>
+                  <a
+                    href={instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors"
+                  >
+                    Instagram
+                  </a>
+                </li>
+              )}
+              {facebook && (
+                <li className="flex items-start">
+                  <span className="ml-2 mt-1 text-gold-400"><FaFacebook className="h-4 w-4" /></span>
+                  <a
+                    href={facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors"
+                  >
+                    Facebook
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
         </div>
