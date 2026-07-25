@@ -379,7 +379,6 @@ Comprehensive testing checklist for Liga Deals Berlin website with focus on RTL 
 
 **✅ No Blog Posts (P1)**
 - [ ] "Coming soon" message
-- [ ] Newsletter signup (if applicable)
 - [ ] Alternative content
 - [ ] Professional appearance
 

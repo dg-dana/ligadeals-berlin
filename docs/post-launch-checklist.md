@@ -232,7 +232,6 @@ Monitor in production:
 
 ### User Communication
 - [ ] Announce on social media
-- [ ] Send newsletter (if applicable)
 - [ ] Update business listings
 - [ ] Submit to directories
 
