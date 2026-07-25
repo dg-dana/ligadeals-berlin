@@ -9,7 +9,7 @@ export default function Hero() {
   const reduceMotion = useReducedMotion()
   return (
     <section
-      className="relative h-screen w-full overflow-hidden"
+      className="relative w-full overflow-hidden"
       style={{
         background: 'linear-gradient(to bottom, #2a5a9a 0%, #4a7ab8 32%, #6898d0 60%, #90b8e0 74%, #4a6c98 88%, #3a5878 100%)',
       }}
@@ -44,64 +44,70 @@ export default function Hero() {
         </motion.div>
       )}
 
-      {/* Main Content */}
-      <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">
-        {/* Badge */}
-        <motion.span
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="mb-6 inline-block rounded-full border border-gold-300/60 bg-navy-800/60 px-5 py-1.5 text-sm font-semibold tracking-wide text-gold-200"
-          dir="rtl"
-        >
-          מדריך ברלין לישראלים
-        </motion.span>
+      {/* Main Content.
+          The copy is centred in the space left over after the scroll cue, which
+          sits in normal flow underneath it. The cue used to be absolutely
+          positioned at bottom-24, so on short (laptop) viewports the centred
+          block grew down into it and the CTA buttons collided with it. */}
+      <div className="relative z-10 flex min-h-screen flex-col items-center px-4 text-center">
+        <div className="flex flex-1 flex-col items-center justify-center py-12">
+          {/* Badge */}
+          <motion.span
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            className="mb-6 inline-block rounded-full border border-gold-300/60 bg-navy-800/60 px-5 py-1.5 text-sm font-semibold tracking-wide text-gold-200"
+            dir="rtl"
+          >
+            מדריך ברלין לישראלים
+          </motion.span>
 
-        {/* Main Headline */}
-        <motion.h1
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-6 text-4xl font-bold text-white md:text-6xl lg:text-7xl"
-          dir="rtl"
-        >
-          גלו את ברלין <span className="text-gold-400">בצורה אישית</span> ובלתי נשכחת
-        </motion.h1>
+          {/* Main Headline */}
+          <motion.h1
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-6 text-4xl font-bold text-white md:text-6xl lg:text-7xl"
+            dir="rtl"
+          >
+            גלו את ברלין <span className="text-gold-400">בצורה אישית</span> ובלתי נשכחת
+          </motion.h1>
 
-        {/* Subheadline */}
-        <motion.p
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mb-10 max-w-2xl text-lg text-white md:text-xl lg:text-2xl"
-          dir="rtl"
-        >
-          מדריכים, המלצות מקומיות וליווי אישי צמוד — מתכנון החופשה ועד החזרה הביתה, הכל בעברית
-        </motion.p>
+          {/* Subheadline */}
+          <motion.p
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mb-10 max-w-2xl text-lg text-white md:text-xl lg:text-2xl"
+            dir="rtl"
+          >
+            מדריכים, המלצות מקומיות וליווי אישי צמוד — מתכנון החופשה ועד החזרה הביתה, הכל בעברית
+          </motion.p>
 
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col gap-4 sm:flex-row sm:gap-6"
-          dir="rtl"
-        >
-          <Button href="/contact" variant="gold" size="lg">
-            צרו קשר עכשיו
-          </Button>
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex flex-col gap-4 sm:flex-row sm:gap-6"
+            dir="rtl"
+          >
+            <Button href="/contact" variant="gold" size="lg">
+              צרו קשר עכשיו
+            </Button>
 
-          <Button href="/blog" variant="outline" size="lg">
-            קראו את הבלוג
-          </Button>
-        </motion.div>
+            <Button href="/blog" variant="outline" size="lg">
+              קראו את הבלוג
+            </Button>
+          </motion.div>
+        </div>
 
-        {/* Scroll Down Indicator */}
+        {/* Scroll Down Indicator — in flow, so it can never overlap the CTAs */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
-          className="absolute bottom-24"
+          className="shrink-0 pb-24"
         >
           <motion.div
             animate={reduceMotion ? undefined : { y: [0, 10, 0] }}
