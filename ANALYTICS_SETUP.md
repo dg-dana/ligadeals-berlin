@@ -138,17 +138,7 @@ trackGalleryInteraction({
 });
 ```
 
-### 5. Newsletter Signup
-```typescript
-import { trackNewsletterSignup } from '@/lib/analytics/events';
-
-trackNewsletterSignup({
-  source_page: '/blog',
-  location: 'footer',
-});
-```
-
-### 6. Search
+### 5. Search
 ```typescript
 import { trackSearch } from '@/lib/analytics/events';
 
@@ -158,7 +148,7 @@ trackSearch({
 });
 ```
 
-### 7. Social Share
+### 6. Social Share
 ```typescript
 import { trackSocialShare } from '@/lib/analytics/events';
 
@@ -170,7 +160,7 @@ trackSocialShare({
 });
 ```
 
-### 8. Video Play
+### 7. Video Play
 ```typescript
 import { trackVideoPlay } from '@/lib/analytics/events';
 
@@ -181,7 +171,7 @@ trackVideoPlay({
 });
 ```
 
-### 9. Custom Events
+### 8. Custom Events
 ```typescript
 import { trackCustomEvent } from '@/lib/analytics/events';
 
@@ -194,25 +184,28 @@ trackCustomEvent('custom_action', {
 
 ## GDPR Compliance & Consent Mode
 
-The Analytics component is GDPR compliant by default with:
+Analytics is gated behind explicit consent:
 
-- ✅ IP Anonymization enabled
-- ✅ Secure cookies (SameSite=None;Secure)
-- ✅ Consent mode ready
+- ✅ **Nothing loads until the visitor accepts** in the cookie banner. Declining
+  (or ignoring the banner) means the GA script is never injected and no `_ga`
+  cookie is ever created.
+- ✅ IP anonymization enabled (`anonymize_ip`)
+- ✅ Cookies scoped with `SameSite=Lax;Secure`
+- ✅ Ad storage, ad user data and ad personalization all denied
+- ✅ Google signals and ad personalization signals disabled
 
-### Implementing Consent Banner
+### How consent is wired
 
-If you need to implement a cookie consent banner:
+`components/CookieConsentBanner.tsx` writes the choice via `lib/consent.ts`.
+`components/Analytics.tsx` reads it with the `useCookieConsent()` hook and
+renders the GA scripts only when the value is `'accepted'` — so accepting takes
+effect immediately, without a page reload.
 
-```typescript
-import { updateConsent } from '@/components/Analytics';
+Visitors can change their mind at any time through the **"הגדרות Cookie"** link
+in the site footer, which reopens the banner.
 
-// When user accepts analytics cookies
-updateConsent({
-  analytics: true,
-  marketing: false,
-});
-```
+The relevant user-facing disclosures live in `/privacy` (sections
+`#analytics` and `#cookies`) — keep them in sync if this setup changes.
 
 ## Viewing Your Analytics Data
 
@@ -245,7 +238,6 @@ Mark important events as conversions:
 ## Recommended Conversions to Track
 
 - ✅ `contact_form_submission`
-- ✅ `newsletter_signup`
 - ✅ `whatsapp_click`
 - ✅ `article_view` (for popular content)
 

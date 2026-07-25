@@ -48,11 +48,6 @@ interface SearchParams {
   search_results?: number;
 }
 
-interface NewsletterSignupParams {
-  source_page: string;
-  location?: string; // 'footer', 'popup', 'inline'
-}
-
 interface SocialShareParams {
   platform: 'facebook' | 'twitter' | 'linkedin' | 'whatsapp' | 'email' | 'copy_link';
   content_type: 'article' | 'gallery' | 'page';
@@ -183,30 +178,6 @@ export function trackSearch(params: SearchParams) {
 
   if (process.env.NODE_ENV === 'development') {
     console.log('GA4 Event: search', params);
-  }
-}
-
-/**
- * Track newsletter signup
- * Use this when a user subscribes to newsletter
- */
-export function trackNewsletterSignup(params: NewsletterSignupParams) {
-  if (!isGtagAvailable()) return;
-
-  window.gtag('event', 'newsletter_signup', {
-    event_category: 'engagement',
-    event_label: params.source_page,
-    source_page: params.source_page,
-    location: params.location || 'unknown',
-  });
-
-  // Also track as a standard sign_up event
-  window.gtag('event', 'sign_up', {
-    method: 'newsletter',
-  });
-
-  if (process.env.NODE_ENV === 'development') {
-    console.log('GA4 Event: newsletter_signup', params);
   }
 }
 
