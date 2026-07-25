@@ -1,9 +1,10 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { useReducedMotion } from '@/lib/a11y/useReducedMotion'
 
 export interface Photo {
   id: string
@@ -27,10 +28,21 @@ export default function PhotoGallery({
   const [selectedCategory, setSelectedCategory] = useState<string>('הכל')
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
   const [displayedCount, setDisplayedCount] = useState(itemsPerPage)
+  const reduceMotion = useReducedMotion()
+  const dialogRef = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLElement | null>(null)
   const { ref, inView } = useInView({
     threshold: 0,
     triggerOnce: false,
   })
+
+  const openLightbox = (index: number) => {
+    triggerRef.current = document.activeElement as HTMLElement
+    setLightboxIndex(index)
+  }
+
+  // Focus restoration on close is handled by the focus-management effect below.
+  const closeLightbox = () => setLightboxIndex(null)
 
   const allCategories = ['הכל', ...categories]
 
@@ -78,6 +90,35 @@ export default function PhotoGallery({
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [handleKeyDown])
 
+  // Dialog focus management: move focus into the lightbox, trap Tab within it,
+  // and return focus to the triggering thumbnail on close.
+  const isLightboxOpen = lightboxIndex !== null
+  useEffect(() => {
+    if (!isLightboxOpen) return
+    const dialog = dialogRef.current
+    dialog?.querySelector<HTMLElement>('button')?.focus()
+
+    const trapTab = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab' || !dialog) return
+      const focusable = dialog.querySelectorAll<HTMLElement>('button, a[href]')
+      if (focusable.length === 0) return
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
+    }
+    document.addEventListener('keydown', trapTab)
+    return () => {
+      document.removeEventListener('keydown', trapTab)
+      triggerRef.current?.focus()
+    }
+  }, [isLightboxOpen])
+
   const goToNext = () => {
     setLightboxIndex((prev) =>
       prev !== null && prev < filteredPhotos.length - 1 ? prev + 1 : 0
@@ -97,8 +138,10 @@ export default function PhotoGallery({
         <div className="mb-8 flex flex-wrap gap-3">
           {allCategories.map((category) => (
             <button
+              type="button"
               key={category}
               onClick={() => setSelectedCategory(category)}
+              aria-pressed={selectedCategory === category}
               className={`rounded-full px-6 py-2 font-semibold transition-all ${
                 selectedCategory === category
                   ? 'bg-navy-600 text-white shadow-lg scale-105'
@@ -120,13 +163,19 @@ export default function PhotoGallery({
           <motion.div
             key={photo.id}
             layout
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={reduceMotion ? false : { opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.3 }}
-            className="group relative cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow"
-            onClick={() => setLightboxIndex(index)}
+            exit={reduceMotion ? undefined : { opacity: 0, scale: 0.8 }}
+            transition={{ duration: reduceMotion ? 0 : 0.3 }}
+            className="group relative overflow-hidden rounded-lg shadow-lg transition-shadow hover:shadow-2xl focus-within:ring-4 focus-within:ring-navy-900 focus-within:ring-offset-2"
           >
+            {/* Full-card button (accessible name) opens the lightbox */}
+            <button
+              type="button"
+              onClick={() => openLightbox(index)}
+              aria-label={`הגדלת תמונה: ${photo.caption}`}
+              className="absolute inset-0 z-10 cursor-pointer focus:outline-none"
+            />
             <div className="relative aspect-square">
               <Image
                 src={photo.src}
@@ -142,6 +191,7 @@ export default function PhotoGallery({
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"
@@ -183,19 +233,24 @@ export default function PhotoGallery({
       <AnimatePresence>
         {lightboxIndex !== null && (
           <motion.div
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`תמונה ${lightboxIndex + 1} מתוך ${filteredPhotos.length}: ${filteredPhotos[lightboxIndex].caption}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4"
-            onClick={() => setLightboxIndex(null)}
+            onClick={closeLightbox}
           >
             {/* Close Button */}
             <button
-              onClick={() => setLightboxIndex(null)}
-              className="absolute top-4 left-4 z-10 rounded-full bg-white/10 p-3 text-white hover:bg-white/20 transition-colors"
-              aria-label="סגור"
+              type="button"
+              onClick={closeLightbox}
+              className="absolute top-4 left-4 z-10 rounded-full bg-white/10 p-3 text-white hover:bg-white/20 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400"
+              aria-label="סגירת התצוגה המוגדלת"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -207,14 +262,15 @@ export default function PhotoGallery({
 
             {/* Previous Button */}
             <button
+              type="button"
               onClick={(e) => {
                 e.stopPropagation()
                 goToPrevious()
               }}
-              className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white hover:bg-white/20 transition-colors"
-              aria-label="הקודם"
+              className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white hover:bg-white/20 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400"
+              aria-label="התמונה הקודמת"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -226,14 +282,15 @@ export default function PhotoGallery({
 
             {/* Next Button */}
             <button
+              type="button"
               onClick={(e) => {
                 e.stopPropagation()
                 goToNext()
               }}
-              className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white hover:bg-white/20 transition-colors"
-              aria-label="הבא"
+              className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white hover:bg-white/20 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400"
+              aria-label="התמונה הבאה"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"

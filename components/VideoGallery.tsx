@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useReducedMotion } from '@/lib/a11y/useReducedMotion'
 
 export interface Video {
   id: string
@@ -21,6 +22,14 @@ interface VideoGalleryProps {
 export default function VideoGallery({ videos, categories = [] }: VideoGalleryProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('הכל')
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null)
+  const reduceMotion = useReducedMotion()
+  const dialogRef = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLElement | null>(null)
+
+  const openVideo = (video: Video) => {
+    triggerRef.current = document.activeElement as HTMLElement
+    setSelectedVideo(video)
+  }
 
   const allCategories = ['הכל', ...categories]
 
@@ -69,6 +78,35 @@ export default function VideoGallery({ videos, categories = [] }: VideoGalleryPr
     }
   }, [selectedVideo])
 
+  // Dialog focus management: focus into the modal, trap Tab, and restore focus
+  // to the triggering thumbnail on close.
+  const isVideoOpen = selectedVideo !== null
+  useEffect(() => {
+    if (!isVideoOpen) return
+    const dialog = dialogRef.current
+    dialog?.querySelector<HTMLElement>('button, iframe')?.focus()
+
+    const trapTab = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab' || !dialog) return
+      const focusable = dialog.querySelectorAll<HTMLElement>('button, a[href], iframe')
+      if (focusable.length === 0) return
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
+    }
+    document.addEventListener('keydown', trapTab)
+    return () => {
+      document.removeEventListener('keydown', trapTab)
+      triggerRef.current?.focus()
+    }
+  }, [isVideoOpen])
+
   return (
     <div className="w-full" dir="rtl">
       {/* Category Filter Tabs */}
@@ -76,8 +114,10 @@ export default function VideoGallery({ videos, categories = [] }: VideoGalleryPr
         <div className="mb-8 flex flex-wrap gap-3">
           {allCategories.map((category) => (
             <button
+              type="button"
               key={category}
               onClick={() => setSelectedCategory(category)}
+              aria-pressed={selectedCategory === category}
               className={`rounded-full px-6 py-2 font-semibold transition-all ${
                 selectedCategory === category
                   ? 'bg-navy-600 text-white shadow-lg scale-105'
@@ -99,13 +139,19 @@ export default function VideoGallery({ videos, categories = [] }: VideoGalleryPr
           <motion.div
             key={video.id}
             layout
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={reduceMotion ? false : { opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.3 }}
-            className="group relative cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow"
-            onClick={() => setSelectedVideo(video)}
+            exit={reduceMotion ? undefined : { opacity: 0, scale: 0.8 }}
+            transition={{ duration: reduceMotion ? 0 : 0.3 }}
+            className="group relative overflow-hidden rounded-lg shadow-lg transition-shadow hover:shadow-2xl focus-within:ring-4 focus-within:ring-navy-900 focus-within:ring-offset-2"
           >
+            {/* Full-card button (accessible name) opens the video modal */}
+            <button
+              type="button"
+              onClick={() => openVideo(video)}
+              aria-label={`ניגון וידאו: ${video.title}`}
+              className="absolute inset-0 z-10 cursor-pointer focus:outline-none"
+            />
             {/* Thumbnail */}
             <div className="relative aspect-video">
               <Image
@@ -126,6 +172,7 @@ export default function VideoGallery({ videos, categories = [] }: VideoGalleryPr
                     className="w-10 h-10 text-white"
                     fill="currentColor"
                     viewBox="0 0 24 24"
+                    aria-hidden="true"
                   >
                     <path d="M8 5v14l11-7z" />
                   </svg>
@@ -140,7 +187,7 @@ export default function VideoGallery({ videos, categories = [] }: VideoGalleryPr
 
             {/* Video Info */}
             <div className="bg-white dark:bg-gray-800 p-4">
-              <h3 className="font-bold text-navy-700 dark:text-white line-clamp-2 group-hover:text-gold-600 dark:group-hover:text-gold-400 transition-colors">
+              <h3 className="font-bold text-navy-700 dark:text-white line-clamp-2 group-hover:text-gold-700 dark:group-hover:text-gold-400 transition-colors">
                 {video.title}
               </h3>
               {video.description && (
@@ -157,6 +204,10 @@ export default function VideoGallery({ videos, categories = [] }: VideoGalleryPr
       <AnimatePresence>
         {selectedVideo && (
           <motion.div
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`נגן וידאו: ${selectedVideo.title}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -165,11 +216,12 @@ export default function VideoGallery({ videos, categories = [] }: VideoGalleryPr
           >
             {/* Close Button */}
             <button
+              type="button"
               onClick={() => setSelectedVideo(null)}
-              className="absolute top-4 left-4 z-10 rounded-full bg-white/10 p-3 text-white hover:bg-white/20 transition-colors"
-              aria-label="סגור"
+              className="absolute top-4 left-4 z-10 rounded-full bg-white/10 p-3 text-white hover:bg-white/20 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400"
+              aria-label="סגירת הווידאו"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"

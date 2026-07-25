@@ -222,3 +222,78 @@ body {
 [dir="rtl"] .scroll-container-rtl > * {
   direction: rtl;
 }
+
+/* ===========================================================================
+   Accessibility (Israeli Standard 5568 / WCAG 2.1 AA)
+   =========================================================================== */
+
+/* Placeholder text contrast — default browser placeholders are too light
+   (≈2.5:1). These tokens meet WCAG AA against the input backgrounds used. */
+::placeholder {
+  color: #6b7280; /* gray-500 ≈ 4.8:1 on white */
+  opacity: 1;
+}
+@media (prefers-color-scheme: dark) {
+  ::placeholder {
+    color: #9aa4b2;
+  }
+}
+
+/* Visible keyboard focus for every interactive element (keyboard only, via
+   :focus-visible). A single gold ring only reaches ~2.1:1 on the site's light
+   cream/white backgrounds, and navy is invisible on the dark navy sections, so
+   the indicator is dual-tone: a navy outline that stands out on light surfaces
+   plus a pale-gold halo that stands out on dark surfaces. At least one layer
+   always clears the 3:1 non-text-contrast guidance. !important lets it override
+   Tailwind's `outline-none` and the per-component ring utilities for one
+   consistent, accessible focus style everywhere. */
+:focus-visible {
+  outline: 2px solid #1f2545 !important; /* brand navy — visible on light backgrounds */
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px #f3dfa0 !important; /* brand gold — visible on dark backgrounds */
+}
+
+/* Text-size control (accessibility widget). Scales the root font size so all
+   rem-based typography grows/shrinks together, while browser zoom keeps working. */
+html[data-font-scale="large"] {
+  font-size: 112.5%;
+}
+html[data-font-scale="xlarge"] {
+  font-size: 125%;
+}
+
+/* High-contrast mode (accessibility widget). Strengthens borders and removes
+   low-contrast translucency without repainting the whole palette. */
+html[data-contrast="high"] body {
+  --background: 0 0% 100%;
+  --foreground: 230 34% 8%;
+}
+html[data-contrast="high"] a {
+  text-decoration: underline;
+}
+html[data-contrast="high"] :where(button, a, input, textarea, select):focus-visible {
+  outline-width: 4px;
+}
+
+/* Reduced motion — honoured for users who set the OS preference AND for users
+   who toggle it in the accessibility widget (html[data-reduce-motion="true"]).
+   Neutralises CSS transitions/animations; JS-driven looping animations are
+   additionally gated in the components themselves. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+html[data-reduce-motion="true"] *,
+html[data-reduce-motion="true"] *::before,
+html[data-reduce-motion="true"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}

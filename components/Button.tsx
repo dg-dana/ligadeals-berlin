@@ -36,7 +36,7 @@ export default function Button({
   onClick,
   disabled,
 }: ButtonProps) {
-  const classes = `inline-flex items-center justify-center gap-2 transition-all ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
+  const classes = `inline-flex items-center justify-center gap-2 transition-all focus:outline-none focus-visible:ring-4 focus-visible:ring-gold-500 focus-visible:ring-offset-2 ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
 
   if (href) {
     return (

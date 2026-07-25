@@ -3,8 +3,10 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Button from '@/components/Button'
+import { useReducedMotion } from '@/lib/a11y/useReducedMotion'
 
 export default function Hero() {
+  const reduceMotion = useReducedMotion()
   return (
     <section
       className="relative h-screen w-full overflow-hidden"
@@ -27,17 +29,20 @@ export default function Hero() {
       <div className="pointer-events-none absolute top-[15%] right-[25%] h-7 w-24 rounded-full bg-white/65 blur-xl" />
       <div className="pointer-events-none absolute top-[4%] left-[44%] h-7 w-20 rounded-full bg-white/70 blur-xl" />
 
-      {/* Airplane Animation */}
-      <motion.div
-        className="absolute top-1/4 right-0"
-        initial={{ x: 100, opacity: 0 }}
-        animate={{ x: -1200, opacity: [0, 1, 1, 0] }}
-        transition={{ duration: 15, repeat: Infinity, repeatDelay: 5 }}
-      >
-        <svg width="60" height="60" viewBox="0 0 24 24" fill="white" opacity="0.9">
-          <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
-        </svg>
-      </motion.div>
+      {/* Airplane Animation — decorative; suppressed when reduced motion is requested */}
+      {!reduceMotion && (
+        <motion.div
+          className="absolute top-1/4 right-0"
+          aria-hidden="true"
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: -1200, opacity: [0, 1, 1, 0] }}
+          transition={{ duration: 15, repeat: Infinity, repeatDelay: 5 }}
+        >
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="white" opacity="0.9">
+            <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+          </svg>
+        </motion.div>
+      )}
 
       {/* Main Content */}
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">
@@ -46,7 +51,7 @@ export default function Hero() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6 }}
-          className="mb-6 inline-block rounded-full border border-gold-400/40 bg-gold-400/10 px-5 py-1.5 text-sm font-semibold tracking-wide text-gold-300"
+          className="mb-6 inline-block rounded-full border border-gold-300/60 bg-navy-800/60 px-5 py-1.5 text-sm font-semibold tracking-wide text-gold-200"
           dir="rtl"
         >
           מדריך ברלין לישראלים
@@ -68,7 +73,7 @@ export default function Hero() {
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mb-10 max-w-2xl text-lg text-navy-100 md:text-xl lg:text-2xl"
+          className="mb-10 max-w-2xl text-lg text-white md:text-xl lg:text-2xl"
           dir="rtl"
         >
           מדריכים, המלצות מקומיות וליווי אישי צמוד — מתכנון החופשה ועד החזרה הביתה, הכל בעברית
@@ -99,16 +104,17 @@ export default function Hero() {
           className="absolute bottom-24"
         >
           <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
+            animate={reduceMotion ? undefined : { y: [0, 10, 0] }}
+            transition={reduceMotion ? undefined : { duration: 1.5, repeat: Infinity }}
             className="flex flex-col items-center gap-2"
           >
-            <span className="text-sm text-navy-200" dir="rtl">גלול למטה</span>
+            <span className="text-sm text-white" dir="rtl">גלול למטה</span>
             <svg
-              className="h-6 w-6 text-navy-200"
+              className="h-6 w-6 text-white"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"

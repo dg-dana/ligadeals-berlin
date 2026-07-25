@@ -17,11 +17,13 @@ export interface SiteSettings {
   aboutImage?: SanityImage;
 }
 
-// Used until real contact details are entered in Sanity Studio (siteSettings document).
+// Fallback used only if the Sanity fetch fails. These mirror the real published
+// siteSettings document (the source of truth) so a fetch error can never surface
+// placeholder/example contact data on the production site.
 const FALLBACK_SITE_SETTINGS: SiteSettings = {
   email: 'info@ligadeals-berlin.com',
-  phone: '+49 30 1234 5678',
-  whatsapp: '491234567890',
+  phone: '+49 177 7258599',
+  whatsapp: '491777258599',
 };
 
 export async function getSiteSettings(): Promise<SiteSettings> {

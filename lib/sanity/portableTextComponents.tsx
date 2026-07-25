@@ -54,7 +54,7 @@ export const articlePortableTextComponents: PortableTextComponents = {
         href={value?.href}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-gold-600 underline hover:text-gold-700 dark:text-gold-400 dark:hover:text-gold-300"
+        className="text-gold-800 underline hover:text-gold-900 dark:text-gold-400 dark:hover:text-gold-300"
       >
         {children}
       </a>

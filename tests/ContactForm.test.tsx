@@ -179,7 +179,7 @@ describe('ContactForm Component', () => {
     renderWithProviders(<ContactForm />)
 
     const whatsappLink = screen.getByRole('link', { name: /וואטסאפ/i })
-    expect(whatsappLink).toHaveAttribute('href', expect.stringContaining('wa.me/491234567890'))
+    expect(whatsappLink).toHaveAttribute('href', expect.stringContaining('wa.me/491777258599'))
     expect(whatsappLink).toHaveAttribute('target', '_blank')
     expect(whatsappLink).toHaveAttribute('rel', 'noopener noreferrer')
   })

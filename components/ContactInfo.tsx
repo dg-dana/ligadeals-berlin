@@ -14,9 +14,9 @@ interface ContactInfoProps {
 }
 
 export default function ContactInfo({
-  phone = '+49 30 1234 5678',
+  phone = '+49 177 7258599',
   email = 'info@ligadeals-berlin.com',
-  whatsapp = '491234567890',
+  whatsapp = '491777258599',
   socialMedia = {},
 }: ContactInfoProps) {
   const whatsappMessage = encodeURIComponent('שלום, אני מעוניין/ת לקבל מידע נוסף')
@@ -68,7 +68,7 @@ export default function ContactInfo({
         </svg>
       ),
       href: socialMedia.facebook,
-      color: 'hover:text-gold-600 dark:hover:text-gold-400'
+      color: 'hover:text-gold-700 dark:hover:text-gold-400'
     },
     {
       name: 'Instagram',
@@ -78,7 +78,7 @@ export default function ContactInfo({
         </svg>
       ),
       href: socialMedia.instagram,
-      color: 'hover:text-gold-600 dark:hover:text-gold-400'
+      color: 'hover:text-gold-700 dark:hover:text-gold-400'
     },
     {
       name: 'LinkedIn',
@@ -88,7 +88,7 @@ export default function ContactInfo({
         </svg>
       ),
       href: socialMedia.linkedin,
-      color: 'hover:text-gold-600 dark:hover:text-gold-400'
+      color: 'hover:text-gold-700 dark:hover:text-gold-400'
     }
   ]
 
