@@ -38,19 +38,23 @@ export default function VideoGallery({ videos, categories = [] }: VideoGalleryPr
     (video) => selectedCategory === 'הכל' || video.category === selectedCategory
   )
 
-  // Convert YouTube/Vimeo URL to embed URL
+  // Convert YouTube/Vimeo URL to embed URL.
+  // The iframe is only rendered once a visitor opens a video, so no request
+  // reaches YouTube/Vimeo until they choose to play one. YouTube is embedded
+  // through youtube-nocookie.com and Vimeo with Do Not Track enabled, so
+  // neither can drop tracking cookies on playback.
   const getEmbedUrl = (url: string): string => {
     // YouTube
     if (url.includes('youtube.com') || url.includes('youtu.be')) {
       const videoId = url.includes('youtu.be')
         ? url.split('youtu.be/')[1]?.split('?')[0]
         : url.split('v=')[1]?.split('&')[0]
-      return `https://www.youtube.com/embed/${videoId}?autoplay=1`
+      return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`
     }
     // Vimeo
     if (url.includes('vimeo.com')) {
       const videoId = url.split('vimeo.com/')[1]?.split('?')[0]
-      return `https://player.vimeo.com/video/${videoId}?autoplay=1`
+      return `https://player.vimeo.com/video/${videoId}?autoplay=1&dnt=1`
     }
     return url
   }

@@ -3,12 +3,14 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { motion, AnimatePresence } from 'framer-motion'
+import PrivacyConsentCheckbox from './PrivacyConsentCheckbox'
 
 interface ContactFormData {
   name: string
   email: string
   phone?: string
   message: string
+  privacyConsent: boolean
 }
 
 interface ContactFormProps {
@@ -185,6 +187,14 @@ export default function ContactForm({ whatsappNumber = '491777258599' }: Contact
           )}
         </div>
 
+        {/* Privacy policy acceptance — required before the form can be sent */}
+        <PrivacyConsentCheckbox
+          {...register('privacyConsent', {
+            required: 'יש לאשר את מדיניות הפרטיות כדי לשלוח את הטופס',
+          })}
+          error={errors.privacyConsent?.message}
+        />
+
         {/* Submit Button */}
         <div className="flex gap-4">
           <button
@@ -219,6 +229,18 @@ export default function ContactForm({ whatsappNumber = '491777258599' }: Contact
             <span className="hidden sm:inline">וואטסאפ</span>
           </a>
         </div>
+
+        <p className="text-sm leading-relaxed text-navy-500 dark:text-gray-400">
+          הפרטים שתמסרו כאן משמשים אך ורק כדי לחזור אליכם עם מענה לפנייה, ואינם מועברים לצדדים
+          שלישיים למטרות שיווק. להסבר המלא ראו את{' '}
+          <a
+            href="/privacy"
+            className="font-semibold text-gold-800 underline hover:text-gold-900 dark:text-gold-400 dark:hover:text-gold-300"
+          >
+            מדיניות הפרטיות
+          </a>
+          .
+        </p>
       </form>
 
       {/* Toast Notifications */}

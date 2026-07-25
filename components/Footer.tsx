@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaWhatsapp, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
+import CookieSettingsButton from "@/components/CookieSettingsButton";
 import type { SiteSettings } from "@/lib/sanity/siteSettings";
 
 interface FooterProps {
@@ -167,6 +168,8 @@ const Footer = ({ settings }: FooterProps) => {
             <Link href="/accessibility" className="text-navy-200 hover:text-white transition-colors">
               הצהרת נגישות
             </Link>
+            <span className="text-navy-500" aria-hidden="true">|</span>
+            <CookieSettingsButton className="text-navy-200 hover:text-white transition-colors underline-offset-2 hover:underline" />
           </div>
         </div>
       </div>

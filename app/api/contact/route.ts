@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { isSameOrigin } from '@/lib/api/security';
 
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
 const RATE_LIMIT_WINDOW = 60 * 60 * 1000;
@@ -10,7 +11,11 @@ interface ContactFormData {
   email: string;
   phone?: string;
   message: string;
+  privacyConsent?: boolean;
 }
+
+// Upper bounds so an oversized payload cannot be relayed into an email.
+const MAX_LENGTHS = { name: 100, email: 254, phone: 30, message: 5000 } as const;
 
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -40,6 +45,13 @@ function checkRateLimit(ip: string): { allowed: boolean; remaining: number } {
 
 export async function POST(request: NextRequest) {
   try {
+    if (!isSameOrigin(request)) {
+      return NextResponse.json(
+        { error: 'Forbidden', hebrewError: 'הבקשה נדחתה.' },
+        { status: 403 }
+      );
+    }
+
     const ip = request.headers.get('x-forwarded-for') ||
                request.headers.get('x-real-ip') ||
                'unknown';
@@ -84,6 +96,28 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+    if (
+      body.name.length > MAX_LENGTHS.name ||
+      body.email.length > MAX_LENGTHS.email ||
+      (body.phone && body.phone.length > MAX_LENGTHS.phone) ||
+      body.message.length > MAX_LENGTHS.message
+    ) {
+      return NextResponse.json(
+        { error: 'Field too long', hebrewError: 'אחד השדות ארוך מדי' },
+        { status: 400 }
+      );
+    }
+    // Consent is enforced here as well as in the UI: client-side validation
+    // alone can be bypassed, and we must not process personal data without it.
+    if (body.privacyConsent !== true) {
+      return NextResponse.json(
+        {
+          error: 'Privacy policy consent required',
+          hebrewError: 'יש לאשר את מדיניות הפרטיות כדי לשלוח את הטופס',
+        },
+        { status: 400 }
+      );
+    }
 
     const resend = new Resend(process.env.RESEND_API_KEY);
     const toEmail = process.env.CONTACT_TO_EMAIL || 'dgxcoding@gmail.com';
@@ -123,13 +157,11 @@ export async function POST(request: NextRequest) {
   }
 }
 
+// The contact form posts from this site only, so no cross-origin access is
+// granted here — a wildcard would let any site submit through this endpoint.
 export async function OPTIONS() {
-  return NextResponse.json({}, {
-    status: 200,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
-    },
+  return new NextResponse(null, {
+    status: 204,
+    headers: { Allow: 'POST, OPTIONS' },
   });
 }

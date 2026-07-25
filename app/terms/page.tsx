@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'תנאי שימוש',
@@ -46,6 +47,21 @@ export default function TermsPage() {
               כל התכנים באתר - טקסטים, תמונות, לוגו ועיצוב - שייכים ל-Liga Deals Berlin או
               לבעלי הזכויות בהם, אלא אם צוין אחרת. אין להעתיק, לשכפל או להפיץ תכנים מהאתר למטרות
               מסחריות ללא אישור מראש ובכתב.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-navy-700 dark:text-white mb-3">פרטיות</h2>
+            <p>
+              השימוש במידע אישי שאתם מוסרים לנו - למשל דרך טופס יצירת הקשר - מוסדר במסמך נפרד.
+              לפירוט מלא על סוגי המידע, השימוש בו, קובצי Cookie והזכויות שלכם, ראו את{' '}
+              <Link
+                href="/privacy"
+                className="text-gold-800 underline hover:text-gold-900 dark:text-gold-400 dark:hover:text-gold-300"
+              >
+                מדיניות הפרטיות
+              </Link>
+              .
             </p>
           </section>
 

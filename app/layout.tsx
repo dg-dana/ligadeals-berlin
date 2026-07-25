@@ -8,6 +8,7 @@ import Analytics from "@/components/Analytics";
 import SkipToContent from "@/components/SkipToContent";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import AccessibilityWidget from "@/components/AccessibilityWidget";
+import CookieConsentBanner from "@/components/CookieConsentBanner";
 import MotionProvider from "@/components/MotionProvider";
 import { getDefaultMetadata } from "@/lib/seo/metadata";
 import { generateWebsiteStructuredData, generateOrganizationStructuredData } from "@/lib/seo/metadata";
@@ -103,6 +104,9 @@ export default async function RootLayout({
 
           {/* Accessibility controls (text size, contrast, reduced motion) */}
           <AccessibilityWidget />
+
+          {/* Cookie/analytics consent — gates the Analytics component above */}
+          <CookieConsentBanner />
         </MotionProvider>
       </body>
     </html>

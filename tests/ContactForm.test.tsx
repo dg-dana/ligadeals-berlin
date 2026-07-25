@@ -9,6 +9,15 @@ jest.mock('framer-motion', () => ({
   AnimatePresence: ({ children }: any) => <>{children}</>,
 }))
 
+/** Fill in every required field, including the privacy consent checkbox. */
+async function fillValidForm(user: ReturnType<typeof userEvent.setup>) {
+  await user.type(screen.getByLabelText(/שם מלא/i), 'דני כהן')
+  await user.type(screen.getByLabelText(/אימייל/i), 'test@example.com')
+  await user.type(screen.getByLabelText(/טלפון/i), '050-1234567')
+  await user.type(screen.getByLabelText(/הודעה/i), 'זוהי הודעת בדיקה ארוכה')
+  await user.click(screen.getByRole('checkbox', { name: /מדיניות הפרטיות/i }))
+}
+
 describe('ContactForm Component', () => {
   beforeEach(() => {
     global.fetch = jest.fn(() =>
@@ -36,6 +45,54 @@ describe('ContactForm Component', () => {
     expect(screen.getByLabelText(/אימייל/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/טלפון/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/הודעה/i)).toBeInTheDocument()
+    expect(screen.getByRole('checkbox', { name: /מדיניות הפרטיות/i })).toBeInTheDocument()
+  })
+
+  it('leaves the privacy consent checkbox unchecked by default', () => {
+    renderWithProviders(<ContactForm />)
+
+    expect(screen.getByRole('checkbox', { name: /מדיניות הפרטיות/i })).not.toBeChecked()
+  })
+
+  it('points every privacy policy reference at /privacy', () => {
+    renderWithProviders(<ContactForm />)
+
+    const policyLinks = screen.getAllByRole('link', { name: /מדיניות הפרטיות/i })
+    expect(policyLinks.length).toBeGreaterThan(0)
+    policyLinks.forEach((link) => expect(link).toHaveAttribute('href', '/privacy'))
+  })
+
+  it('blocks submission and shows an error when consent is not given', async () => {
+    const user = userEvent.setup()
+    renderWithProviders(<ContactForm />)
+
+    await user.type(screen.getByLabelText(/שם מלא/i), 'דני כהן')
+    await user.type(screen.getByLabelText(/אימייל/i), 'test@example.com')
+    await user.type(screen.getByLabelText(/הודעה/i), 'זוהי הודעת בדיקה ארוכה')
+
+    await user.click(screen.getByRole('button', { name: /שלח הודעה/i }))
+
+    await waitFor(() => {
+      expect(
+        screen.getByText('יש לאשר את מדיניות הפרטיות כדי לשלוח את הטופס')
+      ).toBeInTheDocument()
+    })
+    expect(global.fetch).not.toHaveBeenCalled()
+  })
+
+  it('sends the consent flag to the API once the box is checked', async () => {
+    const user = userEvent.setup()
+    renderWithProviders(<ContactForm />)
+
+    await fillValidForm(user)
+    await user.click(screen.getByRole('button', { name: /שלח הודעה/i }))
+
+    await waitFor(() => {
+      expect(global.fetch).toHaveBeenCalled()
+    })
+
+    const [, requestInit] = (global.fetch as jest.Mock).mock.calls[0]
+    expect(JSON.parse(requestInit.body)).toMatchObject({ privacyConsent: true })
   })
 
   it('renders submit button and WhatsApp link', () => {
@@ -123,10 +180,7 @@ describe('ContactForm Component', () => {
 
     renderWithProviders(<ContactForm />)
 
-    await user.type(screen.getByLabelText(/שם מלא/i), 'דני כהן')
-    await user.type(screen.getByLabelText(/אימייל/i), 'test@example.com')
-    await user.type(screen.getByLabelText(/טלפון/i), '050-1234567')
-    await user.type(screen.getByLabelText(/הודעה/i), 'זוהי הודעת בדיקה ארוכה')
+    await fillValidForm(user)
 
     const submitButton = screen.getByRole('button', { name: /שלח הודעה/i })
     await user.click(submitButton)
@@ -155,11 +209,11 @@ describe('ContactForm Component', () => {
     const emailInput = screen.getByLabelText(/אימייל/i) as HTMLInputElement
     const phoneInput = screen.getByLabelText(/טלפון/i) as HTMLInputElement
     const messageInput = screen.getByLabelText(/הודעה/i) as HTMLTextAreaElement
+    const consentCheckbox = screen.getByRole('checkbox', {
+      name: /מדיניות הפרטיות/i,
+    }) as HTMLInputElement
 
-    await user.type(nameInput, 'דני כהן')
-    await user.type(emailInput, 'test@example.com')
-    await user.type(phoneInput, '050-1234567')
-    await user.type(messageInput, 'זוהי הודעת בדיקה ארוכה')
+    await fillValidForm(user)
 
     const submitButton = screen.getByRole('button', { name: /שלח הודעה/i })
     await user.click(submitButton)
@@ -170,6 +224,8 @@ describe('ContactForm Component', () => {
         expect(emailInput.value).toBe('')
         expect(phoneInput.value).toBe('')
         expect(messageInput.value).toBe('')
+        // Consent must be re-given for the next submission, never carried over.
+        expect(consentCheckbox).not.toBeChecked()
       },
       { timeout: 3000 }
     )
@@ -188,10 +244,7 @@ describe('ContactForm Component', () => {
     const user = userEvent.setup()
     renderWithProviders(<ContactForm />)
 
-    await user.type(screen.getByLabelText(/שם מלא/i), 'דני כהן')
-    await user.type(screen.getByLabelText(/אימייל/i), 'test@example.com')
-    await user.type(screen.getByLabelText(/טלפון/i), '050-1234567')
-    await user.type(screen.getByLabelText(/הודעה/i), 'זוהי הודעת בדיקה ארוכה')
+    await fillValidForm(user)
 
     const submitButton = screen.getByRole('button', { name: /שלח הודעה/i })
     await user.click(submitButton)

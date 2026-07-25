@@ -3,6 +3,7 @@
 import Script from 'next/script';
 import { useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { useCookieConsent } from '@/lib/consent';
 
 // Google Analytics Measurement ID
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
@@ -21,16 +22,22 @@ declare global {
 
 /**
  * Google Analytics 4 Component
- * Integrates GA4 and Google Tag Manager
- * GDPR compliant with privacy-friendly tracking
+ *
+ * Nothing is loaded until the visitor accepts analytics in the cookie banner
+ * (GDPR Art. 6(1)(a) / TDDDG §25(1)), so a visitor who declines or ignores the
+ * banner never receives a Google Analytics cookie. Accepting takes effect
+ * immediately — no page reload needed — via the consent-change event.
  */
 export default function Analytics() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  // 'pending' during SSR and hydration, so nothing loads until the visitor's
+  // stored choice is actually readable.
+  const consent = useCookieConsent();
 
   // Track page views on route changes
   useEffect(() => {
-    if (!GA_MEASUREMENT_ID) return;
+    if (!GA_MEASUREMENT_ID || consent !== 'accepted') return;
 
     // Build full URL
     const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '');
@@ -48,7 +55,12 @@ export default function Analytics() {
         console.log('GA4 Pageview:', { url, title: document.title });
       }
     }
-  }, [pathname, searchParams]);
+  }, [pathname, searchParams, consent]);
+
+  // No analytics consent (declined, or banner not answered yet) — load nothing.
+  if (consent !== 'accepted') {
+    return null;
+  }
 
   // Don't render if GA_MEASUREMENT_ID is not set
   if (!GA_MEASUREMENT_ID) {
@@ -91,10 +103,21 @@ export default function Analytics() {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
+            // This script only runs once analytics consent was given. No
+            // advertising storage is ever used — the site runs no ad products.
+            gtag('consent', 'default', {
+              ad_storage: 'denied',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied',
+              analytics_storage: 'granted'
+            });
+
             gtag('config', '${GA_MEASUREMENT_ID}', {
               page_path: window.location.pathname,
               anonymize_ip: true,
-              cookie_flags: 'SameSite=None;Secure',
+              cookie_flags: 'SameSite=Lax;Secure',
+              allow_google_signals: false,
+              allow_ad_personalization_signals: false,
               send_page_view: true
             });
           `,

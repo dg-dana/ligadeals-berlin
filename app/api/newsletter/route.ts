@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { escapeHtml, isSameOrigin } from '@/lib/api/security';
 
 // Lazily initialize Resend so a missing API key only fails a request,
 // rather than crashing the build/module load.
@@ -22,6 +23,7 @@ const MAX_REQUESTS_PER_WINDOW = 3; // 3 requests per hour per IP
 interface NewsletterData {
   email: string;
   name?: string;
+  privacyConsent?: boolean;
 }
 
 // Validate email format
@@ -29,6 +31,7 @@ function isValidEmail(email: string): boolean {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 }
+
 
 // Check rate limit
 function checkRateLimit(ip: string): { allowed: boolean; remaining: number } {
@@ -55,7 +58,8 @@ function checkRateLimit(ip: string): { allowed: boolean; remaining: number } {
 
 // Create welcome email template
 function createWelcomeEmailTemplate(name?: string): string {
-  const displayName = name || 'חבר/ה יקר/ה';
+  const displayName = escapeHtml(name || 'חבר/ה יקר/ה');
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://ligadeals-berlin.com';
 
   return `
 <!DOCTYPE html>
@@ -143,7 +147,7 @@ function createWelcomeEmailTemplate(name?: string): string {
         <li>הצעות והטבות בלעדיות</li>
       </ul>
       <p style="text-align: center;">
-        <a href="${process.env.NEXT_PUBLIC_SITE_URL || 'https://ligadeals-berlin.com'}" class="button">
+        <a href="${siteUrl}" class="button">
           בקרו באתר שלנו
         </a>
       </p>
@@ -160,7 +164,7 @@ function createWelcomeEmailTemplate(name?: string): string {
         קיבלת מייל זה כי נרשמת לניוזלטר שלנו באתר LigaDeals Berlin.
       </p>
       <p>
-        <a href="${process.env.NEXT_PUBLIC_SITE_URL}/unsubscribe">ביטול הצטרפות</a>
+        <a href="${siteUrl}/unsubscribe">ביטול הצטרפות</a>
       </p>
     </div>
   </div>
@@ -186,8 +190,8 @@ function createAdminNotificationTemplate(data: NewsletterData): string {
 </head>
 <body>
   <h2>מנוי חדש לניוזלטר</h2>
-  <p><strong>אימייל:</strong> ${data.email}</p>
-  ${data.name ? `<p><strong>שם:</strong> ${data.name}</p>` : ''}
+  <p><strong>אימייל:</strong> ${escapeHtml(data.email)}</p>
+  ${data.name ? `<p><strong>שם:</strong> ${escapeHtml(data.name)}</p>` : ''}
   <p><strong>תאריך:</strong> ${new Date().toLocaleString('he-IL')}</p>
 </body>
 </html>
@@ -196,6 +200,15 @@ function createAdminNotificationTemplate(data: NewsletterData): string {
 
 export async function POST(request: NextRequest) {
   try {
+    // This endpoint sends mail to whatever address it is given, so it is
+    // restricted to submissions originating from this site.
+    if (!isSameOrigin(request)) {
+      return NextResponse.json(
+        { error: 'Forbidden', hebrewError: 'הבקשה נדחתה.' },
+        { status: 403 }
+      );
+    }
+
     // Get client IP for rate limiting
     const ip = request.headers.get('x-forwarded-for') ||
                 request.headers.get('x-real-ip') ||
@@ -240,6 +253,18 @@ export async function POST(request: NextRequest) {
         {
           error: 'Invalid email address',
           hebrewError: 'כתובת אימייל לא תקינה'
+        },
+        { status: 400 }
+      );
+    }
+
+    // Signing someone up is processing their personal data, so an explicit
+    // privacy-policy acceptance has to accompany every subscription.
+    if (body.privacyConsent !== true) {
+      return NextResponse.json(
+        {
+          error: 'Privacy policy consent required',
+          hebrewError: 'יש לאשר את מדיניות הפרטיות כדי להירשם'
         },
         { status: 400 }
       );
@@ -316,17 +341,10 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Handle OPTIONS for CORS
-export async function OPTIONS(request: NextRequest) {
-  return NextResponse.json(
-    {},
-    {
-      status: 200,
-      headers: {
-        'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_SITE_URL || '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
-      },
-    }
-  );
+// No cross-origin access is granted: subscriptions come from this site only.
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 204,
+    headers: { Allow: 'POST, OPTIONS' },
+  });
 }
