@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
@@ -31,10 +31,13 @@ export default function PhotoGallery({
   const reduceMotion = useReducedMotion()
   const dialogRef = useRef<HTMLDivElement>(null)
   const triggerRef = useRef<HTMLElement | null>(null)
-  const { ref, inView } = useInView({
-    threshold: 0,
-    triggerOnce: false,
-  })
+
+  // Switching filters restarts paging. Doing it here rather than in an effect
+  // keeps the reset in the same render pass as the category change.
+  const selectCategory = (category: string) => {
+    setSelectedCategory(category)
+    setDisplayedCount(itemsPerPage)
+  }
 
   const openLightbox = (index: number) => {
     triggerRef.current = document.activeElement as HTMLElement
@@ -50,49 +53,50 @@ export default function PhotoGallery({
   const filteredPhotos = photos.filter(
     (photo) => selectedCategory === 'הכל' || photo.category === selectedCategory
   )
+  const photoCount = filteredPhotos.length
 
-  // Reset displayed count when category changes
-  useEffect(() => {
-    setDisplayedCount(itemsPerPage)
-  }, [selectedCategory, itemsPerPage])
-
-  // Load more photos when scrolling to bottom
-  useEffect(() => {
-    if (inView && displayedCount < filteredPhotos.length) {
-      setDisplayedCount(prev => Math.min(prev + itemsPerPage, filteredPhotos.length))
-    }
-  }, [inView, displayedCount, filteredPhotos.length, itemsPerPage])
+  // Load more photos when the sentinel below the grid scrolls into view.
+  // useInView keeps this callback in a ref and reassigns it every render, so it
+  // always sees the current filteredPhotos — no stale closure.
+  const { ref } = useInView({
+    threshold: 0,
+    triggerOnce: false,
+    onChange: (isInView) => {
+      if (!isInView) return
+      setDisplayedCount((prev) => Math.min(prev + itemsPerPage, photoCount))
+    },
+  })
 
   const displayedPhotos = filteredPhotos.slice(0, displayedCount)
 
-  // Keyboard navigation
-  const handleKeyDown = useCallback(
-    (e: KeyboardEvent) => {
-      if (lightboxIndex === null) return
+  const isLightboxOpen = lightboxIndex !== null
 
+  // Keyboard navigation. Every update is functional and the wrap-around bound
+  // comes from photoCount, so the listener only needs re-binding when the
+  // lightbox opens/closes or the filtered set resizes.
+  useEffect(() => {
+    if (!isLightboxOpen) return
+
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setLightboxIndex(null)
       } else if (e.key === 'ArrowRight') {
         setLightboxIndex((prev) =>
-          prev !== null && prev > 0 ? prev - 1 : filteredPhotos.length - 1
+          prev !== null && prev > 0 ? prev - 1 : photoCount - 1
         )
       } else if (e.key === 'ArrowLeft') {
         setLightboxIndex((prev) =>
-          prev !== null && prev < filteredPhotos.length - 1 ? prev + 1 : 0
+          prev !== null && prev < photoCount - 1 ? prev + 1 : 0
         )
       }
-    },
-    [lightboxIndex, filteredPhotos.length]
-  )
+    }
 
-  useEffect(() => {
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [handleKeyDown])
+  }, [isLightboxOpen, photoCount])
 
   // Dialog focus management: move focus into the lightbox, trap Tab within it,
   // and return focus to the triggering thumbnail on close.
-  const isLightboxOpen = lightboxIndex !== null
   useEffect(() => {
     if (!isLightboxOpen) return
     const dialog = dialogRef.current
@@ -140,7 +144,7 @@ export default function PhotoGallery({
             <button
               type="button"
               key={category}
-              onClick={() => setSelectedCategory(category)}
+              onClick={() => selectCategory(category)}
               aria-pressed={selectedCategory === category}
               className={`rounded-full px-6 py-2 font-semibold transition-all ${
                 selectedCategory === category
