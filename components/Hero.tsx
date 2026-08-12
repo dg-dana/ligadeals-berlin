@@ -67,7 +67,7 @@ export default function Hero() {
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-6 text-center text-4xl font-bold text-white md:text-6xl lg:text-7xl"
+            className="mb-6 !text-center text-4xl font-bold text-white md:text-6xl lg:text-7xl"
             dir="rtl"
           >
             גלו את ברלין <span className="text-gold-400">בצורה אישית</span> ובלתי נשכחת
@@ -78,7 +78,7 @@ export default function Hero() {
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mb-10 max-w-2xl text-center text-lg text-white md:text-xl lg:text-2xl"
+            className="mb-10 max-w-2xl !text-center text-lg text-white md:text-xl lg:text-2xl"
             dir="rtl"
           >
             מדריכים, המלצות מקומיות וליווי אישי צמוד
