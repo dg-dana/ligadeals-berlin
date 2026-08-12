@@ -4,6 +4,8 @@ Hebrew-language (RTL) website for **Liga Deals Berlin** — Meital's personal ac
 
 Built with Next.js 16 (App Router, React 19), Sanity as the CMS, Cloudinary for media, and Resend for transactional email.
 
+**Live site:** [ligadeals-berlin.vercel.app](https://ligadeals-berlin.vercel.app)
+
 ---
 
 ## Table of contents
@@ -165,6 +167,7 @@ lib/
   seo/                Metadata and structured-data helpers
   analytics/          GA event helpers
   a11y/               Reduced-motion hook
+  utils/              RTL helpers
   api/security.ts     Same-origin checks for route handlers
   consent.ts          Cookie-consent state
 sanity/               Studio schemas, desk structure, workflows, client, sample data, docs
