@@ -1,0 +1,299 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 40 33% 97%;
+  --foreground: 230 34% 12%;
+  --primary: 230 34% 24%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 38 68% 57%;
+  --secondary-foreground: 230 34% 12%;
+  --font-hebrew: 'Noto Sans Hebrew', 'Assistant', system-ui, sans-serif;
+  --font-arabic: 'Noto Sans Arabic', system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 230 34% 8%;
+    --foreground: 40 33% 95%;
+    --primary: 38 68% 57%;
+    --secondary: 230 25% 20%;
+    --secondary-foreground: 40 33% 95%;
+  }
+}
+
+body {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-hebrew);
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="ltr"] {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Hebrew and Arabic text styling */
+.text-hebrew {
+  font-family: var(--font-hebrew);
+  direction: rtl;
+  text-align: right;
+}
+
+.text-arabic {
+  font-family: var(--font-arabic);
+  direction: rtl;
+  text-align: right;
+}
+
+/* RTL-safe utility classes */
+@layer utilities {
+  /* Logical spacing utilities for RTL support */
+  .ms-auto {
+    margin-inline-start: auto;
+  }
+
+  .me-auto {
+    margin-inline-end: auto;
+  }
+
+  .ps-safe {
+    padding-inline-start: var(--spacing, 1rem);
+  }
+
+  .pe-safe {
+    padding-inline-end: var(--spacing, 1rem);
+  }
+
+  /* RTL-aware animations */
+  @keyframes slide-in-start {
+    from {
+      transform: translateX(var(--rtl-direction, -100%));
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-in-end {
+    from {
+      transform: translateX(var(--rtl-direction, 100%));
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  [dir="rtl"] {
+    --rtl-direction: 1;
+  }
+
+  [dir="ltr"] {
+    --rtl-direction: -1;
+  }
+
+  /* Animation classes */
+  .slide-in-start {
+    animation: slide-in-start 0.3s ease-out;
+  }
+
+  .slide-in-end {
+    animation: slide-in-end 0.3s ease-out;
+  }
+
+  /* RTL-aware shadows */
+  .shadow-start {
+    box-shadow: -4px 0 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  [dir="rtl"] .shadow-start {
+    box-shadow: 4px 0 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .shadow-end {
+    box-shadow: 4px 0 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  [dir="rtl"] .shadow-end {
+    box-shadow: -4px 0 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  /* RTL-aware positioning */
+  .float-start {
+    float: left;
+  }
+
+  [dir="rtl"] .float-start {
+    float: right;
+  }
+
+  .float-end {
+    float: right;
+  }
+
+  [dir="rtl"] .float-end {
+    float: left;
+  }
+
+  /* RTL-aware borders */
+  .border-s {
+    border-inline-start-width: 1px;
+  }
+
+  .border-e {
+    border-inline-end-width: 1px;
+  }
+
+  .border-s-2 {
+    border-inline-start-width: 2px;
+  }
+
+  .border-e-2 {
+    border-inline-end-width: 2px;
+  }
+
+  /* RTL-aware rounded corners */
+  .rounded-s-lg {
+    border-start-start-radius: 0.5rem;
+    border-end-start-radius: 0.5rem;
+  }
+
+  .rounded-e-lg {
+    border-start-end-radius: 0.5rem;
+    border-end-end-radius: 0.5rem;
+  }
+
+  /* Better line-height for Hebrew text */
+  .leading-hebrew {
+    line-height: 1.75;
+  }
+
+  /* Prevent text from being too tight in Hebrew */
+  .tracking-hebrew {
+    letter-spacing: 0.01em;
+  }
+}
+
+/* Ensure inputs and textareas align correctly in RTL */
+[dir="rtl"] input,
+[dir="rtl"] textarea,
+[dir="rtl"] select {
+  text-align: right;
+}
+
+[dir="rtl"] input[type="email"],
+[dir="rtl"] input[type="url"] {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Fix for number inputs in RTL */
+[dir="rtl"] input[type="number"] {
+  text-align: left;
+  direction: ltr;
+}
+
+/* Ensure proper scroll behavior in RTL */
+[dir="rtl"] {
+  scroll-behavior: smooth;
+}
+
+/* Fix for horizontal scroll containers */
+.scroll-container-rtl {
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+[dir="rtl"] .scroll-container-rtl {
+  direction: ltr;
+}
+
+[dir="rtl"] .scroll-container-rtl > * {
+  direction: rtl;
+}
+
+/* ===========================================================================
+   Accessibility (Israeli Standard 5568 / WCAG 2.1 AA)
+   =========================================================================== */
+
+/* Placeholder text contrast — default browser placeholders are too light
+   (≈2.5:1). These tokens meet WCAG AA against the input backgrounds used. */
+::placeholder {
+  color: #6b7280; /* gray-500 ≈ 4.8:1 on white */
+  opacity: 1;
+}
+@media (prefers-color-scheme: dark) {
+  ::placeholder {
+    color: #9aa4b2;
+  }
+}
+
+/* Visible keyboard focus for every interactive element (keyboard only, via
+   :focus-visible). A single gold ring only reaches ~2.1:1 on the site's light
+   cream/white backgrounds, and navy is invisible on the dark navy sections, so
+   the indicator is dual-tone: a navy outline that stands out on light surfaces
+   plus a pale-gold halo that stands out on dark surfaces. At least one layer
+   always clears the 3:1 non-text-contrast guidance. !important lets it override
+   Tailwind's `outline-none` and the per-component ring utilities for one
+   consistent, accessible focus style everywhere. */
+:focus-visible {
+  outline: 2px solid #1f2545 !important; /* brand navy — visible on light backgrounds */
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px #f3dfa0 !important; /* brand gold — visible on dark backgrounds */
+}
+
+/* Text-size control (accessibility widget). Scales the root font size so all
+   rem-based typography grows/shrinks together, while browser zoom keeps working. */
+html[data-font-scale="large"] {
+  font-size: 112.5%;
+}
+html[data-font-scale="xlarge"] {
+  font-size: 125%;
+}
+
+/* High-contrast mode (accessibility widget). Strengthens borders and removes
+   low-contrast translucency without repainting the whole palette. */
+html[data-contrast="high"] body {
+  --background: 0 0% 100%;
+  --foreground: 230 34% 8%;
+}
+html[data-contrast="high"] a {
+  text-decoration: underline;
+}
+html[data-contrast="high"] :where(button, a, input, textarea, select):focus-visible {
+  outline-width: 4px;
+}
+
+/* Reduced motion — honoured for users who set the OS preference AND for users
+   who toggle it in the accessibility widget (html[data-reduce-motion="true"]).
+   Neutralises CSS transitions/animations; JS-driven looping animations are
+   additionally gated in the components themselves. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+html[data-reduce-motion="true"] *,
+html[data-reduce-motion="true"] *::before,
+html[data-reduce-motion="true"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
