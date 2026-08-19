@@ -50,14 +50,18 @@ export async function generateMetadata({
   const article = await getArticle(slug);
 
   if (!article) {
-    return { title: 'המאמר לא נמצא | Traveliga' };
+    return { title: 'המאמר לא נמצא' };
   }
 
-  const title = article.seo?.metaTitle || article.title;
+  const metaTitle = article.seo?.metaTitle;
+  const title = metaTitle || article.title;
   const description = article.seo?.metaDescription || article.excerpt;
 
   return {
-    title: `${title} | Traveliga`,
+    // seo.metaTitle is authored in Sanity as a complete title (already includes
+    // "| Traveliga"), so it must bypass the root layout's `%s | Traveliga`
+    // template — otherwise the site name gets appended twice.
+    title: metaTitle ? { absolute: metaTitle } : article.title,
     description,
     openGraph: {
       title,
