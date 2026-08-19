@@ -32,6 +32,12 @@ And whenever the user explicitly asks to update, add to, or clean up the list.
 4. **Actually save the file.** This skill's job is to leave `TODO.md` correct on disk — don't just describe what should change and stop there.
 5. Briefly tell the user what changed (what got removed, what got added) rather than dumping the whole file back at them — they can open it themselves if they want the full contents.
 
+## Items held open until user sign-off
+
+Some items must NOT be removed or checked off when the code work merges — they stay open until the user explicitly confirms the feature works in the real, deployed site. Even if a PR that fully implements the fix is merged, leave these until the user gives the OK:
+
+- **Fix the video section** — keep this item open until the user confirms that a real video has been uploaded (via Sanity Studio) and plays correctly on the live `/gallery/videos` page. The embed-parsing/analytics fix was merged in PR #16, but "code merged" is not "verified working with real content." Only remove this item once the user says the video is uploaded and working well. When leaving it open post-merge, it's fine to add a short parenthetical noting the code is merged and it's awaiting the user's end-to-end verification.
+
 ## A note on judgment
 
 Don't blindly remove an item just because related work happened — confirm it's actually resolved (e.g. a PR that touches the same file isn't automatically the PR that closes the todo item; check what it actually did). Conversely, don't leave stale items sitting around out of caution once you have good evidence they're done. When genuinely unsure whether something is finished, it's fine to leave it and note the uncertainty to the user rather than guessing.
