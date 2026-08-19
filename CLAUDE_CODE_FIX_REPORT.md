@@ -1,5 +1,7 @@
 # Traveliga rebrand cleanup — Claude Code fix report
 
+> **Status: RESOLVED.** Every item below was fixed directly in Sanity (site settings, both article SEO titles, all seven testimonial texts — published, approval status untouched) and re-verified with zero remaining legacy-brand matches. See the follow-up pass in [`QA_FOLLOWUP_REPORT.md`](QA_FOLLOWUP_REPORT.md) for confirmation. This file is kept as a historical record; no action is needed from it.
+
 ## Objective
 
 Remove every remaining trace of the former brand from the Traveliga website and Sanity CMS:

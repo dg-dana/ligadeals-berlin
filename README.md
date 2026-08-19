@@ -4,7 +4,15 @@ Hebrew-language (RTL) website for **Traveliga** — Meital's personal accompanim
 
 Built with Next.js 16 (App Router, React 19), Sanity as the CMS, Cloudinary for media, and Resend for transactional email.
 
-**Live site:** [traveliga.vercel.app](https://traveliga.vercel.app)
+**Live site:** [traveliga-dana20.vercel.app](https://traveliga-dana20.vercel.app) (placeholder Vercel subdomain — no custom domain purchased yet)
+
+---
+
+## Current status
+
+- **Rebrand complete**: renamed from "Liga Deals Berlin" to **Traveliga** across the codebase, GitHub repo (`dg-dana/traveliga`), Vercel project, and Sanity project. Verified clean by two independent QA passes — see [`CLAUDE_CODE_FIX_REPORT.md`](CLAUDE_CODE_FIX_REPORT.md) and [`QA_FOLLOWUP_REPORT.md`](QA_FOLLOWUP_REPORT.md) (both resolved; fixes landed in PRs [#11](https://github.com/dg-dana/traveliga/pull/11), [#12](https://github.com/dg-dana/traveliga/pull/12), [#13](https://github.com/dg-dana/traveliga/pull/13)).
+- **Deployment protection** (Vercel Authentication) is currently **disabled** so the site is publicly reachable for QA — re-enable it in Vercel Project Settings → Deployment Protection if that public exposure wasn't intended long-term.
+- **Next step**: buy a real domain — `traveliga.com` is used as a placeholder throughout metadata, emails, and `.env`, but no domain has actually been purchased yet. Once one is bought, confirm/update it in the `NEXT_PUBLIC_SITE_URL`, `RESEND_FROM_EMAIL`, `CONTACT_EMAIL`, and `CONTACT_TO_EMAIL` rows in [Environment variables](#environment-variables) below, plus the Sanity `siteSettings.email` field, then point the Vercel project and Resend domain verification at it.
 
 ---
 

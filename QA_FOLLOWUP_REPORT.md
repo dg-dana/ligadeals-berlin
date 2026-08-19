@@ -1,5 +1,7 @@
 # Traveliga follow-up QA report
 
+> **Status: RESOLVED.** The rebrand-verification findings in this report were already clean at the time of writing. The three newly-found bugs (sitemap 404 links, duplicate `/blog/category/restaurants` entry, missing article Twitter cards) were fixed in [PR #13](https://github.com/dg-dana/traveliga/pull/13) — `app/sitemap.ts` no longer lists nonexistent gallery detail routes or duplicate categories, and `app/blog/[slug]/page.tsx` now sets article-specific Twitter metadata. This file is kept as a historical record; no action is needed from it.
+
 Date: 2026-08-19  
 Site: `https://traveliga-dana20.vercel.app`  
 Repository: `master`
