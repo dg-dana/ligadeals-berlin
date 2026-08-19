@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useReducedMotion } from '@/lib/a11y/useReducedMotion'
+import { getVideoEmbed } from '@/lib/video/embed'
+import { trackVideoPlay, trackGalleryInteraction } from '@/lib/analytics/events'
 
 export interface Video {
   id: string
@@ -29,6 +31,18 @@ export default function VideoGallery({ videos, categories = [] }: VideoGalleryPr
   const openVideo = (video: Video) => {
     triggerRef.current = document.activeElement as HTMLElement
     setSelectedVideo(video)
+    const embed = getVideoEmbed(video.videoUrl)
+    trackVideoPlay({
+      video_title: video.title,
+      video_id: video.id,
+      video_provider: embed?.provider,
+    })
+    trackGalleryInteraction({
+      gallery_type: 'videos',
+      action: 'open',
+      item_id: video.id,
+      item_title: video.title,
+    })
   }
 
   const allCategories = ['הכל', ...categories]
@@ -37,27 +51,6 @@ export default function VideoGallery({ videos, categories = [] }: VideoGalleryPr
   const filteredVideos = videos.filter(
     (video) => selectedCategory === 'הכל' || video.category === selectedCategory
   )
-
-  // Convert YouTube/Vimeo URL to embed URL.
-  // The iframe is only rendered once a visitor opens a video, so no request
-  // reaches YouTube/Vimeo until they choose to play one. YouTube is embedded
-  // through youtube-nocookie.com and Vimeo with Do Not Track enabled, so
-  // neither can drop tracking cookies on playback.
-  const getEmbedUrl = (url: string): string => {
-    // YouTube
-    if (url.includes('youtube.com') || url.includes('youtu.be')) {
-      const videoId = url.includes('youtu.be')
-        ? url.split('youtu.be/')[1]?.split('?')[0]
-        : url.split('v=')[1]?.split('&')[0]
-      return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`
-    }
-    // Vimeo
-    if (url.includes('vimeo.com')) {
-      const videoId = url.split('vimeo.com/')[1]?.split('?')[0]
-      return `https://player.vimeo.com/video/${videoId}?autoplay=1&dnt=1`
-    }
-    return url
-  }
 
   // Close modal on ESC key
   useEffect(() => {
@@ -244,15 +237,38 @@ export default function VideoGallery({ videos, categories = [] }: VideoGalleryPr
               className="relative w-full max-w-6xl"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Responsive Video Iframe */}
+              {/* Responsive Video Iframe (with graceful fallback for
+                  URLs we can't embed, so visitors never see a broken player) */}
               <div className="relative aspect-video w-full overflow-hidden rounded-lg shadow-2xl">
-                <iframe
-                  src={getEmbedUrl(selectedVideo.videoUrl)}
-                  title={selectedVideo.title}
-                  className="absolute inset-0 h-full w-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+                {(() => {
+                  const embed = getVideoEmbed(selectedVideo.videoUrl)
+                  if (embed) {
+                    return (
+                      <iframe
+                        src={embed.embedUrl}
+                        title={selectedVideo.title}
+                        className="absolute inset-0 h-full w-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    )
+                  }
+                  return (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-navy-900 p-6 text-center">
+                      <p className="text-white">
+                        לא ניתן להטמיע את הסרטון הזה כאן.
+                      </p>
+                      <a
+                        href={selectedVideo.videoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-full bg-gold-400 px-6 py-2 font-semibold text-navy-800 transition-colors hover:bg-gold-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                      >
+                        צפייה בסרטון במקור
+                      </a>
+                    </div>
+                  )
+                })()}
               </div>
 
               {/* Video Info Below Player */}
