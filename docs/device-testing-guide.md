@@ -1,7 +1,7 @@
-# Device Testing Guide - Liga Deals Berlin
+# Device Testing Guide - Traveliga
 
 ## Overview
-This guide provides comprehensive instructions for testing the Liga Deals Berlin website across different devices, browsers, and network conditions.
+This guide provides comprehensive instructions for testing the Traveliga website across different devices, browsers, and network conditions.
 
 ---
 

@@ -1,4 +1,4 @@
-# מדריך פריסה מהיר - LigaDeals Berlin
+# מדריך פריסה מהיר - Traveliga
 ## Quick Start Deployment Guide
 
 ---
@@ -42,7 +42,7 @@ git push origin main
 
    ![Add New Project](https://vercel.com/_next/image?url=%2Fdocs-proxy%2Fstatic%2Fdocs%2Fconcepts%2Fprojects%2Fadd-new-project.png&w=3840&q=75)
 
-2. **בחר את הרפוזיטורי "ligadeals-berlin"**
+2. **בחר את הרפוזיטורי "traveliga"**
    - אם לא רואה אותו, לחץ על "Adjust GitHub App Permissions"
    - תן הרשאות ל-Vercel לגשת לרפוזיטורי
 
@@ -54,7 +54,7 @@ git push origin main
 
 | שדה | ערך |
 |-----|-----|
-| **Project Name** | `ligadeals-berlin` (או כל שם שתרצה) |
+| **Project Name** | `traveliga` (או כל שם שתרצה) |
 | **Framework Preset** | Next.js (אמור להתגלות אוטומטית ✅) |
 | **Root Directory** | `./` (השורש - השאר כמו שזה) |
 | **Build Command** | `npm run build` (אוטומטי ✅) |
@@ -158,7 +158,7 @@ Environment: Production
 
 ```
 Name: RESEND_FROM_EMAIL
-Value: noreply@ligadeals-berlin.com
+Value: noreply@traveliga.com
 Environment: Production
 ```
 
@@ -187,7 +187,7 @@ Environment: Production
 **Security & Performance:**
 ```
 Name: NEXT_PUBLIC_SITE_URL
-Value: https://ligadeals-berlin.vercel.app [כרגע, נשנה אחר כך לדומיין שלך]
+Value: https://traveliga.vercel.app [כרגע, נשנה אחר כך לדומיין שלך]
 Environment: Production
 ```
 
@@ -205,7 +205,7 @@ Environment: Production
 
 ```
 Name: ALLOWED_ORIGINS
-Value: https://ligadeals-berlin.vercel.app [נוסיף את הדומיין האמיתי אחר כך]
+Value: https://traveliga.vercel.app [נוסיף את הדומיין האמיתי אחר כך]
 Environment: Production
 ```
 
@@ -239,7 +239,7 @@ Environment: Production
 
 ### 5.1 בדוק שהאתר טוען
 
-1. **פתח את ה-URL של Vercel** (משהו כמו `https://ligadeals-berlin.vercel.app`)
+1. **פתח את ה-URL של Vercel** (משהו כמו `https://traveliga.vercel.app`)
 2. **ודא שדף הבית נטען**
 
 ### 5.2 בדוק את ה-API Routes
@@ -353,29 +353,29 @@ Header value: [אותה מחרוזת שהשתמשת ב-SANITY_WEBHOOK_SECRET]
 - **GoDaddy** - [godaddy.com](https://godaddy.com)
 - **Google Domains** - [domains.google.com](https://domains.google.com)
 
-**מומלץ**: `ligadeals-berlin.com` או משהו דומה
+**מומלץ**: `traveliga.com` או משהו דומה
 
 ### 7.2 הוסף דומיין ב-Vercel
 
 1. **ב-Vercel Dashboard, בחר את הפרויקט שלך**
 2. **לחץ "Settings" (למעלה)**
 3. **בתפריט הצד, לחץ "Domains"**
-4. **הקלד את הדומיין שלך** (לדוגמה: `ligadeals-berlin.com`)
+4. **הקלד את הדומיין שלך** (לדוגמה: `traveliga.com`)
 5. **לחץ "Add"**
 
 ### 7.3 Vercel יציג לך את רשומות ה-DNS
 
 אתה תראה משהו כזה:
 
-**עבור Domain Root (ligadeals-berlin.com):**
+**עבור Domain Root (traveliga.com):**
 ```
 Type: A
-Name: @ (או ligadeals-berlin.com)
+Name: @ (או traveliga.com)
 Value: 76.76.21.21
 TTL: 3600
 ```
 
-**עבור www (www.ligadeals-berlin.com):**
+**עבור www (www.traveliga.com):**
 ```
 Type: CNAME
 Name: www
@@ -413,10 +413,10 @@ TTL: 3600
 **בדיקה:**
 ```bash
 # Windows
-nslookup ligadeals-berlin.com
+nslookup traveliga.com
 
 # Mac/Linux
-dig ligadeals-berlin.com
+dig traveliga.com
 ```
 
 אמור להחזיר: `76.76.21.21`
@@ -428,7 +428,7 @@ Vercel יטפל בזה בשבילך! תראה:
 
 **בדיקה:**
 ```bash
-curl -I https://ligadeals-berlin.com
+curl -I https://traveliga.com
 ```
 
 אמור להחזיר: `HTTP/2 200`
@@ -439,8 +439,8 @@ curl -I https://ligadeals-berlin.com
 
 **עדכן:**
 ```
-NEXT_PUBLIC_SITE_URL = https://ligadeals-berlin.com
-ALLOWED_ORIGINS = https://ligadeals-berlin.com,https://www.ligadeals-berlin.com
+NEXT_PUBLIC_SITE_URL = https://traveliga.com
+ALLOWED_ORIGINS = https://traveliga.com,https://www.traveliga.com
 ```
 
 **Redeploy:**
@@ -450,7 +450,7 @@ ALLOWED_ORIGINS = https://ligadeals-berlin.com,https://www.ligadeals-berlin.com
 
 1. **Sanity Dashboard → API → Webhooks**
 2. **ערוך את ה-Webhook**
-3. **שנה URL ל-**: `https://ligadeals-berlin.com/api/revalidate`
+3. **שנה URL ל-**: `https://traveliga.com/api/revalidate`
 4. **Save**
 
 **✅ Checkpoint**: הדומיין שלך פועל עם HTTPS!
@@ -488,7 +488,7 @@ ALLOWED_ORIGINS = https://ligadeals-berlin.com,https://www.ligadeals-berlin.com
 
 ```bash
 # בדוק headers
-curl -I https://ligadeals-berlin.com
+curl -I https://traveliga.com
 ```
 
 אמור לראות:
@@ -581,7 +581,7 @@ x-content-type-options: nosniff
 
 **פתרון:**
 ```bash
-nslookup ligadeals-berlin.com
+nslookup traveliga.com
 ```
 צריך להחזיר: `76.76.21.21`
 
@@ -598,6 +598,6 @@ nslookup ligadeals-berlin.com
 
 ---
 
-**🎊 מזל טוב על ההשקה של LigaDeals Berlin! 🎊**
+**🎊 מזל טוב על ההשקה של Traveliga! 🎊**
 
 **עכשיו אפשר להתחיל לעזור לקהילה למצוא את הדילים הטובים ביותר בברלין!**

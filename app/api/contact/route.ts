@@ -123,13 +123,13 @@ export async function POST(request: NextRequest) {
     const toEmail = process.env.CONTACT_TO_EMAIL || 'dgxcoding@gmail.com';
 
     const phoneLine = body.phone ? `\nטלפון: ${body.phone}` : '';
-    const textBody = `הודעה חדשה מטופס יצירת קשר — Liga Deals Berlin\n\nשם: ${body.name}\nאימייל: ${body.email}${phoneLine}\n\nהודעה:\n${body.message}`;
+    const textBody = `הודעה חדשה מטופס יצירת קשר — Traveliga\n\nשם: ${body.name}\nאימייל: ${body.email}${phoneLine}\n\nהודעה:\n${body.message}`;
 
     const { data, error } = await resend.emails.send({
-      from: 'Liga Deals Berlin <onboarding@resend.dev>',
+      from: 'Traveliga <onboarding@resend.dev>',
       to: [toEmail],
       replyTo: body.email,
-      subject: `הודעה חדשה מ-${body.name} — Liga Deals Berlin`,
+      subject: `הודעה חדשה מ-${body.name} — Traveliga`,
       text: textBody,
     });
 

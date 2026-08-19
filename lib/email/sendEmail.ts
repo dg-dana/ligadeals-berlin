@@ -58,10 +58,10 @@ export async function sendContactFormEmail(
 
     // Send email using Resend
     const { data: result, error } = await getResendClient().emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'LigaDeals <noreply@ligadeals-berlin.com>',
+      from: process.env.RESEND_FROM_EMAIL || 'Traveliga <noreply@traveliga.com>',
       to: process.env.CONTACT_EMAIL,
       replyTo: data.email,
-      subject: `הודעה חדשה מ-${data.name} - LigaDeals Berlin`,
+      subject: `הודעה חדשה מ-${data.name} - Traveliga`,
       html: emailHtml,
       tags: [
         {
@@ -116,9 +116,9 @@ export async function sendThankYouEmail(
 
     // Send email using Resend
     const { data: result, error } = await getResendClient().emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'LigaDeals <noreply@ligadeals-berlin.com>',
+      from: process.env.RESEND_FROM_EMAIL || 'Traveliga <noreply@traveliga.com>',
       to: data.email,
-      subject: 'תודה שפנית אלינו - LigaDeals Berlin 🙏',
+      subject: 'תודה שפנית אלינו - Traveliga 🙏',
       html: emailHtml,
       tags: [
         {

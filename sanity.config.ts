@@ -38,8 +38,8 @@ function withHebrewLabel(action: DocumentActionComponent): DocumentActionCompone
 }
 
 export default defineConfig({
-  name: 'ligadeals-berlin',
-  title: 'Liga Deals Berlin - מועדון הטבות בברלין',
+  name: 'traveliga',
+  title: 'Traveliga - מועדון הטבות בברלין',
 
   projectId: '7s19ept6',
   dataset: 'production',

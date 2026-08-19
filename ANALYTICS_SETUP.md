@@ -1,6 +1,6 @@
 # Google Analytics 4 Setup Guide
 
-This guide will help you set up Google Analytics 4 (GA4) for the LigaDeals Berlin website.
+This guide will help you set up Google Analytics 4 (GA4) for the Traveliga website.
 
 ## Why Google Analytics 4?
 
@@ -19,14 +19,14 @@ This guide will help you set up Google Analytics 4 (GA4) for the LigaDeals Berli
 2. Click **"Start measuring"** or **"Admin"** (if you already have an account)
 3. In the Admin panel, click **"Create Account"**
 4. Enter account details:
-   - **Account Name**: "LigaDeals Berlin"
+   - **Account Name**: "Traveliga"
    - Check the data sharing settings you're comfortable with
 5. Click **"Next"**
 
 ### 2. Create a Property
 
 1. Enter property details:
-   - **Property Name**: "LigaDeals Berlin Website"
+   - **Property Name**: "Traveliga Website"
    - **Reporting Time Zone**: "Germany (GMT+1)"
    - **Currency**: "Euro (EUR)"
 2. Click **"Next"**
@@ -44,8 +44,8 @@ This guide will help you set up Google Analytics 4 (GA4) for the LigaDeals Berli
 
 1. Choose platform: **Web**
 2. Enter website details:
-   - **Website URL**: `https://ligadeals-berlin.com`
-   - **Stream Name**: "LigaDeals Berlin Web"
+   - **Website URL**: `https://traveliga.com`
+   - **Stream Name**: "Traveliga Web"
 3. **Enhanced measurement** should be enabled by default (recommended):
    - ✅ Page views
    - ✅ Scrolls

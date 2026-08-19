@@ -2,7 +2,7 @@
 
 /**
  * Pre-Deployment Verification Script
- * LigaDeals Berlin
+ * Traveliga
  *
  * This script verifies that all required environment variables and configurations
  * are in place before deploying to production.
@@ -399,7 +399,7 @@ function printSummary(results: VerificationResult[]) {
 // Main execution
 async function main() {
   log(`\n${colors.bold}${colors.cyan}╔══════════════════════════════════════════════════════════╗${colors.reset}`);
-  log(`${colors.bold}${colors.cyan}║   LigaDeals Berlin - Pre-Deployment Verification        ║${colors.reset}`);
+  log(`${colors.bold}${colors.cyan}║   Traveliga - Pre-Deployment Verification        ║${colors.reset}`);
   log(`${colors.bold}${colors.cyan}╚══════════════════════════════════════════════════════════╝${colors.reset}\n`);
 
   info('Running pre-deployment checks...\n');

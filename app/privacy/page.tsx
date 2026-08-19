@@ -5,10 +5,10 @@ import { getSiteSettings } from '@/lib/sanity/siteSettings';
 export const metadata: Metadata = {
   title: 'מדיניות פרטיות',
   description:
-    'מדיניות הפרטיות של Liga Deals Berlin - איזה מידע נאסף באתר, למה ואיך משתמשים בו, מי הצדדים השלישיים המעורבים, כמה זמן המידע נשמר ואילו זכויות עומדות לכם.',
+    'מדיניות הפרטיות של Traveliga - איזה מידע נאסף באתר, למה ואיך משתמשים בו, מי הצדדים השלישיים המעורבים, כמה זמן המידע נשמר ואילו זכויות עומדות לכם.',
   alternates: { canonical: '/privacy' },
   openGraph: {
-    title: 'מדיניות פרטיות | Liga Deals Berlin',
+    title: 'מדיניות פרטיות | Traveliga',
     description:
       'הסבר מלא ושקוף על איסוף המידע, השימוש בו, קובצי Cookie, אנליטיקה והזכויות שלכם.',
     url: '/privacy',
@@ -117,7 +117,7 @@ export default async function PrivacyPage() {
           <section id="general" className={sectionClass}>
             <h2 className={headingClass}>כללי ומי אחראי על המידע</h2>
             <p>
-              Liga Deals Berlin (&quot;אנחנו&quot;, &quot;האתר&quot;) הוא מדריך בעברית לברלין
+              Traveliga (&quot;אנחנו&quot;, &quot;האתר&quot;) הוא מדריך בעברית לברלין
               ושירות ליווי אישי לתכנון טיולים, המופעל על ידי מיטל מברלין, גרמניה. אנחנו מכבדים את
               פרטיותכם ומחויבים לשקיפות מלאה לגבי המידע שאנחנו אוספים.
             </p>

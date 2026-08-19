@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'תנאי שימוש',
-  description: 'תנאי השימוש באתר Liga Deals Berlin.',
+  description: 'תנאי השימוש באתר Traveliga.',
 };
 
 export default function TermsPage() {
@@ -17,7 +17,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-bold text-navy-700 dark:text-white mb-3">כללי</h2>
             <p>
-              ברוכים הבאים לאתר Liga Deals Berlin. השימוש באתר, בתכניו ובשירותיו כפוף לתנאים
+              ברוכים הבאים לאתר Traveliga. השימוש באתר, בתכניו ובשירותיו כפוף לתנאים
               המפורטים להלן. גלישה באתר מהווה הסכמה לתנאים אלה. אם אינכם מסכימים להם, אנא הימנעו
               משימוש באתר.
             </p>
@@ -36,7 +36,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-bold text-navy-700 dark:text-white mb-3">הטבות ועסקים מומלצים</h2>
             <p>
-              ההטבות וההמלצות באתר ניתנות על ידי בתי העסק עצמם ובאחריותם. Liga Deals Berlin אינה
+              ההטבות וההמלצות באתר ניתנות על ידי בתי העסק עצמם ובאחריותם. Traveliga אינה
               צד לעסקה בינכם לבין בית העסק ואינה אחראית לטיב המוצרים או השירותים הניתנים על ידו.
             </p>
           </section>
@@ -44,7 +44,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-bold text-navy-700 dark:text-white mb-3">קניין רוחני</h2>
             <p>
-              כל התכנים באתר - טקסטים, תמונות, לוגו ועיצוב - שייכים ל-Liga Deals Berlin או
+              כל התכנים באתר - טקסטים, תמונות, לוגו ועיצוב - שייכים ל-Traveliga או
               לבעלי הזכויות בהם, אלא אם צוין אחרת. אין להעתיק, לשכפל או להפיץ תכנים מהאתר למטרות
               מסחריות ללא אישור מראש ובכתב.
             </p>
@@ -76,7 +76,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-bold text-navy-700 dark:text-white mb-3">הגבלת אחריות</h2>
             <p>
-              השימוש באתר נעשה על אחריותכם בלבד. Liga Deals Berlin לא תישא באחריות לכל נזק ישיר
+              השימוש באתר נעשה על אחריותכם בלבד. Traveliga לא תישא באחריות לכל נזק ישיר
               או עקיף הנובע מהשימוש באתר או מהסתמכות על המידע המופיע בו.
             </p>
           </section>
@@ -94,10 +94,10 @@ export default function TermsPage() {
             <p>
               לשאלות על תנאי השימוש אפשר לפנות אלינו בכתובת{' '}
               <a
-                href="mailto:info@ligadeals-berlin.com"
+                href="mailto:info@traveliga.com"
                 className="text-gold-800 underline hover:text-gold-900 dark:text-gold-400 dark:hover:text-gold-300"
               >
-                info@ligadeals-berlin.com
+                info@traveliga.com
               </a>
               .
             </p>

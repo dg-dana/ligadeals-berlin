@@ -1,6 +1,6 @@
-# מדריך Sanity Studio - Liga Deals Berlin
+# מדריך Sanity Studio - Traveliga
 
-ברוכים הבאים ל-Sanity Studio של Liga Deals Berlin! מערכת ניהול התוכן המותאמת לעברית עם תמיכה RTL מלאה.
+ברוכים הבאים ל-Sanity Studio של Traveliga! מערכת ניהול התוכן המותאמת לעברית עם תמיכה RTL מלאה.
 
 ## 📚 תוכן עניינים
 
@@ -35,7 +35,7 @@
 ### גישה ל-Sanity Studio
 
 1. פתח דפדפן (Chrome, Firefox, או Edge)
-2. היכנס ל: `https://ligadeals-berlin.com/studio`
+2. היכנס ל: `https://traveliga.com/studio`
 3. התחבר עם חשבון Google או GitHub
 4. התחל לערוך!
 
@@ -187,10 +187,10 @@
 - **פתרון בעיות:** [troubleshooting.md](./troubleshooting.md)
 
 ### יצירת קשר
-- 📧 **אימייל:** admin@ligadeals-berlin.com
+- 📧 **אימייל:** admin@traveliga.com
 - 💬 **צ'אט:** [קישור לצ'אט]
 - 📱 **טלפון:** [מספר טלפון]
-- 🌐 **אתר:** https://ligadeals-berlin.com
+- 🌐 **אתר:** https://traveliga.com
 
 ### שאלות נפוצות (FAQ)
 
@@ -244,4 +244,4 @@ Sanity משתמש ב-SSO (Single Sign-On). שנה סיסמה דרך חשבון G
 
 **📝 הערה:** תיעוד זה מתעדכן באופן קבוע. תאריך עדכון אחרון: **יום/חודש/שנה**
 
-**🙏 תודה שאתם משתמשים ב-Sanity Studio של Liga Deals Berlin!**
+**🙏 תודה שאתם משתמשים ב-Sanity Studio של Traveliga!**

@@ -5,8 +5,8 @@ import TestimonialsGrid, { type Testimonial } from '@/components/TestimonialsGri
 import type { SanityImage } from '@/lib/sanity/types';
 
 export const metadata: Metadata = {
-  title: 'המלצות | Liga Deals Berlin',
-  description: 'המלצות מלקוחות Liga Deals Berlin על הטיולים והחוויות שלהם בברלין.',
+  title: 'המלצות | Traveliga',
+  description: 'המלצות מלקוחות Traveliga על הטיולים והחוויות שלהם בברלין.',
 };
 
 interface SanityTestimonial {

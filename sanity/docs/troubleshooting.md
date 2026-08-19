@@ -314,7 +314,7 @@
 
 ### מידע ליצירת קשר:
 
-- **אימייל:** [admin@ligadeals-berlin.com](mailto:admin@ligadeals-berlin.com)
+- **אימייל:** [admin@traveliga.com](mailto:admin@traveliga.com)
 - **טלפון:** [מספר טלפון]
 - **Slack/Discord:** [קישור]
 

@@ -1,6 +1,6 @@
-# 📚 LigaDeals Berlin - Documentation
+# 📚 Traveliga - Documentation
 
-Welcome to the LigaDeals Berlin documentation!
+Welcome to the Traveliga documentation!
 
 ## 🚀 Deployment Guides
 

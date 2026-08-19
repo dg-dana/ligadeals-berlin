@@ -24,16 +24,16 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo - Right side for RTL */}
           <div className="flex-shrink-0 order-2 md:order-1">
-            <Link href="/" className="flex items-center" aria-label="Liga Deals Berlin - חזרה לדף הבית">
+            <Link href="/" className="flex items-center" aria-label="Traveliga - חזרה לדף הבית">
               <Image
-                src="/ligadeals-mark.svg"
+                src="/traveliga-mark.svg"
                 alt=""
                 width={44}
                 height={44}
                 priority
               />
               <span className="ms-3 text-xl font-bold text-navy-700 dark:text-cream-100">
-                Liga Deals Berlin
+                Traveliga
               </span>
             </Link>
           </div>

@@ -463,7 +463,7 @@
 
 **Set 2 - טיפים**:
 ```
-#טיפיםלטיול #מדריךטיולים #ליגהדילס #ligadeals #traveltips #travelguide #howtotravel #travelhacks #budgettravel #backpacking #solotravel #grouptravel #travelplanning #tripadvisor #lonelyplanet
+#טיפיםלטיול #מדריךטיולים #טרווליגה #traveliga #traveltips #travelguide #howtotravel #travelhacks #budgettravel #backpacking #solotravel #grouptravel #travelplanning #tripadvisor #lonelyplanet
 ```
 
 **Set 3 - תרבות**:

@@ -21,7 +21,7 @@ export interface SiteSettings {
 // siteSettings document (the source of truth) so a fetch error can never surface
 // placeholder/example contact data on the production site.
 const FALLBACK_SITE_SETTINGS: SiteSettings = {
-  email: 'info@ligadeals-berlin.com',
+  email: 'info@traveliga.com',
   phone: '+49 177 7258599',
   whatsapp: '491777258599',
 };

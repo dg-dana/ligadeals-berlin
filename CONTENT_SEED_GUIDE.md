@@ -1,4 +1,4 @@
-# Content Seeding Guide for LigaDeals Berlin
+# Content Seeding Guide for Traveliga
 
 This guide explains how to populate your Sanity CMS with sample content using the seed script.
 
@@ -17,7 +17,7 @@ You need a write token to allow the script to create content in your Sanity data
 
 **Steps:**
 1. Go to [sanity.io/manage](https://sanity.io/manage)
-2. Select your project: **LigaDeals Berlin** (Project ID: `7s19ept6`)
+2. Select your project: **Traveliga** (Project ID: `7s19ept6`)
 3. Go to **API** → **Tokens**
 4. Click **Add API token**
 5. Enter token name: `Content Seeder`

@@ -3,10 +3,10 @@ import { urlForImage } from '../sanity/imageBuilder';
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 // Site configuration
-const SITE_NAME = 'LigaDeals Berlin';
+const SITE_NAME = 'Traveliga';
 const SITE_DESCRIPTION = 'המדריך המקיף לחיים בברלין - טיפים, מדריכים, ותוכן איכותי בעברית';
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://ligadeals-berlin.com';
-const DEFAULT_OG_IMAGE = `${SITE_URL}/ligadeals-logo.png`;
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://traveliga.com';
+const DEFAULT_OG_IMAGE = `${SITE_URL}/traveliga-logo.png`;
 
 // Metadata configuration interface
 export interface MetadataConfig {
@@ -81,7 +81,7 @@ export function getDefaultMetadata(): Metadata {
       title: SITE_NAME,
       description: SITE_DESCRIPTION,
       images: [DEFAULT_OG_IMAGE],
-      creator: '@ligadeals',
+      creator: '@traveliga',
     },
     alternates: {
       canonical: SITE_URL,
@@ -214,7 +214,7 @@ export function generateArticleMetadata(config: MetadataConfig): Metadata {
       title: title || SITE_NAME,
       description,
       images: [ogImage],
-      creator: '@ligadeals',
+      creator: '@traveliga',
     },
     alternates: {
       canonical: pageUrl,
@@ -275,15 +275,15 @@ export function generateOrganizationStructuredData() {
     description: SITE_DESCRIPTION,
     contactPoint: {
       '@type': 'ContactPoint',
-      email: process.env.CONTACT_EMAIL || 'contact@ligadeals-berlin.com',
+      email: process.env.CONTACT_EMAIL || 'contact@traveliga.com',
       contactType: 'Customer Service',
       availableLanguage: ['Hebrew', 'English', 'German'],
     },
     sameAs: [
       // Add your social media URLs here
-      // 'https://www.facebook.com/ligadeals',
-      // 'https://www.instagram.com/ligadeals',
-      // 'https://www.twitter.com/ligadeals',
+      // 'https://www.facebook.com/traveliga',
+      // 'https://www.instagram.com/traveliga',
+      // 'https://www.twitter.com/traveliga',
     ],
   };
 }
