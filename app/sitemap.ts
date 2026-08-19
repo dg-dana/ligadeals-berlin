@@ -1,11 +1,6 @@
 import { MetadataRoute } from 'next';
 import { sanityFetch } from '@/lib/sanity/client';
-import {
-  getAllArticlesQuery,
-  getAllCategoriesQuery,
-  getAllPhotosQuery,
-  getAllVideosQuery,
-} from '@/lib/sanity/queries';
+import { getAllArticlesQuery, getAllCategoriesQuery } from '@/lib/sanity/queries';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://traveliga.com';
 
@@ -20,18 +15,6 @@ interface Category {
   slug: { current: string };
 }
 
-// Photo interface for sitemap
-interface Photo {
-  _id: string;
-  date?: string;
-}
-
-// Video interface for sitemap
-interface Video {
-  _id: string;
-  publishedAt?: string;
-}
-
 /**
  * Generate dynamic sitemap for the entire site
  * This function is called automatically by Next.js
@@ -39,7 +22,7 @@ interface Video {
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
     // Fetch all content from Sanity in parallel
-    const [articles, categories, photos, videos] = await Promise.all([
+    const [articles, categories] = await Promise.all([
       sanityFetch<Article[]>({
         query: getAllArticlesQuery,
         params: { start: 0, end: 1000 }, // Fetch up to 1000 articles
@@ -47,16 +30,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }),
       sanityFetch<Category[]>({
         query: getAllCategoriesQuery,
-        revalidate: 3600,
-      }),
-      sanityFetch<Photo[]>({
-        query: getAllPhotosQuery,
-        params: { start: 0, end: 1000 },
-        revalidate: 3600,
-      }),
-      sanityFetch<Video[]>({
-        query: getAllVideosQuery,
-        params: { start: 0, end: 1000 },
         revalidate: 3600,
       }),
     ]);
@@ -88,12 +61,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.9,
       },
       {
-        url: `${SITE_URL}/gallery`,
-        lastModified: new Date(),
-        changeFrequency: 'weekly',
-        priority: 0.7,
-      },
-      {
         url: `${SITE_URL}/gallery/photos`,
         lastModified: new Date(),
         changeFrequency: 'weekly',
@@ -117,9 +84,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.8,
       }));
 
-    // Category pages (skip any category missing a slug)
+    // Category pages (skip any category missing a slug; de-duplicate slugs
+    // since Sanity can contain more than one category document per slug)
+    const seenCategorySlugs = new Set<string>();
     const categoryPages: MetadataRoute.Sitemap = categories
-      .filter((category) => category.slug?.current)
+      .filter((category) => {
+        const slug = category.slug?.current;
+        if (!slug || seenCategorySlugs.has(slug)) return false;
+        seenCategorySlugs.add(slug);
+        return true;
+      })
       .map((category) => ({
         url: `${SITE_URL}/blog/category/${category.slug.current}`,
         lastModified: new Date(),
@@ -127,29 +101,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.7,
       }));
 
-    // Photo pages (if individual photo pages exist)
-    const photoPages: MetadataRoute.Sitemap = photos.map((photo) => ({
-      url: `${SITE_URL}/gallery/photos/${photo._id}`,
-      lastModified: photo.date ? new Date(photo.date) : new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.5,
-    }));
-
-    // Video pages (if individual video pages exist)
-    const videoPages: MetadataRoute.Sitemap = videos.map((video) => ({
-      url: `${SITE_URL}/gallery/videos/${video._id}`,
-      lastModified: video.publishedAt ? new Date(video.publishedAt) : new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.5,
-    }));
-
     // Combine all pages
+    // Note: individual gallery photo/video detail pages aren't real routes
+    // (only /gallery/photos and /gallery/videos exist), so they're
+    // intentionally excluded here.
     return [
       ...staticPages,
       ...articlePages,
       ...categoryPages,
-      ...photoPages,
-      ...videoPages,
     ];
   } catch (error) {
     console.error('Error generating sitemap:', error);
@@ -181,7 +140,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.9,
       },
       {
-        url: `${SITE_URL}/gallery`,
+        url: `${SITE_URL}/gallery/photos`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly',
+        priority: 0.7,
+      },
+      {
+        url: `${SITE_URL}/gallery/videos`,
         lastModified: new Date(),
         changeFrequency: 'weekly',
         priority: 0.7,

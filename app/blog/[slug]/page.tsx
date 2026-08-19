@@ -56,6 +56,9 @@ export async function generateMetadata({
   const metaTitle = article.seo?.metaTitle;
   const title = metaTitle || article.title;
   const description = article.seo?.metaDescription || article.excerpt;
+  const image = article.mainImage
+    ? urlFor(article.mainImage).width(1200).height(630).url()
+    : undefined;
 
   return {
     // seo.metaTitle is authored in Sanity as a complete title (already includes
@@ -66,9 +69,14 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      images: article.mainImage
-        ? [urlFor(article.mainImage).width(1200).height(630).url()]
-        : undefined,
+      images: image ? [image] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: image ? [image] : undefined,
+      creator: '@traveliga',
     },
   };
 }
