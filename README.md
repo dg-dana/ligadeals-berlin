@@ -1,10 +1,10 @@
-# LigaDeals Berlin
+# Traveliga
 
-Hebrew-language (RTL) website for **Liga Deals Berlin** — Meital's personal accompaniment service and guide to living in and visiting Berlin. The site publishes articles, photo and video galleries, and customer recommendations, all editable from a Sanity Studio without touching code.
+Hebrew-language (RTL) website for **Traveliga** — Meital's personal accompaniment service and guide to living in and visiting Berlin. The site publishes articles, photo and video galleries, and customer recommendations, all editable from a Sanity Studio without touching code.
 
 Built with Next.js 16 (App Router, React 19), Sanity as the CMS, Cloudinary for media, and Resend for transactional email.
 
-**Live site:** [ligadeals-berlin.vercel.app](https://ligadeals-berlin.vercel.app)
+**Live site:** [traveliga.vercel.app](https://traveliga.vercel.app)
 
 ---
 
@@ -84,8 +84,8 @@ Built with Next.js 16 (App Router, React 19), Sanity as the CMS, Cloudinary for 
 ### Install and run
 
 ```bash
-git clone https://github.com/dg-dana/ligadeals-berlin.git
-cd ligadeals-berlin
+git clone https://github.com/dg-dana/traveliga.git
+cd traveliga
 npm install
 
 cp .env.example .env.local
@@ -124,7 +124,7 @@ Copy `.env.example` to `.env.local` and fill in:
 | `CONTACT_EMAIL` | Yes | Public contact address shown in structured data and email templates |
 | `SANITY_WEBHOOK_SECRET` | Yes | HMAC secret for `/api/revalidate` |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Optional | Google Analytics 4 (loads only after consent) |
-| `NEXT_PUBLIC_SITE_URL` | Optional | Canonical site URL for metadata and Studio previews (defaults to `https://ligadeals-berlin.com`) |
+| `NEXT_PUBLIC_SITE_URL` | Optional | Canonical site URL for metadata and Studio previews (defaults to `https://traveliga.com`) |
 | `ALLOWED_ORIGINS` | Optional | Comma-separated CORS allowlist for API routes |
 | `RATE_LIMIT_WINDOW_MS` / `RATE_LIMIT_MAX_REQUESTS` | Optional | Override the defaults (60s / 100 requests) |
 

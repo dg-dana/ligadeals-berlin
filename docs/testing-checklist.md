@@ -1,7 +1,7 @@
-# Testing Checklist - Liga Deals Berlin
+# Testing Checklist - Traveliga
 
 ## Overview
-Comprehensive testing checklist for Liga Deals Berlin website with focus on RTL (Right-to-Left) support for Hebrew content.
+Comprehensive testing checklist for Traveliga website with focus on RTL (Right-to-Left) support for Hebrew content.
 
 ---
 

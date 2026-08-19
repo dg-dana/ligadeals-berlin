@@ -4,7 +4,7 @@ import Navigation from '@/components/Navigation'
 describe('Navigation Component', () => {
   it('renders the logo and site name', () => {
     renderWithProviders(<Navigation />)
-    expect(screen.getByText('Liga Deals Berlin')).toBeInTheDocument()
+    expect(screen.getByText('Traveliga')).toBeInTheDocument()
   })
 
   it('renders all menu items', () => {

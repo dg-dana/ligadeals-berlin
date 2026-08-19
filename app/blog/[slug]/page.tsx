@@ -50,14 +50,14 @@ export async function generateMetadata({
   const article = await getArticle(slug);
 
   if (!article) {
-    return { title: 'המאמר לא נמצא | Liga Deals Berlin' };
+    return { title: 'המאמר לא נמצא | Traveliga' };
   }
 
   const title = article.seo?.metaTitle || article.title;
   const description = article.seo?.metaDescription || article.excerpt;
 
   return {
-    title: `${title} | Liga Deals Berlin`,
+    title: `${title} | Traveliga`,
     description,
     openGraph: {
       title,

@@ -23,7 +23,7 @@ const Footer = ({ settings }: FooterProps) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* About Section */}
           <div>
-            <h3 className="text-xl font-bold mb-4 text-gold-400">Liga Deals Berlin</h3>
+            <h3 className="text-xl font-bold mb-4 text-gold-400">Traveliga</h3>
             <p className="text-navy-100 mb-4">
               כל מה שצריך לחופשה מושלמת בברלין: מדריכים בעברית, המלצות מקומיות וליווי אישי של מיטל - מומחית ברלין שגרה בעיר 17 שנה.
             </p>
@@ -154,7 +154,7 @@ const Footer = ({ settings }: FooterProps) => {
         {/* Bottom Bar */}
         <div className="border-t border-navy-600 mt-8 pt-8 text-center">
           <p className="text-navy-200">
-            © {currentYear} Liga Deals Berlin. כל הזכויות שמורות.
+            © {currentYear} Traveliga. כל הזכויות שמורות.
           </p>
           <div className="mt-2 flex justify-center gap-4 text-sm">
             <Link href="/privacy" className="text-navy-200 hover:text-white transition-colors">

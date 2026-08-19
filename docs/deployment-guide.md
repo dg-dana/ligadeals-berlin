@@ -1,5 +1,5 @@
 # מדריך פריסה לייצור (Production Deployment Guide)
-## LigaDeals Berlin
+## Traveliga
 
 ---
 
@@ -80,7 +80,7 @@ git push origin main
 
 2. **יבא את הפרויקט**
    - לחץ על "Add New..." → "Project"
-   - בחר את הרפוזיטורי `ligadeals-berlin` (או השם שנתת לפרויקט)
+   - בחר את הרפוזיטורי `traveliga` (או השם שנתת לפרויקט)
    - לחץ על "Import"
 
 3. **קונפיגורציה בסיסית**
@@ -167,13 +167,13 @@ Environment: Production
 
 ```env
 RESEND_FROM_EMAIL
-Value: noreply@ligadeals-berlin.com
+Value: noreply@traveliga.com
 Environment: Production
 ```
 
 ```env
 CONTACT_EMAIL
-Value: info@ligadeals-berlin.com
+Value: info@traveliga.com
 Environment: Production
 ```
 
@@ -195,7 +195,7 @@ Environment: Production
 
 ```env
 NEXT_PUBLIC_SITE_URL
-Value: https://ligadeals-berlin.com
+Value: https://traveliga.com
 Environment: Production
 ```
 
@@ -213,7 +213,7 @@ Environment: Production
 
 ```env
 ALLOWED_ORIGINS
-Value: https://ligadeals-berlin.com,https://www.ligadeals-berlin.com
+Value: https://traveliga.com,https://www.traveliga.com
 Environment: Production
 ```
 
@@ -236,21 +236,21 @@ Environment: Production
    - בחר "Domains" בתפריט הצד
 
 2. **הוסף את הדומיין**
-   - הקלד את הדומיין שלך (לדוגמה: `ligadeals-berlin.com`)
+   - הקלד את הדומיין שלך (לדוגמה: `traveliga.com`)
    - לחץ על "Add"
 
 3. **קונפיגורציה של DNS**
 
    Vercel יציג לך את רשומות ה-DNS שצריך להגדיר אצל רושם הדומיינים שלך:
 
-   **עבור דומיין ראשי (ligadeals-berlin.com):**
+   **עבור דומיין ראשי (traveliga.com):**
    ```
    Type: A
    Name: @
    Value: 76.76.21.21
    ```
 
-   **עבור www (www.ligadeals-berlin.com):**
+   **עבור www (www.traveliga.com):**
    ```
    Type: CNAME
    Name: www
@@ -285,10 +285,10 @@ Environment: Production
 
 ```bash
 # בדוק את תעודת ה-SSL
-curl -I https://ligadeals-berlin.com
+curl -I https://traveliga.com
 
 # אמת הפניית HTTP ל-HTTPS
-curl -I http://ligadeals-berlin.com
+curl -I http://traveliga.com
 ```
 
 אתה אמור לראות:
@@ -315,7 +315,7 @@ curl -I http://ligadeals-berlin.com
 3. **הגדר את ה-Webhook**
    ```
    Name: Vercel Production Deployment
-   URL: https://ligadeals-berlin.com/api/revalidate
+   URL: https://traveliga.com/api/revalidate
    Dataset: production
    Trigger on: Create, Update, Delete
    Filter: _type == "deal" || _type == "category" || _type == "testimonial" || _type == "page"
@@ -340,7 +340,7 @@ curl -I http://ligadeals-berlin.com
 ### בדיקות פונקציונליות
 
 - [ ] **העמוד הראשי טוען כראוי**
-  - גש ל-`https://ligadeals-berlin.com`
+  - גש ל-`https://traveliga.com`
   - ודא שכל התוכן מוצג
 
 - [ ] **דפי דילים עובדים**
@@ -383,12 +383,12 @@ curl -I http://ligadeals-berlin.com
 
 - [ ] **HTTPS פעיל**
   ```bash
-  curl -I https://ligadeals-berlin.com | grep "strict-transport-security"
+  curl -I https://traveliga.com | grep "strict-transport-security"
   ```
 
 - [ ] **Headers אבטחה**
   ```bash
-  curl -I https://ligadeals-berlin.com
+  curl -I https://traveliga.com
   ```
   ודא שיש:
   - `x-frame-options: DENY`
@@ -403,7 +403,7 @@ curl -I http://ligadeals-berlin.com
 - [ ] **Rate Limiting עובד**
   ```bash
   # נסה לשלוח הרבה בקשות מהר
-  for i in {1..150}; do curl https://ligadeals-berlin.com/api/contact; done
+  for i in {1..150}; do curl https://traveliga.com/api/contact; done
   ```
   אתה אמור לקבל 429 (Too Many Requests) אחרי 100 בקשות
 
@@ -415,11 +415,11 @@ curl -I http://ligadeals-berlin.com
   - ודא שיש Open Graph tags
 
 - [ ] **Sitemap**
-  - גש ל-`https://ligadeals-berlin.com/sitemap.xml`
+  - גש ל-`https://traveliga.com/sitemap.xml`
   - ודא שכל הדפים רשומים
 
 - [ ] **Robots.txt**
-  - גש ל-`https://ligadeals-berlin.com/robots.txt`
+  - גש ל-`https://traveliga.com/robots.txt`
   - ודא שהוא מצביע ל-sitemap
 
 - [ ] **Google Search Console**
@@ -465,7 +465,7 @@ curl -I http://ligadeals-berlin.com
 
 **פתרון**:
 1. גש ל-[Resend Dashboard](https://resend.com/domains)
-2. ודא שהדומיין `ligadeals-berlin.com` מאומת
+2. ודא שהדומיין `traveliga.com` מאומת
 3. בדוק את `RESEND_API_KEY` ב-Vercel
 4. בדוק Logs ב-Vercel → Deployments → [Latest] → Functions
 
@@ -485,7 +485,7 @@ curl -I http://ligadeals-berlin.com
 **פתרון**:
 1. בדוק DNS:
    ```bash
-   nslookup ligadeals-berlin.com
+   nslookup traveliga.com
    ```
 2. אמת שמצביע ל-`76.76.21.21`
 3. המתן עד 48 שעות (בדרך כלל 1-2 שעות)
@@ -561,4 +561,4 @@ npm audit fix
 
 האתר שלך עכשיו חי ב-production. זכור לעדכן תוכן באופן קבוע ולעקוב אחרי ביצועים.
 
-**LigaDeals Berlin - מוכנים לעזור לקהילה למצוא את הדילים הכי טובים בברלין!**
+**Traveliga - מוכנים לעזור לקהילה למצוא את הדילים הכי טובים בברלין!**

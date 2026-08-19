@@ -1,6 +1,6 @@
 # Email Configuration Guide - Resend Setup
 
-This guide will help you set up email functionality for the LigaDeals Berlin website using Resend.
+This guide will help you set up email functionality for the Traveliga website using Resend.
 
 ## Why Resend?
 
@@ -24,7 +24,7 @@ This guide will help you set up email functionality for the LigaDeals Berlin web
 1. Log in to [resend.com](https://resend.com)
 2. Navigate to **API Keys** in the sidebar
 3. Click **"Create API Key"**
-4. Give it a name (e.g., "LigaDeals Berlin Production")
+4. Give it a name (e.g., "Traveliga Production")
 5. Select permissions:
    - ✅ Sending access
 6. Click **"Create"**
@@ -33,13 +33,13 @@ This guide will help you set up email functionality for the LigaDeals Berlin web
 
 ### 3. Domain Verification (Optional but Recommended)
 
-For production, you should verify your domain to send emails from `noreply@ligadeals-berlin.com` instead of `noreply@resend.dev`.
+For production, you should verify your domain to send emails from `noreply@traveliga.com` instead of `noreply@resend.dev`.
 
 #### Steps:
 
 1. Go to **Domains** in Resend dashboard
 2. Click **"Add Domain"**
-3. Enter your domain: `ligadeals-berlin.com`
+3. Enter your domain: `traveliga.com`
 4. Add the provided DNS records to your domain registrar:
    - **SPF Record** (TXT)
    - **DKIM Record** (TXT)
@@ -58,7 +58,7 @@ Value: [provided by Resend]
 
 Type: TXT
 Name: _dmarc
-Value: v=DMARC1; p=none; rua=mailto:dmarc@ligadeals-berlin.com
+Value: v=DMARC1; p=none; rua=mailto:dmarc@traveliga.com
 ```
 
 5. Wait for DNS propagation (can take up to 48 hours)
@@ -73,7 +73,7 @@ Open your `.env.local` file and add your credentials:
 RESEND_API_KEY=re_xxxxxxxxxxxxxxxxx
 
 # Email addresses
-RESEND_FROM_EMAIL=LigaDeals <noreply@ligadeals-berlin.com>
+RESEND_FROM_EMAIL=Traveliga <noreply@traveliga.com>
 CONTACT_EMAIL=your_email@example.com
 
 # Sanity Webhook Secret
@@ -88,10 +88,10 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 - **RESEND_API_KEY**: Your Resend API key (starts with `re_`)
 - **RESEND_FROM_EMAIL**: The email address that appears in the "From" field
   - Before domain verification: use `onboarding@resend.dev`
-  - After domain verification: use `noreply@ligadeals-berlin.com`
+  - After domain verification: use `noreply@traveliga.com`
 - **CONTACT_EMAIL**: Your email address where contact form submissions are sent
 - **SANITY_WEBHOOK_SECRET**: Secret for validating Sanity webhooks (generate with: `openssl rand -base64 32`)
-- **NEXT_PUBLIC_SITE_URL**: Your website URL (for production: `https://ligadeals-berlin.com`)
+- **NEXT_PUBLIC_SITE_URL**: Your website URL (for production: `https://traveliga.com`)
 
 ### 5. Testing Your Configuration
 

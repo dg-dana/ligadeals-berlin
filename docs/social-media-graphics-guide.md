@@ -16,7 +16,7 @@
 **גודל**: 1080x1920 (Instagram Story) או 1200x630 (Facebook/Instagram Post)
 
 **איך ליצור**:
-1. פתחו את האתר: www.ligadeals-berlin.com
+1. פתחו את האתר: www.traveliga.com
 2. השתמשו ב-Full Page Screenshot tool:
    - Chrome: Extension "GoFullPage"
    - Firefox: Built-in screenshot tool (Ctrl+Shift+S)
@@ -350,7 +350,7 @@ CTA Button: עיצוב כפתור
 Overlay: Gradient מהצד
 לוגו: בצד שמאל
 טקסט: "גלו את האתר החדש שלנו"
-URL: www.ligadeals-berlin.com
+URL: www.traveliga.com
 Safe Zone: ודאו שטקסט לא מכוסה בתמונת פרופיל
 ```
 

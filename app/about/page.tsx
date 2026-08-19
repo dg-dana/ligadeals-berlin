@@ -40,7 +40,7 @@ export default async function About() {
         <div className="pointer-events-none absolute bottom-0 -left-24 h-72 w-72 rounded-full bg-gold-300/10 blur-3xl" />
         <div className="relative max-w-6xl mx-auto text-center">
           <h1 className="text-5xl font-bold text-white mb-6">
-            אודות <span className="text-gold-400">Liga Deals Berlin</span>
+            אודות <span className="text-gold-400">Traveliga</span>
           </h1>
           <p className="text-xl text-navy-100 max-w-3xl mx-auto">
             מדריך ברלין בעברית - טיפים, המלצות וליווי אישי לחופשה מושלמת בעיר

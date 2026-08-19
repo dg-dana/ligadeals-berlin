@@ -2,8 +2,8 @@ import { formatDateForStructuredData } from './metadata';
 import { urlForImage } from '../sanity/imageBuilder';
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://ligadeals-berlin.com';
-const SITE_NAME = 'LigaDeals Berlin';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://traveliga.com';
+const SITE_NAME = 'Traveliga';
 
 // Article structured data
 export interface ArticleStructuredDataProps {

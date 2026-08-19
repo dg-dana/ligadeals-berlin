@@ -4,7 +4,7 @@ import { getSiteSettings } from '@/lib/sanity/siteSettings';
 export const metadata: Metadata = {
   title: 'הצהרת נגישות',
   description:
-    'הצהרת הנגישות של Liga Deals Berlin - המחויבות שלנו להנגשת האתר בהתאם לתקן ישראלי 5568 ולהנחיות WCAG 2.1 ברמה AA.',
+    'הצהרת הנגישות של Traveliga - המחויבות שלנו להנגשת האתר בהתאם לתקן ישראלי 5568 ולהנחיות WCAG 2.1 ברמה AA.',
 };
 
 // Kept in sync with the last meaningful accessibility review of the site.
@@ -24,7 +24,7 @@ export default async function AccessibilityPage() {
           <section>
             <h2 className="text-2xl font-bold text-navy-700 dark:text-white mb-3">המחויבות שלנו לנגישות</h2>
             <p>
-              אנחנו ב-Liga Deals Berlin רואים חשיבות רבה במתן שירות שוויוני לכלל הגולשים, ומאמינים
+              אנחנו ב-Traveliga רואים חשיבות רבה במתן שירות שוויוני לכלל הגולשים, ומאמינים
               שלכל אדם מגיעה הזכות לגלוש באתר בעצמאות, בכבוד ובנוחות. אנחנו פועלים באופן שוטף לשפר
               את נגישות האתר ולהתאים אותו לשימוש על ידי אנשים עם מוגבלויות, לרבות משתמשים בטכנולוגיות
               מסייעות כגון קוראי מסך וניווט באמצעות מקלדת.

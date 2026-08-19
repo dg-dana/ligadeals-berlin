@@ -7,7 +7,7 @@ import {
   getAllVideosQuery,
 } from '@/lib/sanity/queries';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://ligadeals-berlin.com';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://traveliga.com';
 
 // Article interface for sitemap
 interface Article {

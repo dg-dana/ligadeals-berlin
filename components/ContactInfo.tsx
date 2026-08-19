@@ -15,7 +15,7 @@ interface ContactInfoProps {
 
 export default function ContactInfo({
   phone = '+49 177 7258599',
-  email = 'info@ligadeals-berlin.com',
+  email = 'info@traveliga.com',
   whatsapp = '491777258599',
   socialMedia = {},
 }: ContactInfoProps) {

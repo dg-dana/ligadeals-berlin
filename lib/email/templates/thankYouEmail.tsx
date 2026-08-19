@@ -21,7 +21,7 @@ interface ThankYouEmailProps {
 
 export const ThankYouEmail = ({ name }: ThankYouEmailProps) => {
   const displayName = name || 'חבר/ה יקר/ה';
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://ligadeals-berlin.com';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://traveliga.com';
 
   return (
     <Html dir="rtl" lang="he">
@@ -37,7 +37,7 @@ export const ThankYouEmail = ({ name }: ThankYouEmailProps) => {
             <Text style={greeting}>שלום {displayName},</Text>
 
             <Text style={paragraph}>
-              תודה רבה שפנית אלינו דרך אתר LigaDeals Berlin!
+              תודה רבה שפנית אלינו דרך אתר Traveliga!
             </Text>
 
             <Text style={paragraph}>
@@ -86,16 +86,16 @@ export const ThankYouEmail = ({ name }: ThankYouEmailProps) => {
               <Text style={contactText}>
                 📧 Email:{' '}
                 <a
-                  href={`mailto:${process.env.CONTACT_EMAIL || 'contact@ligadeals-berlin.com'}`}
+                  href={`mailto:${process.env.CONTACT_EMAIL || 'contact@traveliga.com'}`}
                   style={link}
                 >
-                  {process.env.CONTACT_EMAIL || 'contact@ligadeals-berlin.com'}
+                  {process.env.CONTACT_EMAIL || 'contact@traveliga.com'}
                 </a>
               </Text>
               <Text style={contactText}>
                 🌐 Website:{' '}
                 <a href={siteUrl} style={link}>
-                  ligadeals-berlin.com
+                  traveliga.com
                 </a>
               </Text>
             </Section>
@@ -109,13 +109,13 @@ export const ThankYouEmail = ({ name }: ThankYouEmailProps) => {
             <Text style={signature}>
               בברכה,
               <br />
-              <strong>צוות LigaDeals Berlin</strong>
+              <strong>צוות Traveliga</strong>
             </Text>
           </Section>
 
           <Section style={footer}>
             <Text style={footerText}>
-              קיבלת מייל זה כי פנית אלינו דרך טופס יצירת הקשר באתר LigaDeals Berlin.
+              קיבלת מייל זה כי פנית אלינו דרך טופס יצירת הקשר באתר Traveliga.
             </Text>
             <Text style={footerText}>
               אם לא פנית אלינו, אנא התעלם ממייל זה או{' '}

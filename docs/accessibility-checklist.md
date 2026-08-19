@@ -1,7 +1,7 @@
-# Accessibility Checklist - Liga Deals Berlin
+# Accessibility Checklist - Traveliga
 
 ## Overview
-Comprehensive accessibility checklist to ensure WCAG 2.1 Level AA compliance for Liga Deals Berlin website.
+Comprehensive accessibility checklist to ensure WCAG 2.1 Level AA compliance for Traveliga website.
 
 **Target Compliance Level**: WCAG 2.1 Level AA
 **Primary Language**: Hebrew (he-IL)
@@ -110,7 +110,7 @@ Content must be robust enough to be interpreted reliably by a wide variety of us
 - [ ] Decorative images: `alt=""` (empty alt)
 - [ ] Informative images: Descriptive alt text in Hebrew
 - [ ] Complex images: Detailed description nearby or longdesc
-- [ ] Logo alt text: "Liga Deals Berlin"
+- [ ] Logo alt text: "Traveliga"
 - [ ] Icons with meaning: Use aria-label
 
 **✅ Links (P0)**
@@ -415,7 +415,7 @@ document.querySelectorAll('*').forEach(el => {
 <img src="divider.png" alt="" role="presentation" />
 
 <!-- Logo -->
-<img src="logo.png" alt="Liga Deals Berlin" />
+<img src="logo.png" alt="Traveliga" />
 
 <!-- Icon with context -->
 <button>

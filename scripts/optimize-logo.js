@@ -2,7 +2,7 @@ const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');
 
-const inputPath = 'C:\\Users\\dgdan\\Downloads\\LigaDealsLogo.PNG';
+const inputPath = 'C:\\Users\\dgdan\\Downloads\\TraveligaLogo.PNG';
 const outputDir = path.join(__dirname, '../public');
 
 async function optimizeLogo() {
@@ -14,7 +14,7 @@ async function optimizeLogo() {
         background: { r: 0, g: 0, b: 0, alpha: 0 }
       })
       .png({ quality: 100, compressionLevel: 9 })
-      .toFile(path.join(outputDir, 'ligadeals-logo.png'));
+      .toFile(path.join(outputDir, 'traveliga-logo.png'));
 
     // Hero size - 200px width
     await sharp(inputPath)
@@ -23,7 +23,7 @@ async function optimizeLogo() {
         background: { r: 0, g: 0, b: 0, alpha: 0 }
       })
       .png({ quality: 95, compressionLevel: 9 })
-      .toFile(path.join(outputDir, 'ligadeals-logo-hero.png'));
+      .toFile(path.join(outputDir, 'traveliga-logo-hero.png'));
 
     // Small size for navbar - 60px width
     await sharp(inputPath)
@@ -32,7 +32,7 @@ async function optimizeLogo() {
         background: { r: 0, g: 0, b: 0, alpha: 0 }
       })
       .png({ quality: 90, compressionLevel: 9 })
-      .toFile(path.join(outputDir, 'ligadeals-logo-small.png'));
+      .toFile(path.join(outputDir, 'traveliga-logo-small.png'));
 
     // Favicon sizes
     await sharp(inputPath)
@@ -61,9 +61,9 @@ async function optimizeLogo() {
 
     console.log('✅ Logo optimized successfully!');
     console.log('Created files:');
-    console.log('  - ligadeals-logo.png (400x480 - main high quality)');
-    console.log('  - ligadeals-logo-hero.png (200x240 - hero section)');
-    console.log('  - ligadeals-logo-small.png (60x72 - navbar)');
+    console.log('  - traveliga-logo.png (400x480 - main high quality)');
+    console.log('  - traveliga-logo-hero.png (200x240 - hero section)');
+    console.log('  - traveliga-logo-small.png (60x72 - navbar)');
     console.log('  - apple-touch-icon.png (180x180)');
     console.log('  - favicon-32x32.png (32x32)');
     console.log('  - favicon-16x16.png (16x16)');

@@ -1,6 +1,6 @@
 # Cloudinary Account Setup Instructions
 
-This guide will help you set up a Cloudinary account and configure image optimization for your Liga Deals Berlin blog.
+This guide will help you set up a Cloudinary account and configure image optimization for your Traveliga blog.
 
 ## 1. Create a Cloudinary Account
 

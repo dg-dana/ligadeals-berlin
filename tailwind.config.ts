@@ -23,7 +23,7 @@ const config: Config = {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))',
         },
-        // Brand palette, drawn from the Liga Deals Berlin logo (navy badge + gold type)
+        // Brand palette, drawn from the Traveliga logo (navy badge + gold type)
         navy: {
           50: '#eef0f7',
           100: '#d6dae9',
@@ -54,7 +54,7 @@ const config: Config = {
           100: '#fbf8f2',
           200: '#f5efe0',
         },
-        ligadeals: {
+        traveliga: {
           blue: {
             50: '#e3f2fd',
             100: '#bbdefb',

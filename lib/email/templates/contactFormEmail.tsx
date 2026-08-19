@@ -36,12 +36,12 @@ export const ContactFormEmail = ({
   return (
     <Html dir="rtl" lang="he">
       <Head />
-      <Preview>הודעה חדשה מ-{name} - LigaDeals Berlin</Preview>
+      <Preview>הודעה חדשה מ-{name} - Traveliga</Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={header}>
             <Heading style={headerHeading}>
-              הודעה חדשה מאתר LigaDeals Berlin
+              הודעה חדשה מאתר Traveliga
             </Heading>
           </Section>
 
@@ -94,7 +94,7 @@ export const ContactFormEmail = ({
 
           <Section style={footer}>
             <Text style={footerText}>
-              הודעה זו נשלחה מטופס יצירת קשר באתר LigaDeals Berlin
+              הודעה זו נשלחה מטופס יצירת קשר באתר Traveliga
             </Text>
             <Text style={footerText}>תאריך: {formattedDate}</Text>
           </Section>

@@ -165,7 +165,7 @@ Settings > Geographic Targeting
 ### למי זה מתאים?
 - עסקים עם מיקום פיזי (משרד, חנות)
 - עסקים המשרתים אזור גיאוגרפי מסוים
-- עסקי שירותים (כמו ליגה דילס - טיולים)
+- עסקי שירותים (כמו טרווליגה - טיולים)
 
 ### שלב 1: יצירת פרופיל
 
@@ -176,7 +176,7 @@ Settings > Geographic Targeting
 2. **צרו פרופיל עסקי חדש**:
    ```
    1. לחצו "Create a profile"
-   2. הזינו שם העסק: "ליגה דילס ברלין" או "Liga Deals Berlin"
+   2. הזינו שם העסק: "טרווליגה" או "Traveliga"
    3. בחרו קטגוריה: "Tour Operator" או "Travel Agency"
    4. בחרו אם יש מיקום פיזי או אזור שירות
    ```
@@ -185,7 +185,7 @@ Settings > Geographic Targeting
 
 **מידע בסיסי**:
 ```
-שם העסק: Liga Deals Berlin
+שם העסק: Traveliga
 קטגוריה ראשית: Tour Operator
 קטגוריות נוספות: Travel Agency, Tour Guide
 ```
@@ -220,12 +220,12 @@ Saturday: Closed
 
 **תיאור קצר** (250 תווים):
 ```
-Liga Deals Berlin - טיולים מאורגנים בגרמניה בהדרכה עברית. גלו את יופי גרמניה עם מדריכים ישראלים מקצועיים. טיולי יום, סיורים מודרכים וחוויות בלתי נשכחות.
+Traveliga - טיולים מאורגנים בגרמניה בהדרכה עברית. גלו את יופי גרמניה עם מדריכים ישראלים מקצועיים. טיולי יום, סיורים מודרכים וחוויות בלתי נשכחות.
 ```
 
 **תיאור מלא** (750 תווים):
 ```
-ליגה דילס ברלין מציעה חוויות טיול ייחודיות ומאורגנות בגרמניה. אנחנו מתמחים בטיולים מודרכים בעברית לקהל ישראלי, עם דגש על שירות אישי ותשומת לב לפרטים.
+טרווליגה מציעה חוויות טיול ייחודיות ומאורגנות בגרמניה. אנחנו מתמחים בטיולים מודרכים בעברית לקהל ישראלי, עם דגש על שירות אישי ותשומת לב לפרטים.
 
 השירותים שלנו כוללים:
 🗺️ טיולי יום מאורגנים בברלין וסביבותיה
@@ -536,7 +536,7 @@ export default function RootLayout({
   const schemaMarkup = {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
-    "name": "Liga Deals Berlin",
+    "name": "Traveliga",
     "description": "טיולים מאורגנים בגרמניה בהדרכה עברית",
     "url": "https://yourdomain.com",
     "telephone": "+49-XXX-XXXXXXX",
@@ -585,7 +585,7 @@ const articleSchema = {
   },
   "publisher": {
     "@type": "Organization",
-    "name": "Liga Deals Berlin",
+    "name": "Traveliga",
     "logo": {
       "@type": "ImageObject",
       "url": "https://yourdomain.com/logo.png"
@@ -613,26 +613,26 @@ const articleSchema = {
 **בקובץ `app/layout.tsx` או בכל דף**:
 ```typescript
 export const metadata: Metadata = {
-  title: 'Liga Deals Berlin - טיולים בגרמניה',
+  title: 'Traveliga - טיולים בגרמניה',
   description: 'טיולים מאורגנים בגרמניה בהדרכה עברית',
   openGraph: {
     type: 'website',
     locale: 'he_IL',
     url: 'https://yourdomain.com',
-    title: 'Liga Deals Berlin - טיולים בגרמניה',
+    title: 'Traveliga - טיולים בגרמניה',
     description: 'טיולים מאורגנים בגרמניה בהדרכה עברית',
     images: [
       {
         url: 'https://yourdomain.com/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Liga Deals Berlin',
+        alt: 'Traveliga',
       }
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Liga Deals Berlin - טיולים בגרמניה',
+    title: 'Traveliga - טיולים בגרמניה',
     description: 'טיולים מאורגנים בגרמניה בהדרכה עברית',
     images: ['https://yourdomain.com/og-image.jpg'],
   },
