@@ -428,7 +428,7 @@ Vercel יטפל בזה בשבילך! תראה:
 
 **בדיקה:**
 ```bash
-curl -I https://traveliga.com
+curl -I https://traveliga.vercel.app
 ```
 
 אמור להחזיר: `HTTP/2 200`
@@ -439,8 +439,8 @@ curl -I https://traveliga.com
 
 **עדכן:**
 ```
-NEXT_PUBLIC_SITE_URL = https://traveliga.com
-ALLOWED_ORIGINS = https://traveliga.com,https://www.traveliga.com
+NEXT_PUBLIC_SITE_URL = https://traveliga.vercel.app
+ALLOWED_ORIGINS = https://traveliga.vercel.app
 ```
 
 **Redeploy:**
@@ -450,7 +450,7 @@ ALLOWED_ORIGINS = https://traveliga.com,https://www.traveliga.com
 
 1. **Sanity Dashboard → API → Webhooks**
 2. **ערוך את ה-Webhook**
-3. **שנה URL ל-**: `https://traveliga.com/api/revalidate`
+3. **שנה URL ל-**: `https://traveliga.vercel.app/api/revalidate`
 4. **Save**
 
 **✅ Checkpoint**: הדומיין שלך פועל עם HTTPS!
@@ -488,7 +488,7 @@ ALLOWED_ORIGINS = https://traveliga.com,https://www.traveliga.com
 
 ```bash
 # בדוק headers
-curl -I https://traveliga.com
+curl -I https://traveliga.vercel.app
 ```
 
 אמור לראות:

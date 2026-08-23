@@ -35,7 +35,7 @@
 ### גישה ל-Sanity Studio
 
 1. פתח דפדפן (Chrome, Firefox, או Edge)
-2. היכנס ל: `https://traveliga.com/studio`
+2. היכנס ל: `https://traveliga.vercel.app/studio`
 3. התחבר עם חשבון Google או GitHub
 4. התחל לערוך!
 
@@ -190,7 +190,7 @@
 - 📧 **אימייל:** admin@traveliga.com
 - 💬 **צ'אט:** [קישור לצ'אט]
 - 📱 **טלפון:** [מספר טלפון]
-- 🌐 **אתר:** https://traveliga.com
+- 🌐 **אתר:** https://traveliga.vercel.app
 
 ### שאלות נפוצות (FAQ)
 

@@ -6,7 +6,7 @@ The site opens on a bilingual (English / Hebrew) landing page at `/` that leads 
 
 Built with Next.js 16 (App Router, React 19), Sanity as the CMS, Cloudinary for media, and Resend for transactional email.
 
-**Live site:** [traveliga-dana20.vercel.app](https://traveliga-dana20.vercel.app) (placeholder Vercel subdomain — no custom domain purchased yet)
+**Live site:** [traveliga.vercel.app](https://traveliga.vercel.app) (placeholder Vercel subdomain — no custom domain purchased yet)
 
 ---
 

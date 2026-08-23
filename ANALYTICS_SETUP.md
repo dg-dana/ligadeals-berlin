@@ -44,7 +44,7 @@ This guide will help you set up Google Analytics 4 (GA4) for the Traveliga websi
 
 1. Choose platform: **Web**
 2. Enter website details:
-   - **Website URL**: `https://traveliga.com`
+   - **Website URL**: `https://traveliga.vercel.app`
    - **Stream Name**: "Traveliga Web"
 3. **Enhanced measurement** should be enabled by default (recommended):
    - ✅ Page views
