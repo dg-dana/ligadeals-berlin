@@ -2,7 +2,7 @@ import { formatDateForStructuredData } from './metadata';
 import { urlForImage } from '../sanity/imageBuilder';
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://traveliga.com';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://traveliga.vercel.app';
 const SITE_NAME = 'Traveliga';
 
 // Article structured data

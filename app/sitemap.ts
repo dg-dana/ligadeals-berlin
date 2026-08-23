@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { sanityFetch } from '@/lib/sanity/client';
 import { getAllArticlesQuery, getAllCategoriesQuery } from '@/lib/sanity/queries';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://traveliga.com';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://traveliga.vercel.app';
 
 // Article interface for sitemap
 interface Article {
@@ -41,6 +41,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 1.0,
+      },
+      {
+        url: `${SITE_URL}/berlin`,
+        lastModified: new Date(),
+        changeFrequency: 'daily',
+        priority: 0.9,
       },
       {
         url: `${SITE_URL}/about`,
@@ -120,6 +126,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 1.0,
+      },
+      {
+        url: `${SITE_URL}/berlin`,
+        lastModified: new Date(),
+        changeFrequency: 'daily',
+        priority: 0.9,
       },
       {
         url: `${SITE_URL}/about`,

@@ -2,6 +2,8 @@
 
 Hebrew-language (RTL) website for **Traveliga** — Meital's personal accompaniment service and guide to living in and visiting Berlin. The site publishes articles, photo and video galleries, and customer recommendations, all editable from a Sanity Studio without touching code.
 
+The site opens on a bilingual (English / Hebrew) landing page at `/` that leads into the full Hebrew guide at `/berlin`.
+
 Built with Next.js 16 (App Router, React 19), Sanity as the CMS, Cloudinary for media, and Resend for transactional email.
 
 **Live site:** [traveliga-dana20.vercel.app](https://traveliga-dana20.vercel.app) (placeholder Vercel subdomain — no custom domain purchased yet)
@@ -34,7 +36,8 @@ Built with Next.js 16 (App Router, React 19), Sanity as the CMS, Cloudinary for 
 
 ## Features
 
-- **Full RTL Hebrew site** — `lang="he" dir="rtl"`, Hebrew web fonts (Heebo + Assistant), Hebrew-labelled CMS.
+- **Bilingual landing page** — a dark, animated opening page at `/` (Instrument Serif + Manrope) with an EN/עב toggle that switches copy and direction (LTR/RTL) and remembers the choice; a destination card links into the Berlin guide.
+- **Full RTL Hebrew site** — the guide at `/berlin` is `lang="he" dir="rtl"`, Hebrew web fonts (Heebo + Assistant), Hebrew-labelled CMS.
 - **CMS-driven content** — articles/posts, photo and video galleries, testimonials, authors, categories and global site settings all live in Sanity.
 - **Testimonial review workflow** — custom Sanity document actions (approve, approve & feature, reject, reset to pending) so only approved recommendations reach the site.
 - **Contact form with email delivery** — `POST /api/contact` validates input, enforces same-origin checks, a per-IP rate limit (5 submissions/hour) and explicit privacy consent, then sends a Hebrew notification email through Resend. Richer React Email templates (notification + thank-you) live in `lib/email/` for when HTML mail is wired up.
@@ -50,7 +53,8 @@ Built with Next.js 16 (App Router, React 19), Sanity as the CMS, Cloudinary for 
 
 | Route | Description |
 |-------|-------------|
-| `/` | Hero, featured section, contact preview |
+| `/` | Bilingual (EN/עב) landing page; links into the Berlin guide |
+| `/berlin` | Berlin guide home — hero, featured section, contact preview |
 | `/about` | About the service and "Meet Meital" (CMS-editable) |
 | `/blog` | Article listing |
 | `/blog/[slug]` | Article page (Portable Text) |
@@ -132,7 +136,7 @@ Copy `.env.example` to `.env.local` and fill in:
 | `CONTACT_EMAIL` | Yes | Public contact address shown in structured data and email templates |
 | `SANITY_WEBHOOK_SECRET` | Yes | HMAC secret for `/api/revalidate` |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Optional | Google Analytics 4 (loads only after consent) |
-| `NEXT_PUBLIC_SITE_URL` | Optional | Canonical site URL for metadata and Studio previews (defaults to `https://traveliga.com`) |
+| `NEXT_PUBLIC_SITE_URL` | Optional | Canonical site URL for metadata and Studio previews (defaults to `https://traveliga.vercel.app`) |
 | `ALLOWED_ORIGINS` | Optional | Comma-separated CORS allowlist for API routes |
 | `RATE_LIMIT_WINDOW_MS` / `RATE_LIMIT_MAX_REQUESTS` | Optional | Override the defaults (60s / 100 requests) |
 
@@ -166,8 +170,11 @@ Never commit `.env*` files — they are already ignored by `.gitignore`.
 
 ```
 app/                  Next.js App Router routes, layout, API handlers, sitemap/robots
+  page.tsx            Bilingual landing page (/)
+  berlin/             Berlin guide home (/berlin)
 components/           UI components (Navigation, Hero, galleries, ContactForm, a11y widget, …)
-  home/               Homepage sections
+  opening/            Landing-page splash (client component, EN/עב toggle)
+  home/               Berlin guide sections (featured, contact preview)
 lib/
   sanity/             Client, GROQ queries, image builder, Portable Text components, types
   cloudinary/         Upload and transformation helpers
