@@ -89,10 +89,11 @@ export default async function RootLayout({
         {/* MotionProvider makes all Framer Motion animations respect the user's
             reduced-motion preference (OS setting or accessibility widget) */}
         <MotionProvider>
+          <SiteChrome settings={siteSettings} slot="header" />
           <main id="main-content" className="flex-grow" tabIndex={-1}>
             {children}
           </main>
-          <SiteChrome settings={siteSettings} />
+          <SiteChrome settings={siteSettings} slot="body" />
         </MotionProvider>
       </body>
     </html>
