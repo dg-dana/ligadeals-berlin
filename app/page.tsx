@@ -37,7 +37,7 @@ export default function Home() {
       <div className="opening-orb opening-orb-top" aria-hidden="true" />
       <div className="opening-orb opening-orb-bottom" aria-hidden="true" />
 
-      <main className="opening-content" id="main-content">
+      <div className="opening-content">
         <Hero />
 
         <section className="opening-destinations" aria-label="Traveliga destinations">
@@ -49,7 +49,7 @@ export default function Home() {
         <footer className="opening-footer">
           <span>© {new Date().getFullYear()} Traveliga</span>
         </footer>
-      </main>
+      </div>
     </div>
   );
 }
