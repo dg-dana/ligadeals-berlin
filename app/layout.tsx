@@ -2,14 +2,10 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Heebo, Assistant } from "next/font/google";
 import "./globals.css";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
 import Analytics from "@/components/Analytics";
 import SkipToContent from "@/components/SkipToContent";
-import FloatingWhatsApp from "@/components/FloatingWhatsApp";
-import AccessibilityWidget from "@/components/AccessibilityWidget";
-import CookieConsentBanner from "@/components/CookieConsentBanner";
 import MotionProvider from "@/components/MotionProvider";
+import SiteChrome from "@/components/SiteChrome";
 import { getDefaultMetadata } from "@/lib/seo/metadata";
 import { generateWebsiteStructuredData, generateOrganizationStructuredData } from "@/lib/seo/metadata";
 import { getSiteSettings } from "@/lib/sanity/siteSettings";
@@ -93,20 +89,10 @@ export default async function RootLayout({
         {/* MotionProvider makes all Framer Motion animations respect the user's
             reduced-motion preference (OS setting or accessibility widget) */}
         <MotionProvider>
-          <Navigation />
           <main id="main-content" className="flex-grow" tabIndex={-1}>
             {children}
           </main>
-          <Footer settings={siteSettings} />
-
-          {/* Floating WhatsApp contact button, visible on every page */}
-          <FloatingWhatsApp phoneNumber={siteSettings.whatsapp} />
-
-          {/* Accessibility controls (text size, contrast, reduced motion) */}
-          <AccessibilityWidget />
-
-          {/* Cookie/analytics consent — gates the Analytics component above */}
-          <CookieConsentBanner />
+          <SiteChrome settings={siteSettings} />
         </MotionProvider>
       </body>
     </html>
