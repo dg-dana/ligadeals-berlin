@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://traveliga.com';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://traveliga.vercel.app';
 
 /**
  * Generate robots.txt configuration

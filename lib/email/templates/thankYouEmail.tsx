@@ -21,7 +21,7 @@ interface ThankYouEmailProps {
 
 export const ThankYouEmail = ({ name }: ThankYouEmailProps) => {
   const displayName = name || 'חבר/ה יקר/ה';
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://traveliga.com';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://traveliga.vercel.app';
 
   return (
     <Html dir="rtl" lang="he">
@@ -95,7 +95,7 @@ export const ThankYouEmail = ({ name }: ThankYouEmailProps) => {
               <Text style={contactText}>
                 🌐 Website:{' '}
                 <a href={siteUrl} style={link}>
-                  traveliga.com
+                  traveliga.vercel.app
                 </a>
               </Text>
             </Section>

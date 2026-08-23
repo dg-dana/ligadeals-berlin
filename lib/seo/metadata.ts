@@ -5,7 +5,7 @@ import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 // Site configuration
 const SITE_NAME = 'Traveliga';
 const SITE_DESCRIPTION = 'המדריך המקיף לחיים בברלין - טיפים, מדריכים, ותוכן איכותי בעברית';
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://traveliga.com';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://traveliga.vercel.app';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/traveliga-logo.png`;
 
 // Metadata configuration interface

@@ -128,7 +128,7 @@ Copy `.env.example` to `.env.local` and fill in:
 | `CONTACT_EMAIL` | Yes | Public contact address shown in structured data and email templates |
 | `SANITY_WEBHOOK_SECRET` | Yes | HMAC secret for `/api/revalidate` |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Optional | Google Analytics 4 (loads only after consent) |
-| `NEXT_PUBLIC_SITE_URL` | Optional | Canonical site URL for metadata and Studio previews (defaults to `https://traveliga.com`) |
+| `NEXT_PUBLIC_SITE_URL` | Optional | Canonical site URL for metadata and Studio previews (defaults to `https://traveliga.vercel.app`) |
 | `ALLOWED_ORIGINS` | Optional | Comma-separated CORS allowlist for API routes |
 | `RATE_LIMIT_WINDOW_MS` / `RATE_LIMIT_MAX_REQUESTS` | Optional | Override the defaults (60s / 100 requests) |
 
