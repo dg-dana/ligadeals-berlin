@@ -52,6 +52,14 @@ body {
 
 .opening-page ::selection { background: var(--opening-teal); color: var(--opening-bg); }
 
+/* Hebrew: Instrument Serif has no Hebrew glyphs, so use the site's Hebrew
+   typeface (Heebo, loaded in the root layout) for both display and body. */
+.opening-page.is-he {
+  --opening-serif: var(--font-heebo), "Heebo", system-ui, sans-serif;
+  --opening-sans: var(--font-heebo), "Heebo", system-ui, sans-serif;
+}
+.opening-page.is-he .opening-tagline { letter-spacing: -0.01em; }
+
 /* Ambient background layers */
 .opening-glow {
   position: absolute;
