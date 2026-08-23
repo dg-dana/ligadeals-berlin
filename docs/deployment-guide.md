@@ -195,7 +195,7 @@ Environment: Production
 
 ```env
 NEXT_PUBLIC_SITE_URL
-Value: https://traveliga.com
+Value: https://traveliga.vercel.app
 Environment: Production
 ```
 
@@ -213,7 +213,7 @@ Environment: Production
 
 ```env
 ALLOWED_ORIGINS
-Value: https://traveliga.com,https://www.traveliga.com
+Value: https://traveliga.vercel.app
 Environment: Production
 ```
 
@@ -285,10 +285,10 @@ Environment: Production
 
 ```bash
 # בדוק את תעודת ה-SSL
-curl -I https://traveliga.com
+curl -I https://traveliga.vercel.app
 
 # אמת הפניית HTTP ל-HTTPS
-curl -I http://traveliga.com
+curl -I https://traveliga.vercel.app
 ```
 
 אתה אמור לראות:
@@ -315,7 +315,7 @@ curl -I http://traveliga.com
 3. **הגדר את ה-Webhook**
    ```
    Name: Vercel Production Deployment
-   URL: https://traveliga.com/api/revalidate
+   URL: https://traveliga.vercel.app/api/revalidate
    Dataset: production
    Trigger on: Create, Update, Delete
    Filter: _type == "deal" || _type == "category" || _type == "testimonial" || _type == "page"
@@ -340,7 +340,7 @@ curl -I http://traveliga.com
 ### בדיקות פונקציונליות
 
 - [ ] **העמוד הראשי טוען כראוי**
-  - גש ל-`https://traveliga.com`
+  - גש ל-`https://traveliga.vercel.app`
   - ודא שכל התוכן מוצג
 
 - [ ] **דפי דילים עובדים**
@@ -383,12 +383,12 @@ curl -I http://traveliga.com
 
 - [ ] **HTTPS פעיל**
   ```bash
-  curl -I https://traveliga.com | grep "strict-transport-security"
+  curl -I https://traveliga.vercel.app | grep "strict-transport-security"
   ```
 
 - [ ] **Headers אבטחה**
   ```bash
-  curl -I https://traveliga.com
+  curl -I https://traveliga.vercel.app
   ```
   ודא שיש:
   - `x-frame-options: DENY`
@@ -403,7 +403,7 @@ curl -I http://traveliga.com
 - [ ] **Rate Limiting עובד**
   ```bash
   # נסה לשלוח הרבה בקשות מהר
-  for i in {1..150}; do curl https://traveliga.com/api/contact; done
+  for i in {1..150}; do curl https://traveliga.vercel.app/api/contact; done
   ```
   אתה אמור לקבל 429 (Too Many Requests) אחרי 100 בקשות
 
@@ -415,11 +415,11 @@ curl -I http://traveliga.com
   - ודא שיש Open Graph tags
 
 - [ ] **Sitemap**
-  - גש ל-`https://traveliga.com/sitemap.xml`
+  - גש ל-`https://traveliga.vercel.app/sitemap.xml`
   - ודא שכל הדפים רשומים
 
 - [ ] **Robots.txt**
-  - גש ל-`https://traveliga.com/robots.txt`
+  - גש ל-`https://traveliga.vercel.app/robots.txt`
   - ודא שהוא מצביע ל-sitemap
 
 - [ ] **Google Search Console**

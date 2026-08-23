@@ -91,7 +91,7 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
   - After domain verification: use `noreply@traveliga.com`
 - **CONTACT_EMAIL**: Your email address where contact form submissions are sent
 - **SANITY_WEBHOOK_SECRET**: Secret for validating Sanity webhooks (generate with: `openssl rand -base64 32`)
-- **NEXT_PUBLIC_SITE_URL**: Your website URL (for production: `https://traveliga.com`)
+- **NEXT_PUBLIC_SITE_URL**: Your website URL (for production: `https://traveliga.vercel.app`)
 
 ### 5. Testing Your Configuration
 
