@@ -37,10 +37,10 @@ const destinations: Destination[] = [
   },
 ];
 
-const socials: { label: string; href: string }[] = [
-  { label: "Instagram", href: "#" },
-  { label: "Facebook", href: "#" },
-  { label: "TikTok", href: "#" },
+const socials: { label: string; href: string; icon: string }[] = [
+  { label: "Instagram", href: "#", icon: "/icons/instagram.svg" },
+  { label: "Facebook", href: "#", icon: "/icons/facebook.svg" },
+  { label: "WhatsApp", href: "#", icon: "/icons/whatsapp.svg" },
 ];
 
 export default function Home() {
@@ -106,6 +106,14 @@ export default function Home() {
           <div className="opening-socials">
             {socials.map((s) => (
               <a key={s.label} href={s.href} className="opening-social">
+                <Image
+                  src={s.icon}
+                  alt=""
+                  width={14}
+                  height={14}
+                  className="opening-social-icon"
+                  unoptimized
+                />
                 {s.label}
               </a>
             ))}
