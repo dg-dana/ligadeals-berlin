@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Instrument_Serif, Manrope } from "next/font/google";
 
 import LanguageToggle from "@/components/opening/LanguageToggle";
+import { getSiteSettings } from "@/lib/sanity/siteSettings";
 
 const instrumentSerif = Instrument_Serif({
   weight: "400",
@@ -37,13 +38,42 @@ const destinations: Destination[] = [
   },
 ];
 
-const socials: { label: string; href: string; icon: string }[] = [
-  { label: "Instagram", href: "#", icon: "/icons/instagram.svg" },
-  { label: "Facebook", href: "#", icon: "/icons/facebook.svg" },
-  { label: "WhatsApp", href: "#", icon: "/icons/whatsapp.svg" },
-];
+interface Social {
+  label: string;
+  href: string;
+  icon: string;
+}
 
-export default function Home() {
+/**
+ * Build the splash social links from the shared Sanity site settings — the
+ * same source the site footer uses — so there is a single source of truth.
+ * WhatsApp is always available (fallback number); Instagram and Facebook are
+ * shown only when configured.
+ */
+function buildSocials(settings: Awaited<ReturnType<typeof getSiteSettings>>): Social[] {
+  const socials: Social[] = [];
+
+  if (settings.instagram) {
+    socials.push({ label: "Instagram", href: settings.instagram, icon: "/icons/instagram.svg" });
+  }
+  if (settings.facebook) {
+    socials.push({ label: "Facebook", href: settings.facebook, icon: "/icons/facebook.svg" });
+  }
+  if (settings.whatsapp) {
+    socials.push({
+      label: "WhatsApp",
+      href: `https://wa.me/${settings.whatsapp}`,
+      icon: "/icons/whatsapp.svg",
+    });
+  }
+
+  return socials;
+}
+
+export default async function Home() {
+  const settings = await getSiteSettings();
+  const socials = buildSocials(settings);
+
   return (
     <div
       dir="ltr"
@@ -103,21 +133,29 @@ export default function Home() {
         </div>
 
         <div className="opening-outro u" style={{ animationDelay: "0.62s" }}>
-          <div className="opening-socials">
-            {socials.map((s) => (
-              <a key={s.label} href={s.href} className="opening-social">
-                <Image
-                  src={s.icon}
-                  alt=""
-                  width={14}
-                  height={14}
-                  className="opening-social-icon"
-                  unoptimized
-                />
-                {s.label}
-              </a>
-            ))}
-          </div>
+          {socials.length > 0 && (
+            <div className="opening-socials">
+              {socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  className="opening-social"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src={s.icon}
+                    alt=""
+                    width={14}
+                    height={14}
+                    className="opening-social-icon"
+                    unoptimized
+                  />
+                  {s.label}
+                </a>
+              ))}
+            </div>
+          )}
           <span className="opening-copy">© {new Date().getFullYear()} Traveliga</span>
         </div>
       </main>
