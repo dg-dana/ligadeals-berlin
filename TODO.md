@@ -2,7 +2,9 @@
 
 Running list of open work on this project. Kept up to date by the `todo_update` skill; read with `todo_next`.
 
-- [ ] Fix the video section — `getEmbedUrl` in `components/VideoGallery.tsx` only handles `youtube.com/watch?v=`, `youtu.be/`, and `vimeo.com/ID`; other common URLs (YouTube Shorts/embed/live, `m.youtube.com`, Vimeo private links) silently render a broken `embed/undefined` iframe. Make URL parsing robust, fall back gracefully when a URL can't be embedded, and wire up the existing `trackVideoPlay` analytics.
+- [ ] Traveliga Berlin guide — he/en bilingual support
+- [ ] Traveliga dark mode
+- [ ] Traveliga video section
 - [ ] Buy a real domain for Traveliga (currently using `traveliga.com` as a placeholder in metadata, `.env`, and Sanity `siteSettings.email`). Once purchased, update:
   - `NEXT_PUBLIC_SITE_URL`, `RESEND_FROM_EMAIL`, `CONTACT_EMAIL`, `CONTACT_TO_EMAIL` in the Vercel/`.env` environment
   - Sanity `siteSettings.email`
