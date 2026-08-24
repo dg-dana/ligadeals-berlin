@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 import { render, RenderOptions } from '@testing-library/react'
+import { LanguageProvider } from '@/components/berlin/LanguageContext'
 
 // Mock data generators for testing
 export const mockBlogPost = {
@@ -81,8 +82,12 @@ export function renderWithProviders(
   ui: ReactElement,
   options?: CustomRenderOptions
 ) {
+  // Mirror production: the Berlin language provider wraps the shared site
+  // chrome (Navigation renders the language toggle on every page), so tests
+  // render inside it too. Tests that need to control the language supply their
+  // own inner LanguageProvider, which takes precedence for its subtree.
   function Wrapper({ children }: { children: React.ReactNode }) {
-    return <>{children}</>
+    return <LanguageProvider>{children}</LanguageProvider>
   }
 
   return render(ui, { wrapper: Wrapper, ...options })
