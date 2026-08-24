@@ -5,10 +5,8 @@ import "./globals.css";
 import Analytics from "@/components/Analytics";
 import SkipToContent from "@/components/SkipToContent";
 import MotionProvider from "@/components/MotionProvider";
-import SiteChrome from "@/components/SiteChrome";
 import { getDefaultMetadata } from "@/lib/seo/metadata";
 import { generateWebsiteStructuredData, generateOrganizationStructuredData } from "@/lib/seo/metadata";
-import { getSiteSettings } from "@/lib/sanity/siteSettings";
 
 const heebo = Heebo({
   variable: "--font-heebo",
@@ -39,7 +37,6 @@ export default async function RootLayout({
   // Generate structured data for website and organization
   const websiteStructuredData = generateWebsiteStructuredData();
   const organizationStructuredData = generateOrganizationStructuredData();
-  const siteSettings = await getSiteSettings();
 
   return (
     <html lang="he" dir="rtl">
@@ -87,14 +84,13 @@ export default async function RootLayout({
         <SkipToContent />
 
         {/* MotionProvider makes all Framer Motion animations respect the user's
-            reduced-motion preference (OS setting or accessibility widget) */}
-        <MotionProvider>
-          <SiteChrome settings={siteSettings} slot="header" />
-          <main id="main-content" className="flex-grow" tabIndex={-1}>
-            {children}
-          </main>
-          <SiteChrome settings={siteSettings} slot="body" />
-        </MotionProvider>
+            reduced-motion preference (OS setting or accessibility widget).
+
+            The site chrome (Navigation, footer, floating widgets) is rendered by
+            the app/(site)/layout.tsx route-group layout, so it wraps every page
+            except the home splash at app/page.tsx. Each of those layouts supplies
+            its own <main id="main-content"> landmark. */}
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   );

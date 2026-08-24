@@ -95,7 +95,7 @@ export default function OpeningPage({ fontClassName, berlinHref, socials }: Open
         </button>
       </div>
 
-      <main className="opening-main">
+      <main id="main-content" tabIndex={-1} className="opening-main">
         <div className="opening-brand">
           <div className="opening-logo u" style={{ animationDelay: "0.05s" }}>
             <Image src="/traveliga-badge.svg" alt="Traveliga" width={104} height={104} priority />
