@@ -5,7 +5,6 @@ import Image from 'next/image'
 import Button from '@/components/Button'
 import { useReducedMotion } from '@/lib/a11y/useReducedMotion'
 import { useLanguage } from './LanguageContext'
-import LanguageToggle from './LanguageToggle'
 
 /**
  * Berlin guide hero — a bilingual version of the site's Hero. All copy comes
@@ -58,13 +57,6 @@ export default function BerlinHero() {
           The copy is centred in the space left over after the scroll cue, which
           sits in normal flow underneath it. */}
       <div className="relative z-10 flex min-h-screen flex-col items-center px-4 text-center" dir={dir}>
-        {/* Language switch — sits at the top of the hero in normal flow, above
-            the badge, so nothing overlaps. Forced LTR so the HE/EN order stays
-            stable regardless of the guide's direction. */}
-        <div dir="ltr" className="flex w-full justify-center pt-6">
-          <LanguageToggle />
-        </div>
-
         <div className="flex flex-1 flex-col items-center justify-center py-12">
           {/* Badge */}
           <motion.span

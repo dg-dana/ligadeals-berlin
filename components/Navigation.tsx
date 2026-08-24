@@ -3,10 +3,16 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { FaBars, FaTimes } from "react-icons/fa";
+import LanguageToggle from "@/components/berlin/LanguageToggle";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+  // The Hebrew/English switch is scoped to the Berlin guide, so only surface it
+  // in the header on that route.
+  const showLanguageToggle = pathname === "/berlin";
 
   const menuItems = [
     { name: "דף הבית", href: "/berlin" },
@@ -39,34 +45,39 @@ const Navigation = () => {
             </Link>
           </div>
 
-          {/* Desktop Menu - Left side for RTL */}
-          <div className="hidden md:flex md:gap-6 order-1 md:order-2">
-            {menuItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-navy-600 dark:text-cream-200 hover:text-gold-700 dark:hover:text-gold-400 px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 rounded"
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
+          {/* End cluster (left side for RTL): language switch + menu */}
+          <div className="flex items-center gap-2 sm:gap-3 order-1 md:order-2">
+            {showLanguageToggle && <LanguageToggle />}
 
-          {/* Mobile Menu Button - Left side for RTL */}
-          <div className="md:hidden order-1">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-navy-600 dark:text-cream-200 hover:text-gold-700 dark:hover:text-gold-400 p-2 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 rounded"
-              aria-label={isMenuOpen ? "סגור תפריט" : "פתח תפריט"}
-              aria-expanded={isMenuOpen}
-              aria-controls="mobile-menu"
-            >
-              {isMenuOpen ? (
-                <FaTimes className="h-6 w-6" aria-hidden="true" />
-              ) : (
-                <FaBars className="h-6 w-6" aria-hidden="true" />
-              )}
-            </button>
+            {/* Desktop Menu */}
+            <div className="hidden md:flex md:gap-6">
+              {menuItems.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="text-navy-600 dark:text-cream-200 hover:text-gold-700 dark:hover:text-gold-400 px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 rounded"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-navy-600 dark:text-cream-200 hover:text-gold-700 dark:hover:text-gold-400 p-2 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 rounded"
+                aria-label={isMenuOpen ? "סגור תפריט" : "פתח תפריט"}
+                aria-expanded={isMenuOpen}
+                aria-controls="mobile-menu"
+              >
+                {isMenuOpen ? (
+                  <FaTimes className="h-6 w-6" aria-hidden="true" />
+                ) : (
+                  <FaBars className="h-6 w-6" aria-hidden="true" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </div>
