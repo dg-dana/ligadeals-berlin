@@ -9,9 +9,10 @@ const LABELS: Record<(typeof LANGUAGES)[number], string> = {
 }
 
 /**
- * Segmented Hebrew/English switch for the Berlin guide. Rendered as a group of
- * two toggle buttons so the active language is exposed to assistive tech via
- * `aria-pressed` and the whole control has an accessible group label.
+ * Segmented Hebrew/English switch for the Berlin guide, styled as a translucent
+ * "glass" pill so it sits naturally on the hero's blue gradient alongside the
+ * gold badge. Rendered as a group of two toggle buttons so the active language
+ * is exposed to assistive tech via `aria-pressed`.
  */
 export default function LanguageToggle({ className = '' }: { className?: string }) {
   const { lang, setLang, t } = useLanguage()
@@ -21,7 +22,7 @@ export default function LanguageToggle({ className = '' }: { className?: string 
       role="group"
       aria-label={t.toggleAriaLabel}
       dir="ltr"
-      className={`inline-flex items-center gap-1 rounded-full border border-navy-200 bg-white/90 p-1 shadow-sm backdrop-blur dark:border-navy-600 dark:bg-navy-800/90 ${className}`}
+      className={`inline-flex items-center gap-0.5 rounded-full border border-white/30 bg-navy-900/30 p-1 shadow-lg backdrop-blur-md ${className}`}
     >
       {LANGUAGES.map((code) => {
         const active = code === lang
@@ -31,10 +32,10 @@ export default function LanguageToggle({ className = '' }: { className?: string 
             type="button"
             onClick={() => setLang(code)}
             aria-pressed={active}
-            className={`rounded-full px-3 py-1 text-sm font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 ${
+            className={`rounded-full px-3.5 py-1 text-sm font-semibold tracking-wide transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${
               active
-                ? 'bg-navy-700 text-white dark:bg-gold-400 dark:text-navy-900'
-                : 'text-navy-600 hover:bg-navy-100 dark:text-cream-200 dark:hover:bg-navy-700'
+                ? 'bg-gold-400 text-navy-900 shadow-sm'
+                : 'text-white/80 hover:bg-white/10 hover:text-white'
             }`}
           >
             {LABELS[code]}

@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Button from '@/components/Button'
 import { useReducedMotion } from '@/lib/a11y/useReducedMotion'
 import { useLanguage } from './LanguageContext'
+import LanguageToggle from './LanguageToggle'
 
 /**
  * Berlin guide hero — a bilingual version of the site's Hero. All copy comes
@@ -52,6 +53,13 @@ export default function BerlinHero() {
           </svg>
         </motion.div>
       )}
+
+      {/* Language switch — part of the hero composition, pinned to the top
+          trailing corner and clear of the sticky site navigation. Forced LTR so
+          the HE/EN order stays stable regardless of the guide's direction. */}
+      <div dir="ltr" className="absolute right-4 top-4 z-20 sm:right-6 sm:top-6">
+        <LanguageToggle />
+      </div>
 
       {/* Main Content.
           The copy is centred in the space left over after the scroll cue, which
