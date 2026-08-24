@@ -20,7 +20,7 @@ export default function LanguageToggle({ className = '' }: { className?: string 
     <div
       role="group"
       aria-label={t.toggleAriaLabel}
-      dir="ltr"
+      dir="rtl"
       className={`inline-flex items-center rounded-full border border-navy-200 bg-white/70 p-0.5 dark:border-navy-600 dark:bg-navy-900/40 ${className}`}
     >
       {LANGUAGES.map((code) => {
