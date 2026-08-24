@@ -3,16 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { FaBars, FaTimes } from "react-icons/fa";
 import LanguageToggle from "@/components/berlin/LanguageToggle";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const pathname = usePathname();
-  // The Hebrew/English switch is scoped to the Berlin guide, so only surface it
-  // in the header on that route.
-  const showLanguageToggle = pathname === "/berlin";
 
   const menuItems = [
     { name: "דף הבית", href: "/berlin" },
@@ -79,7 +74,7 @@ const Navigation = () => {
               </button>
             </div>
 
-            {showLanguageToggle && <LanguageToggle />}
+            <LanguageToggle />
           </div>
         </div>
       </div>
