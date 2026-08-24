@@ -1,7 +1,6 @@
 'use client'
 
 import { LanguageProvider, useLanguage } from './LanguageContext'
-import LanguageToggle from './LanguageToggle'
 import BerlinHero from './BerlinHero'
 import BerlinFeatured, { type BerlinArticle } from './BerlinFeatured'
 import BerlinContact from './BerlinContact'
@@ -20,17 +19,9 @@ function BerlinGuideContent({ articles, contact }: BerlinGuideProps) {
 
   return (
     <div className="w-full" dir={dir} lang={locale}>
-      {/* Language switch — sticks just below the site navigation while scrolling,
-          pinned to the top-right corner regardless of the guide's direction. */}
-      <div dir="ltr" className="pointer-events-none sticky top-20 z-40 flex justify-end px-4">
-        <LanguageToggle className="pointer-events-auto" />
-      </div>
-
-      {/* The sticky bar above sits in normal flow, so pull the hero back up to
-          reclaim the space and keep it flush against the navigation. */}
-      <div className="-mt-16">
-        <BerlinHero />
-      </div>
+      {/* The language switch lives inside the hero (top corner) so it reads as
+          part of the composition instead of floating over every section. */}
+      <BerlinHero />
       <BerlinFeatured articles={articles} />
       <BerlinContact email={contact.email} phone={contact.phone} />
     </div>
