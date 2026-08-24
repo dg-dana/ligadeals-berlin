@@ -4,6 +4,7 @@ Running list of open work on this project. Kept up to date by the `todo_update` 
 
 - [ ] Traveliga Berlin guide — he/en bilingual support
 - [ ] Traveliga dark mode
+- [ ] Traveliga video section
 - [ ] Buy a real domain for Traveliga (currently using `traveliga.com` as a placeholder in metadata, `.env`, and Sanity `siteSettings.email`). Once purchased, update:
   - `NEXT_PUBLIC_SITE_URL`, `RESEND_FROM_EMAIL`, `CONTACT_EMAIL`, `CONTACT_TO_EMAIL` in the Vercel/`.env` environment
   - Sanity `siteSettings.email`
