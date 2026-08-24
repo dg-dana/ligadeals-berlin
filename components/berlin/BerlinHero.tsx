@@ -4,9 +4,18 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Button from '@/components/Button'
 import { useReducedMotion } from '@/lib/a11y/useReducedMotion'
+import { useLanguage } from './LanguageContext'
 
-export default function Hero() {
+/**
+ * Berlin guide hero — a bilingual version of the site's Hero. All copy comes
+ * from the active-language dictionary and the text direction follows the
+ * selected language (RTL for Hebrew, LTR for English).
+ */
+export default function BerlinHero() {
   const reduceMotion = useReducedMotion()
+  const { t, dir } = useLanguage()
+  const hero = t.hero
+
   return (
     <section
       className="relative w-full overflow-hidden"
@@ -46,10 +55,8 @@ export default function Hero() {
 
       {/* Main Content.
           The copy is centred in the space left over after the scroll cue, which
-          sits in normal flow underneath it. The cue used to be absolutely
-          positioned at bottom-24, so on short (laptop) viewports the centred
-          block grew down into it and the CTA buttons collided with it. */}
-      <div className="relative z-10 flex min-h-screen flex-col items-center px-4 text-center">
+          sits in normal flow underneath it. */}
+      <div className="relative z-10 flex min-h-screen flex-col items-center px-4 text-center" dir={dir}>
         <div className="flex flex-1 flex-col items-center justify-center py-12">
           {/* Badge */}
           <motion.span
@@ -57,9 +64,8 @@ export default function Hero() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6 }}
             className="mb-6 inline-block rounded-full border border-gold-300/60 bg-navy-800/60 px-5 py-1.5 text-sm font-semibold tracking-wide text-gold-200"
-            dir="rtl"
           >
-            מדריך ברלין לישראלים
+            {hero.badge}
           </motion.span>
 
           {/* Main Headline */}
@@ -68,9 +74,10 @@ export default function Hero() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-6 !text-center text-4xl font-bold text-white md:text-6xl lg:text-7xl"
-            dir="rtl"
           >
-            גלו את ברלין <span className="text-gold-400">בצורה אישית</span> ובלתי נשכחת
+            {hero.headlineBefore}
+            <span className="text-gold-400">{hero.headlineHighlight}</span>
+            {hero.headlineAfter}
           </motion.h1>
 
           {/* Subheadline */}
@@ -79,13 +86,13 @@ export default function Hero() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mb-10 max-w-2xl !text-center text-lg text-white md:text-xl lg:text-2xl"
-            dir="rtl"
           >
-            מדריכים, המלצות מקומיות וליווי אישי צמוד
-            <br />
-            מתכנון החופשה ועד החזרה הביתה
-            <br />
-            הכל בעברית ברוח ישראלית
+            {hero.subheadline.map((line, i) => (
+              <span key={i}>
+                {line}
+                {i < hero.subheadline.length - 1 && <br />}
+              </span>
+            ))}
           </motion.p>
 
           {/* CTA Buttons */}
@@ -94,14 +101,13 @@ export default function Hero() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-col gap-4 sm:flex-row sm:gap-6"
-            dir="rtl"
           >
             <Button href="/contact" variant="gold" size="lg">
-              צרו קשר עכשיו
+              {hero.ctaContact}
             </Button>
 
             <Button href="/blog" variant="outline" size="lg">
-              קראו את הבלוג
+              {hero.ctaBlog}
             </Button>
           </motion.div>
         </div>
@@ -118,7 +124,7 @@ export default function Hero() {
             transition={reduceMotion ? undefined : { duration: 1.5, repeat: Infinity }}
             className="flex flex-col items-center gap-2"
           >
-            <span className="text-sm text-white" dir="rtl">גלול למטה</span>
+            <span className="text-sm text-white">{hero.scrollCue}</span>
             <svg
               className="h-6 w-6 text-white"
               fill="none"
