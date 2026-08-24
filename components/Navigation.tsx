@@ -9,13 +9,14 @@ const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = [
-    { name: "דף הבית", href: "/" },
+    { name: "דף הבית", href: "/berlin" },
     { name: "אודות", href: "/about" },
     { name: "בלוג", href: "/blog" },
     { name: "גלריית תמונות", href: "/gallery/photos" },
     { name: "גלריית וידאו", href: "/gallery/videos" },
     { name: "המלצות", href: "/recommendations" },
     { name: "צור קשר", href: "/contact" },
+    { name: "תפריט ראשי", href: "/" },
   ];
 
   return (
