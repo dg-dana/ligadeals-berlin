@@ -45,10 +45,10 @@ const Navigation = () => {
             </Link>
           </div>
 
-          {/* End cluster (left side for RTL): language switch + menu */}
+          {/* End cluster (left side for RTL). In this RTL row the first child
+              sits on the right, so the menu comes before the language switch to
+              keep the menu/hamburger to the right of it. */}
           <div className="flex items-center gap-2 sm:gap-3 order-1 md:order-2">
-            {showLanguageToggle && <LanguageToggle />}
-
             {/* Desktop Menu */}
             <div className="hidden md:flex md:gap-6">
               {menuItems.map((item) => (
@@ -78,6 +78,8 @@ const Navigation = () => {
                 )}
               </button>
             </div>
+
+            {showLanguageToggle && <LanguageToggle />}
           </div>
         </div>
       </div>
