@@ -8,6 +8,10 @@ const LABELS: Record<(typeof LANGUAGES)[number], string> = {
   en: 'EN',
 }
 
+// Explicit visual order (left → right): EN on the left, עב on the right.
+// Fixed here rather than relying on `dir`, so inherited direction can't flip it.
+const DISPLAY_ORDER = ['en', 'he'] as const
+
 /**
  * Compact Hebrew/English switch that lives in the site header. Rendered as a
  * group of two toggle buttons so the active language is exposed to assistive
@@ -20,10 +24,10 @@ export default function LanguageToggle({ className = '' }: { className?: string 
     <div
       role="group"
       aria-label={t.toggleAriaLabel}
-      dir="rtl"
+      dir="ltr"
       className={`inline-flex items-center rounded-full border border-navy-200 bg-white/70 p-0.5 dark:border-navy-600 dark:bg-navy-900/40 ${className}`}
     >
-      {LANGUAGES.map((code) => {
+      {DISPLAY_ORDER.map((code) => {
         const active = code === lang
         return (
           <button
