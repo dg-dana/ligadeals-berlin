@@ -54,17 +54,17 @@ export default function BerlinHero() {
         </motion.div>
       )}
 
-      {/* Language switch — part of the hero composition, pinned to the top
-          trailing corner and clear of the sticky site navigation. Forced LTR so
-          the HE/EN order stays stable regardless of the guide's direction. */}
-      <div dir="ltr" className="absolute right-4 top-4 z-20 sm:right-6 sm:top-6">
-        <LanguageToggle />
-      </div>
-
       {/* Main Content.
           The copy is centred in the space left over after the scroll cue, which
           sits in normal flow underneath it. */}
       <div className="relative z-10 flex min-h-screen flex-col items-center px-4 text-center" dir={dir}>
+        {/* Language switch — sits at the top of the hero in normal flow, above
+            the badge, so nothing overlaps. Forced LTR so the HE/EN order stays
+            stable regardless of the guide's direction. */}
+        <div dir="ltr" className="flex w-full justify-center pt-6">
+          <LanguageToggle />
+        </div>
+
         <div className="flex flex-1 flex-col items-center justify-center py-12">
           {/* Badge */}
           <motion.span
