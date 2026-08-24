@@ -57,7 +57,7 @@ const Footer = ({ settings }: FooterProps) => {
             <h3 className="text-xl font-bold mb-4 text-gold-400">קישורים מהירים</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/" className="text-navy-100 hover:text-white transition-colors">
+                <Link href="/berlin" className="text-navy-100 hover:text-white transition-colors">
                   דף הבית
                 </Link>
               </li>
@@ -89,6 +89,11 @@ const Footer = ({ settings }: FooterProps) => {
               <li>
                 <Link href="/contact" className="text-navy-100 hover:text-white transition-colors">
                   צור קשר
+                </Link>
+              </li>
+              <li>
+                <Link href="/" className="text-navy-100 hover:text-white transition-colors">
+                  תפריט ראשי
                 </Link>
               </li>
             </ul>

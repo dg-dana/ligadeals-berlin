@@ -19,8 +19,14 @@ describe('Navigation Component', () => {
 
   it('renders correct links for menu items', () => {
     renderWithProviders(<Navigation />)
-    const homeItems = screen.getAllByRole('link', { name: /דף הבית/i })
-    expect(homeItems[0]).toHaveAttribute('href', '/')
+    // "דף הבית" is the Berlin guide home; the opening splash is reached via
+    // the "תפריט ראשי" item instead. Match the exact accessible name so the
+    // logo link (aria-label "Traveliga - חזרה לדף הבית") isn't picked up.
+    const homeItems = screen.getAllByRole('link', { name: 'דף הבית' })
+    expect(homeItems[0]).toHaveAttribute('href', '/berlin')
+
+    const mainMenuItems = screen.getAllByRole('link', { name: 'תפריט ראשי' })
+    expect(mainMenuItems[0]).toHaveAttribute('href', '/')
 
     const blogItems = screen.getAllByRole('link', { name: /בלוג/i })
     expect(blogItems[0]).toHaveAttribute('href', '/blog')
