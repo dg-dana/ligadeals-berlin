@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import AccessibilityWidget from "@/components/AccessibilityWidget";
 import CookieConsentBanner from "@/components/CookieConsentBanner";
+import { LanguageProvider } from "@/components/berlin/LanguageContext";
 import { getSiteSettings } from "@/lib/sanity/siteSettings";
 
 /**
@@ -22,7 +23,10 @@ export default async function SiteLayout({
   const settings = await getSiteSettings();
 
   return (
-    <>
+    // The Berlin guide's Hebrew/English switch lives in the header, so the
+    // language provider wraps the shared chrome and the page content together.
+    // Only the Berlin route surfaces the toggle and consumes the language.
+    <LanguageProvider>
       <Navigation />
       <main id="main-content" className="flex-grow" tabIndex={-1}>
         {children}
@@ -31,6 +35,6 @@ export default async function SiteLayout({
       <FloatingWhatsApp phoneNumber={settings.whatsapp} />
       <AccessibilityWidget />
       <CookieConsentBanner />
-    </>
+    </LanguageProvider>
   );
 }
