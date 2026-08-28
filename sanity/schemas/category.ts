@@ -12,6 +12,12 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'titleEn',
+      title: 'כותרת באנגלית (Title — English)',
+      description: 'תרגום אנגלי לשם הקטגוריה. אם ריק, יוצג השם בעברית.',
+      type: 'string',
+    }),
+    defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',

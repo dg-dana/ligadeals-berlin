@@ -10,11 +10,13 @@ const FALLBACK_THUMBNAIL = '/images/blog-fallback.png'
 interface Article {
   _id: string
   title: string
+  titleEn?: string
   slug: { current: string }
   excerpt?: string
+  excerptEn?: string
   mainImage?: SanityImage
   publishedAt: string
-  category?: { title: string }
+  category?: { title: string; titleEn?: string }
 }
 
 async function getFeaturedArticles(): Promise<BerlinArticle[]> {
@@ -28,13 +30,16 @@ async function getFeaturedArticles(): Promise<BerlinArticle[]> {
     return articles.map((article) => ({
       id: article._id,
       title: article.title,
+      titleEn: article.titleEn || '',
       slug: article.slug.current,
       excerpt: article.excerpt || '',
+      excerptEn: article.excerptEn || '',
       thumbnail: article.mainImage
         ? urlFor(article.mainImage).width(600).height(400).url()
         : FALLBACK_THUMBNAIL,
       date: article.publishedAt,
       category: article.category?.title || '',
+      categoryEn: article.category?.titleEn || '',
     }))
   } catch (error) {
     console.error('Error fetching featured articles:', error)
