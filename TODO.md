@@ -2,7 +2,7 @@
 
 Running list of open work on this project. Kept up to date by the `todo_update` skill; read with `todo_next`.
 
-- [ ] Traveliga Berlin guide — he/en bilingual support. Right now the toggle only swaps the UI chrome/copy (`lib/i18n/berlin.ts`); article titles/excerpts and any guide body pulled from Sanity stay in their original (Hebrew) language. Needs bilingual fields in the Sanity schema + the `LanguageContext` wired to select the matching language when rendering `BerlinFeatured` (and future guide content).
+- [ ] Berlin guide bilingual — finish rollout. Code is done: `titleEn`/`excerptEn` (article) + `titleEn` (category) schema fields, GROQ projection, and `BerlinFeatured` selecting per the he/en toggle with Hebrew fallback. Remaining: deploy the Studio schema (`npm run sanity:deploy`) and author the English translations in Sanity so English mode shows more than the Hebrew fallback. Guide *body* (portable text) is still Hebrew-only — not yet bilingual.
 - [ ] Traveliga dark mode
 - [ ] Traveliga video section
 - [ ] Buy a real domain for Traveliga (currently using `traveliga.com` as a placeholder in metadata, `.env`, and Sanity `siteSettings.email`). Once purchased, update:
