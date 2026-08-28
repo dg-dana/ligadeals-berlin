@@ -9,6 +9,7 @@ const authorFields = `
 const categoryFields = `
   _id,
   title,
+  titleEn,
   slug,
   description
 `;
@@ -16,8 +17,10 @@ const categoryFields = `
 const articleBaseFields = `
   _id,
   title,
+  titleEn,
   slug,
   excerpt,
+  excerptEn,
   mainImage,
   publishedAt,
   "category": categories[0]->{${categoryFields}},
